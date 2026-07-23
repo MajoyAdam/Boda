@@ -1,16 +1,15 @@
 /* Sube este número cada vez que cambies algo importante.
    Al detectarlo, la app se actualiza sola en el celular de todos. */
-const CACHE = "boda-v2";
+const CACHE = "boda-v3";
 
 const BASE = [
   "./", "./index.html", "./manifest.json",
-  "./img/portada.jpg",
+  "./img/portada.jpg", "./img/corcho.jpg",
   "./img/flor-crema.png", "./img/flor-durazno.png", "./img/flor-rosa.png",
   "./img/flor-lila.png", "./img/flor-hibisco.png", "./img/flor-amarilla.png"
 ];
 
 self.addEventListener("install", e => {
-  // no espera a que se cierren las pestañas viejas: entra ya
   self.skipWaiting();
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(BASE)).catch(()=>{}));
 });
@@ -27,6 +26,7 @@ self.addEventListener("activate", e => {
    La caché solo entra cuando no hay señal. */
 self.addEventListener("fetch", e => {
   if (e.request.method !== "GET") return;
+  if (!e.request.url.startsWith(self.location.origin)) return;
   e.respondWith(
     fetch(e.request)
       .then(r => {

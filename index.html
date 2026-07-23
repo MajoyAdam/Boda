@@ -9,71 +9,66 @@
 <link rel="icon" href="favicon.png">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="manifest" href="manifest.json">
-
 <meta property="og:type" content="website">
 <meta property="og:title" content="María & Adam · 24 abril 2027">
 <meta property="og:description" content="Domaine Sainte-Raphine, Burdeos. Confirma tu asistencia aquí.">
 <meta property="og:image" content="og.jpg">
 <meta name="twitter:card" content="summary_large_image">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Outfit:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
   :root{
-    --verde:#82A07C;
-    --verde-hondo:#5F7A5A;
-    --crema:#F7F2E6;
-    --tinta:#2E2A16;
-    --naranja:#FF4C25;
+    --verde:#82A07C; --crema:#F7F2E6; --tinta:#2E2A16; --naranja:#FF4C25;
     --linea:rgba(46,42,22,.16);
-
     --display:"Baloo 2","Trebuchet MS",cursive;
     --texto:"Outfit","Segoe UI",system-ui,sans-serif;
     --util:"Space Mono",ui-monospace,monospace;
   }
   *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
-  body{margin:0;background:var(--verde);color:var(--tinta);font-family:var(--texto);font-weight:300;font-size:16px;line-height:1.55;position:relative;overflow-x:hidden}
-  .jardin{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
-  .jardin img{position:absolute;opacity:.85;filter:drop-shadow(0 3px 5px rgba(46,42,22,.18))}
-  .wrap{max-width:560px;margin:0 auto;padding:0 20px 90px;position:relative;z-index:1}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  body{margin:0;background:var(--verde);color:var(--tinta);font-family:var(--texto);font-weight:300;font-size:16px;line-height:1.55;position:relative;overflow-x:hidden;min-height:100vh}
+  .jardin{position:fixed;inset:0;pointer-events:none;z-index:0}
+  .jardin img{position:absolute;opacity:.8;filter:drop-shadow(0 3px 5px rgba(46,42,22,.18))}
+  .wrap{max-width:560px;margin:0 auto;padding:0 20px 80px;position:relative;z-index:1}
 
-  .nav{position:sticky;top:0;z-index:20;background:rgba(130,160,124,.94);backdrop-filter:blur(8px);border-bottom:1px solid rgba(46,42,22,.14)}
-  .nav-top{max-width:560px;margin:0 auto;display:flex;align-items:center;gap:8px;padding:8px 20px 0}
-  .idioma{margin-left:auto;display:flex;gap:2px;background:var(--crema);border:1px solid var(--linea);border-radius:999px;padding:3px}
-  .idioma button{border:none;background:none;font-size:15px;line-height:1;padding:5px 7px;border-radius:999px;cursor:pointer;opacity:.42;font-family:var(--util)}
-  .idioma button[aria-pressed="true"]{opacity:1;background:var(--verde);color:var(--crema)}
-  .marca{font-family:var(--util);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--crema)}
-  .nav-inner{max-width:560px;margin:0 auto;display:flex;gap:8px;overflow-x:auto;padding:10px 20px;scrollbar-width:none}
-  .nav-inner::-webkit-scrollbar{display:none}
-  .nav-inner a{flex:0 0 auto;font-family:var(--util);font-size:11px;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;color:var(--tinta);border:1px solid var(--linea);border-radius:999px;padding:6px 12px;background:var(--crema)}
-  .nav-inner a:hover{background:var(--naranja);color:var(--crema);border-color:var(--naranja)}
+  .nav{position:sticky;top:0;z-index:20;background:rgba(130,160,124,.95);backdrop-filter:blur(8px)}
+  .nav-top{max-width:560px;margin:0 auto;display:flex;align-items:center;gap:8px;padding:9px 20px 2px}
+  .logo{font-family:var(--display);font-weight:800;font-size:17px;color:var(--crema);background:none;border:none;cursor:pointer;padding:0}
+  .idioma{margin-left:auto;display:flex;gap:2px;background:var(--crema);border-radius:999px;padding:3px}
+  .idioma button{border:none;background:none;font-size:14px;line-height:1;padding:5px 7px;border-radius:999px;cursor:pointer;opacity:.4;font-family:var(--util)}
+  .idioma button[aria-pressed="true"]{opacity:1;background:var(--verde)}
+  .menu{max-width:560px;margin:0 auto;display:flex;gap:7px;overflow-x:auto;padding:9px 20px;scrollbar-width:none}
+  .menu::-webkit-scrollbar{display:none}
+  .menu button{flex:0 0 auto;font-family:var(--util);font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--tinta);border:none;border-radius:999px;padding:7px 13px;background:var(--crema);cursor:pointer;opacity:.75}
+  .menu button[aria-current="page"]{background:var(--naranja);color:var(--crema);opacity:1}
   a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--naranja);outline-offset:2px}
 
-  .hero{padding:26px 0 34px;text-align:center}
-  .portada{width:100%;border-radius:10px;display:block;box-shadow:0 8px 26px rgba(46,42,22,.22)}
-  .oculto{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-  .eyebrow{font-family:var(--util);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--crema);margin:20px 0 0}
-  .fecha{font-family:var(--display);font-weight:600;font-size:21px;color:var(--crema);margin:6px 0 0;line-height:1.3}
-  .cuenta{display:flex;justify-content:center;gap:10px;margin-top:20px}
-  .cuenta div{background:var(--crema);border-radius:14px;padding:10px 4px;width:70px;box-shadow:0 4px 10px rgba(46,42,22,.16)}
-  .cuenta b{display:block;font-family:var(--display);font-weight:800;font-size:26px;line-height:1;color:var(--naranja)}
-  .cuenta span{font-family:var(--util);font-size:9px;letter-spacing:.1em;text-transform:uppercase;opacity:.6}
-  .acciones{display:flex;gap:8px;margin-top:20px}
-  .acciones button{flex:1;font-family:var(--util);font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:11px 6px;border-radius:12px;border:1px solid var(--crema);background:transparent;color:var(--crema);cursor:pointer}
-  .acciones button:hover{background:var(--crema);color:var(--tinta)}
+  .pagina{display:none;padding-top:28px}
+  .pagina.activa{display:block;animation:entra .28s ease}
+  @keyframes entra{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .tit{background:var(--crema);border-radius:16px;padding:13px 18px 14px;display:inline-block;margin:0 0 16px;box-shadow:0 4px 10px rgba(46,42,22,.14)}
+  .tit h2{font-family:var(--display);font-weight:800;font-size:29px;line-height:1;margin:0;color:var(--naranja)}
+  .tit p{font-family:var(--util);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;margin:5px 0 0;opacity:.55}
 
-  section{margin-top:44px}
-  h2{font-family:var(--display);font-weight:800;font-size:34px;line-height:1.02;margin:0 0 4px;color:var(--naranja);text-shadow:0 2px 0 rgba(46,42,22,.12)}
-  .sub{font-family:var(--util);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--crema);opacity:.85;margin:0 0 18px}
   .card{background:var(--crema);border-radius:18px;padding:18px;margin-bottom:12px;box-shadow:0 5px 14px rgba(46,42,22,.14)}
   .card h3{margin:0 0 4px;font-family:var(--display);font-weight:600;font-size:19px}
   .card p{margin:0;font-size:14.5px;opacity:.85}
-  .meta{font-family:var(--util);font-size:11px;letter-spacing:.04em;opacity:.6;margin-top:8px}
-  .meta a{color:var(--naranja)}
+  .etiqueta{font-family:var(--util);font-size:10px;letter-spacing:.1em;text-transform:uppercase;opacity:.5;margin-bottom:6px}
+  .enlace{display:inline-block;margin-top:10px;font-family:var(--util);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--naranja);text-decoration:none;border-bottom:1.5px solid var(--naranja);padding-bottom:2px}
+  .intro{color:var(--crema);font-size:14.5px;margin:0 0 14px}
+
+  .portada{width:100%;border-radius:10px;display:block;box-shadow:0 8px 26px rgba(46,42,22,.24)}
+  .eyebrow{font-family:var(--util);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--crema);margin:22px 0 0;text-align:center}
+  .fecha{font-family:var(--display);font-weight:600;font-size:22px;color:var(--crema);margin:6px 0 0;text-align:center;line-height:1.3;white-space:pre-line}
+  .cuenta{display:flex;justify-content:center;gap:10px;margin-top:22px}
+  .cuenta div{background:var(--crema);border-radius:14px;padding:11px 4px;width:74px;box-shadow:0 4px 10px rgba(46,42,22,.16)}
+  .cuenta b{display:block;font-family:var(--display);font-weight:800;font-size:27px;line-height:1;color:var(--naranja)}
+  .cuenta span{font-family:var(--util);font-size:9px;letter-spacing:.08em;text-transform:uppercase;opacity:.6}
+  .acciones{display:flex;gap:9px;margin-top:24px}
+  .acciones button{flex:1;font-family:var(--display);font-weight:600;font-size:15px;padding:13px 8px;border-radius:14px;border:none;background:var(--crema);color:var(--tinta);cursor:pointer;box-shadow:0 4px 0 rgba(46,42,22,.22)}
+  .acciones button:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(46,42,22,.22)}
 
   .hora{display:flex;gap:14px;padding:12px 0;border-bottom:1px dashed var(--linea)}
   .hora:last-child{border:none}
@@ -96,36 +91,49 @@
   .opciones button[aria-pressed="true"]{background:var(--tinta);color:var(--crema);border-color:var(--tinta)}
   .enviar{width:100%;margin-top:20px;font-family:var(--display);font-weight:800;font-size:20px;padding:14px;border:none;border-radius:14px;background:var(--naranja);color:var(--crema);cursor:pointer;box-shadow:0 5px 0 #C8371A}
   .enviar:active{transform:translateY(3px);box-shadow:0 2px 0 #C8371A}
-  .aviso{font-family:var(--util);font-size:11px;margin-top:12px;opacity:.6;text-align:center}
+  .aviso{font-family:var(--util);font-size:11px;margin-top:12px;opacity:.55;text-align:center}
+  .aviso.claro{color:var(--crema);opacity:.85}
   .check{display:flex;align-items:center;gap:9px;margin-top:14px;font-size:14px}
   .check input{width:auto}
-
   .ticket{position:relative;background:var(--crema);border-radius:18px;padding:20px;box-shadow:0 5px 14px rgba(46,42,22,.16)}
   .ticket::before,.ticket::after{content:"";position:absolute;width:22px;height:22px;background:var(--verde);border-radius:50%;top:calc(50% - 11px)}
   .ticket::before{left:-11px}.ticket::after{right:-11px}
 
-  .muro{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-  .deseo{flex:1 1 46%;min-width:150px;border-radius:14px;padding:14px;box-shadow:0 4px 10px rgba(46,42,22,.14);font-size:14px}
-  .deseo:nth-child(3n){transform:rotate(-1.4deg)}
-  .deseo:nth-child(3n+2){transform:rotate(1.2deg)}
-  .deseo p{margin:0 0 8px;font-style:italic}
-  .deseo b{font-family:var(--util);font-size:10px;letter-spacing:.08em;text-transform:uppercase;opacity:.65;font-weight:400}
+  .album{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .album img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:8px;background:var(--crema);padding:6px;box-shadow:0 5px 12px rgba(46,42,22,.2);cursor:pointer;display:block}
+  .album img:nth-child(4n){transform:rotate(1.4deg)}
+  .album img:nth-child(4n+3){transform:rotate(-1.6deg)}
+  .lupa{position:fixed;inset:0;background:rgba(46,42,22,.93);z-index:50;display:none;align-items:center;justify-content:center;padding:20px}
+  .lupa.abierta{display:flex}
+  .lupa img{max-width:100%;max-height:86vh;border-radius:8px;background:var(--crema);padding:8px}
+  .lupa button{position:absolute;top:18px;right:18px;background:var(--crema);border:none;border-radius:999px;width:40px;height:40px;font-size:18px;cursor:pointer}
+
+  .corcho{background:url("img/corcho.jpg") repeat;background-size:300px;border-radius:14px;padding:18px 14px 24px;box-shadow:inset 0 0 40px rgba(46,42,22,.35),0 6px 16px rgba(46,42,22,.25);border:9px solid #A9793F}
+  .notas{display:flex;flex-wrap:wrap;gap:14px}
+  .nota{position:relative;flex:1 1 44%;min-width:142px;padding:18px 13px 13px;border-radius:3px;font-size:14px;box-shadow:2px 4px 9px rgba(46,42,22,.32);line-height:1.4}
+  .nota:nth-child(4n){transform:rotate(-2deg)}
+  .nota:nth-child(4n+1){transform:rotate(1.6deg)}
+  .nota:nth-child(4n+2){transform:rotate(-.8deg)}
+  .nota:nth-child(4n+3){transform:rotate(2.2deg)}
+  .nota::before{content:"";position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:13px;height:13px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FF7A5C,#C8371A);box-shadow:0 2px 3px rgba(46,42,22,.5)}
+  .nota p{margin:0 0 8px;font-style:italic}
+  .nota b{font-family:var(--util);font-size:10px;letter-spacing:.06em;text-transform:uppercase;opacity:.65;font-weight:400}
+  .vacio{color:var(--crema);font-family:var(--util);font-size:12px;text-align:center;padding:26px 10px;width:100%;text-shadow:0 1px 3px rgba(46,42,22,.6)}
 
   .cancion{display:flex;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px dashed var(--linea)}
   .cancion:last-child{border:none}
   .cancion span{font-family:var(--util);font-size:11px;opacity:.45;flex:0 0 24px}
   .cancion strong{font-weight:600;font-size:15px}
   .cancion em{font-style:normal;opacity:.6;font-size:13.5px}
-  .portada-pl{width:100%;aspect-ratio:1;border-radius:14px;border:2px dashed var(--linea);display:flex;align-items:center;justify-content:center;font-family:var(--util);font-size:11px;text-align:center;opacity:.5;margin-bottom:14px;padding:20px}
-
-  .rollo{margin:18px -20px;padding:16px 0;background:var(--tinta);border-top:14px solid transparent;border-bottom:14px solid transparent;background-clip:padding-box;position:relative;overflow-x:auto;scrollbar-width:none}
+  .spot{width:100%;height:352px;border:none;border-radius:14px;margin-bottom:12px;background:var(--crema)}
+  .rollo{margin:16px -20px;padding:16px 0;background:var(--tinta);border-top:14px solid transparent;border-bottom:14px solid transparent;background-clip:padding-box;position:relative;overflow-x:auto;scrollbar-width:none}
   .rollo::-webkit-scrollbar{display:none}
   .rollo::before,.rollo::after{content:"";position:absolute;left:0;right:0;height:14px;background-image:repeating-linear-gradient(90deg,var(--verde) 0 9px,transparent 9px 20px)}
   .rollo::before{top:-14px}.rollo::after{bottom:-14px}
   .frames{display:flex;gap:8px;padding:0 20px;min-width:min-content}
   .frame{flex:0 0 62px;height:62px;border-radius:6px;border:1px solid rgba(247,242,230,.25);display:flex;align-items:center;justify-content:center;font-family:var(--util);font-size:11px;color:rgba(247,242,230,.5);cursor:pointer}
   .frame.usado{background:var(--naranja);color:var(--crema);border-color:var(--naranja)}
-  .btn-fotos{display:block;text-align:center;text-decoration:none;margin-top:16px;font-family:var(--display);font-weight:800;font-size:20px;padding:14px;border-radius:14px;background:var(--naranja);color:var(--crema);box-shadow:0 5px 0 #C8371A}
+  .btn-grande{display:block;text-align:center;text-decoration:none;margin-top:14px;font-family:var(--display);font-weight:800;font-size:19px;padding:14px;border-radius:14px;background:var(--naranja);color:var(--crema);box-shadow:0 5px 0 #C8371A}
 
   details{background:var(--crema);border-radius:14px;padding:14px 16px;margin-bottom:8px}
   summary{cursor:pointer;font-weight:600;font-size:15px;list-style:none}
@@ -134,9 +142,10 @@
   details[open] summary::after{content:"–"}
   details p{margin:10px 0 0;font-size:14.5px;opacity:.8}
 
-  .panel{background:var(--tinta);color:var(--crema);border-radius:18px;padding:20px;margin-top:44px}
-  .panel h2{color:var(--crema);font-size:28px;text-shadow:none}
-  .panel .sub{color:rgba(247,242,230,.6)}
+  .panel{background:var(--tinta);color:var(--crema);border-radius:18px;padding:20px;margin-top:24px}
+  .panel .tit{background:rgba(247,242,230,.12);box-shadow:none}
+  .panel .tit h2{color:var(--crema);font-size:24px}
+  .panel .tit p{color:rgba(247,242,230,.6);opacity:1}
   .panel input{background:rgba(247,242,230,.1);border-color:rgba(247,242,230,.25);color:var(--crema)}
   .panel label{color:rgba(247,242,230,.6)}
   .cifras{display:flex;gap:8px;margin:16px 0}
@@ -147,27 +156,27 @@
   .invitado em{font-style:normal;display:block;font-size:12.5px;opacity:.65}
   .privado{font-family:var(--util);font-size:10px;color:var(--naranja);letter-spacing:.06em;text-transform:uppercase}
 
-  footer{text-align:center;margin-top:48px;font-family:var(--util);font-size:11px;letter-spacing:.06em;color:var(--crema);opacity:.75}
-  footer button{background:none;border:none;font-family:var(--util);font-size:11px;color:var(--crema);opacity:.8;cursor:pointer;text-decoration:underline;margin-top:8px}
+  footer{text-align:center;margin-top:40px;font-family:var(--util);font-size:11px;color:var(--crema);opacity:.75}
+  footer button{background:none;border:none;font-family:var(--util);font-size:11px;color:var(--crema);opacity:.9;cursor:pointer;text-decoration:underline;margin-top:8px}
 </style>
 </head>
 <body>
+
 <nav class="nav">
   <div class="nav-top">
-    <span class="marca" data-t="marca"></span>
+    <button class="logo" id="logo">María &amp; Adam</button>
     <div class="idioma">
-      <button data-lang="es" aria-pressed="true">🇨🇴 ES</button>
-      <button data-lang="en" aria-pressed="false">🇬🇧 EN</button>
-      <button data-lang="fr" aria-pressed="false">🇫🇷 FR</button>
+      <button data-lang="es" aria-pressed="true">🇨🇴</button>
+      <button data-lang="en" aria-pressed="false">🇬🇧</button>
+      <button data-lang="fr" aria-pressed="false">🇫🇷</button>
     </div>
   </div>
-  <div class="nav-inner" id="menu"></div>
+  <div class="menu" id="menu"></div>
 </nav>
 
 <div class="wrap">
 
-  <header class="hero">
-    <h1 class="oculto">María y Adam · 24 de abril de 2027</h1>
+  <section class="pagina activa" id="p-inicio">
     <img class="portada" src="img/portada.jpg" alt="María y Adam">
     <p class="eyebrow" data-t="eyebrow"></p>
     <p class="fecha" data-t="fechaLugar"></p>
@@ -176,11 +185,10 @@
       <button id="btnCal" data-t="btnCal"></button>
       <button id="btnWa" data-t="btnWa"></button>
     </div>
-  </header>
+  </section>
 
-  <section id="rsvp">
-    <h2 data-t="rsvpTit"></h2>
-    <p class="sub" data-t="rsvpSub"></p>
+  <section class="pagina" id="p-rsvp">
+    <div class="tit"><h2 data-t="rsvpTit"></h2><p data-t="rsvpSub"></p></div>
     <div class="ticket">
       <div id="formulario">
         <label data-t="lNombre" for="nombre"></label>
@@ -191,14 +199,9 @@
           <button type="button" data-v="no" aria-pressed="false" data-t="oNo"></button>
         </div>
         <div class="fila">
-          <div>
-            <label data-t="lAcomp" for="acomp"></label>
-            <select id="acomp"><option>0</option><option>1</option><option>2</option><option>3</option></select>
-          </div>
-          <div>
-            <label data-t="lBus" for="bus"></label>
-            <select id="bus"></select>
-          </div>
+          <div><label data-t="lAcomp" for="acomp"></label>
+            <select id="acomp"><option>0</option><option>1</option><option>2</option><option>3</option></select></div>
+          <div><label data-t="lBus" for="bus"></label><select id="bus"></select></div>
         </div>
         <label data-t="lComida" for="comida"></label>
         <input id="comida" type="text" data-ph="phComida">
@@ -211,44 +214,49 @@
     </div>
   </section>
 
-  <section id="dia">
-    <h2 data-t="diaTit"></h2>
-    <p class="sub" data-t="diaSub"></p>
+  <section class="pagina" id="p-dia">
+    <div class="tit"><h2 data-t="diaTit"></h2><p data-t="diaSub"></p></div>
     <div class="card" id="horario"></div>
   </section>
 
-  <section id="llegar">
-    <h2 data-t="llegarTit"></h2>
-    <p class="sub" data-t="llegarSub"></p>
+  <section class="pagina" id="p-llegar">
+    <div class="tit"><h2 data-t="llegarTit"></h2><p data-t="llegarSub"></p></div>
     <div class="card">
       <h3>Domaine Sainte-Raphine</h3>
       <p data-t="lugarTxt"></p>
-      <p class="meta"><a href="https://maps.app.goo.gl/hUN1VAC6Tah4Lzrp7" target="_blank" rel="noopener" data-t="verMapa"></a></p>
+      <a class="enlace" href="https://maps.app.goo.gl/hUN1VAC6Tah4Lzrp7" target="_blank" rel="noopener" data-t="verMapa"></a><br>
+      <a class="enlace" href="https://www.sainte-raphine.fr" target="_blank" rel="noopener" data-t="verWeb"></a>
     </div>
-    <div class="card"><h3 data-t="aviónTit"></h3><p data-t="aviónTxt"></p></div>
+    <div class="card"><h3 data-t="avionTit"></h3><p data-t="avionTxt"></p></div>
     <div class="card"><h3 data-t="busTit"></h3><p data-t="busTxt"></p></div>
     <div class="card"><h3 data-t="cocheTit"></h3><p data-t="cocheTxt"></p></div>
-  </section>
-
-  <section id="hoteles">
-    <h2 data-t="hotTit"></h2>
-    <p class="sub" data-t="hotSub"></p>
-    <div class="card"><h3 data-t="hot1Tit"></h3><p data-t="hot1Txt"></p><p class="meta" data-t="hot1Meta"></p></div>
-    <div class="card"><h3 data-t="hot2Tit"></h3><p data-t="hot2Txt"></p><p class="meta" data-t="hot2Meta"></p></div>
-    <div class="card"><h3 data-t="hot3Tit"></h3><p data-t="hot3Txt"></p><p class="meta" data-t="hot3Meta"></p></div>
-  </section>
-
-  <section id="vestuario">
-    <h2 data-t="vesTit"></h2>
-    <p class="sub" data-t="vesSub"></p>
     <div class="card">
-      <h3 data-t="vesH3"></h3>
-      <p data-t="vesTxt"></p>
+      <h3 data-t="vtcTit"></h3><p data-t="vtcTxt"></p>
+      <a class="enlace" id="uber" target="_blank" rel="noopener">Uber</a>
+      &nbsp;&nbsp;<a class="enlace" href="https://bolt.eu" target="_blank" rel="noopener">Bolt</a>
+    </div>
+  </section>
+
+  <section class="pagina" id="p-hoteles">
+    <div class="tit"><h2 data-t="hotTit"></h2><p data-t="hotSub"></p></div>
+    <div id="listaHoteles"></div>
+    <p class="aviso claro" data-t="hotAviso"></p>
+  </section>
+
+  <section class="pagina" id="p-burdeos">
+    <div class="tit"><h2 data-t="burTit"></h2><p data-t="burSub"></p></div>
+    <p class="intro" data-t="burTxt"></p>
+    <div id="listaBurdeos"></div>
+  </section>
+
+  <section class="pagina" id="p-vestuario">
+    <div class="tit"><h2 data-t="vesTit"></h2><p data-t="vesSub"></p></div>
+    <div class="card">
+      <h3 data-t="vesH3"></h3><p data-t="vesTxt"></p>
       <div class="tags" id="tagsVes"></div>
     </div>
     <div class="card">
-      <h3 data-t="florTit"></h3>
-      <p data-t="florTxt"></p>
+      <h3 data-t="florTit"></h3><p data-t="florTxt"></p>
       <div class="paleta">
         <span style="background:#E8720F"></span><span style="background:#E0507A"></span>
         <span style="background:#F07A20"></span><span style="background:#D9639B"></span>
@@ -259,9 +267,14 @@
     </div>
   </section>
 
-  <section id="deseos">
-    <h2 data-t="desTit"></h2>
-    <p class="sub" data-t="desSub"></p>
+  <section class="pagina" id="p-album">
+    <div class="tit"><h2 data-t="albTit"></h2><p data-t="albSub"></p></div>
+    <div class="card"><p data-t="albTxt" style="font-style:italic"></p></div>
+    <div class="album" id="album"></div>
+  </section>
+
+  <section class="pagina" id="p-deseos">
+    <div class="tit"><h2 data-t="desTit"></h2><p data-t="desSub"></p></div>
     <div class="card">
       <label data-t="lDeQuien" for="deNombre"></label>
       <input id="deNombre" type="text" data-ph="phNombre">
@@ -270,18 +283,18 @@
       <div class="check"><input type="checkbox" id="dePrivado"><label for="dePrivado" style="margin:0;text-transform:none;letter-spacing:0;font-family:var(--texto);font-size:14px;opacity:.9" data-t="lPrivado"></label></div>
       <button class="enviar" id="btnDeseo" data-t="btnDeseo"></button>
     </div>
-    <div class="muro" id="muro"></div>
+    <div class="corcho"><div class="notas" id="muro"></div></div>
   </section>
 
-  <section id="playlist">
-    <h2 data-t="plTit"></h2>
-    <p class="sub" data-t="plSub"></p>
+  <section class="pagina" id="p-playlist">
+    <div class="tit"><h2 data-t="plTit"></h2><p data-t="plSub"></p></div>
+    <iframe class="spot" id="spotEmbed" loading="lazy" allow="encrypted-media" title="Playlist"></iframe>
     <div class="card">
-      <div class="portada-pl" data-t="portadaTxt"></div>
       <p data-t="plTxt"></p>
-      <p class="meta"><a href="#" id="spotify" target="_blank" rel="noopener" data-t="plLink"></a></p>
+      <a class="btn-grande" id="spotify" target="_blank" rel="noopener" data-t="plLink"></a>
     </div>
     <div class="card">
+      <h3 data-t="plPideTit"></h3>
       <label data-t="lCancion" for="tema"></label>
       <input id="tema" type="text" data-ph="phCancion">
       <label data-t="lArtista" for="artista"></label>
@@ -291,61 +304,81 @@
     <div class="card" id="listaCanciones"></div>
   </section>
 
-  <section id="fotos">
-    <h2 data-t="fotTit"></h2>
-    <p class="sub" data-t="fotSub"></p>
+  <section class="pagina" id="p-fotos">
+    <div class="tit"><h2 data-t="fotTit"></h2><p data-t="fotSub"></p></div>
     <div class="card">
-      <h3 data-t="fotH3"></h3>
-      <p data-t="fotTxt"></p>
-      <a class="btn-fotos" id="btnFotos" href="#" target="_blank" rel="noopener" data-t="btnFotos"></a>
+      <h3 data-t="fotH3"></h3><p data-t="fotTxt"></p>
+      <a class="btn-grande" id="btnFotos" href="#" target="_blank" rel="noopener" data-t="btnFotos"></a>
     </div>
     <div class="rollo" aria-hidden="true"><div class="frames" id="frames"></div></div>
-    <p class="aviso" data-t="fotAviso"></p>
+    <p class="aviso claro" data-t="fotAviso"></p>
   </section>
 
-  <section id="faq">
-    <h2 data-t="faqTit"></h2>
-    <p class="sub" data-t="faqSub"></p>
+  <section class="pagina" id="p-faq">
+    <div class="tit"><h2 data-t="faqTit"></h2><p data-t="faqSub"></p></div>
     <div id="faqLista"></div>
-  </section>
-
-  <section class="panel" id="panel" hidden>
-    <h2 data-t="panTit"></h2>
-    <p class="sub" data-t="panSub"></p>
-    <div id="panLogin">
-      <label data-t="lPin" for="pin"></label>
-      <input id="pin" type="password" inputmode="numeric" placeholder="••••">
-      <button class="enviar" id="btnPin" data-t="btnPin"></button>
+    <div class="panel" id="panel" hidden>
+      <div class="tit"><h2 data-t="panTit"></h2><p data-t="panSub"></p></div>
+      <div id="panLogin">
+        <label data-t="lPin" for="pin"></label>
+        <input id="pin" type="password" inputmode="numeric" placeholder="••••">
+        <button class="enviar" id="btnPin" data-t="btnPin"></button>
+      </div>
+      <div id="panDatos" hidden></div>
     </div>
-    <div id="panDatos" hidden></div>
+    <footer>
+      <div data-t="pie"></div>
+      <button id="verPanel" data-t="verPanel"></button> ·
+      <button id="verPost" data-t="verPost"></button>
+    </footer>
   </section>
 
-  <footer>
-    <div data-t="pie"></div>
-    <button id="verPanel" data-t="verPanel"></button> ·
-    <button id="verPost" data-t="verPost"></button>
-  </footer>
 </div>
+
+<div class="lupa" id="lupa"><button id="cerrarLupa" aria-label="Cerrar">✕</button><img id="lupaImg" src="" alt=""></div>
 
 <script>
 /* ==================== EDITA AQUÍ ==================== */
 const FECHA_BODA   = "2027-04-24T16:00:00";
-const URL_FOTOS    = "https://boda.adamymajo.com/fotos";
-const URL_SPOTIFY  = "https://open.spotify.com/";
-const WHATSAPP     = "447949733510";           // número sin + ni espacios (Majo)
+const URL_FOTOS    = "https://boda.mariayadam.com/fotos";
+const ID_SPOTIFY   = "13NTYDQvV4cU7EdQDEhiOu";
+const URL_SPOTIFY  = "https://open.spotify.com/playlist/" + ID_SPOTIFY;
+const WHATSAPP     = "447949733510";
 const PIN_NOVIOS   = "2404";
 const TOPE_FOTOS   = 20;
-const FORM_ID      = "";                       // id del Google Form (docs.google.com/forms/d/e/ESTO/viewform)
+const NUM_ALBUM    = 12;
+const FORM_ID      = "";
 const CAMPOS       = { nombre:"entry.000000001", asiste:"entry.000000002", acomp:"entry.000000003", bus:"entry.000000004", comida:"entry.000000005", nota:"entry.000000006" };
 /* =================================================== */
 
+const MAPA = id => "https://www.google.com/maps/place/?q=place_id:" + id;
+
+const HOTELES = [
+  {n:"Domaine Sainte-Raphine", d:{es:"Cinco habitaciones en el mismo lugar de la fiesta, para diez personas. Se reservan directo con el dominio.",en:"Five bedrooms right where the party is, sleeping ten. Booked directly with the venue.",fr:"Cinq chambres là où se passe la fête, pour dix personnes. Réservation directe avec le domaine."}, u:"https://www.sainte-raphine.fr/nos-chambres-w1"},
+  {n:"Villa Margaux", d:{es:"Casa de huéspedes con spa en Fargues-Saint-Hilaire, a cinco minutos.",en:"Guest house with a spa in Fargues-Saint-Hilaire, five minutes away.",fr:"Chambres d'hôtes avec spa à Fargues-Saint-Hilaire, à cinq minutes."}, u:MAPA("ChIJFZrPG9A6VQ0R5kphdHmTetI")},
+  {n:"Logis Hôtel Pey la Tour", d:{es:"En Sallebœuf, entre viñedos, con piscina y restaurante.",en:"In Sallebœuf, among the vines, with a pool and a restaurant.",fr:"À Sallebœuf, au milieu des vignes, avec piscine et restaurant."}, u:MAPA("ChIJu90F5LI7VQ0RcVrjnPnRCEw")},
+  {n:"Château La Chèze", d:{es:"En Floirac, a medio camino entre el dominio y el centro de Burdeos.",en:"In Floirac, halfway between the venue and central Bordeaux.",fr:"À Floirac, à mi-chemin entre le domaine et le centre de Bordeaux."}, u:MAPA("ChIJl8Un6-IlVQ0RUy_HGQIjj3A")},
+  {n:"Hôtel De Sèze", d:{es:"En pleno centro, sobre las Allées de Tourny. Bueno si te quedas todo el fin de semana.",en:"Right in the centre, on the Allées de Tourny. Good if you stay the whole weekend.",fr:"En plein centre, sur les allées de Tourny. Parfait pour tout le week-end."}, u:MAPA("ChIJ5cifY9knVQ0RpGqV7r6W-IM")},
+  {n:"Grand Hôtel Français", d:{es:"Centro de Burdeos, tranquilo y bien ubicado.",en:"Central Bordeaux, quiet and well placed.",fr:"Centre de Bordeaux, calme et bien situé."}, u:MAPA("ChIJ0UZPnNwnVQ0RjWGicMPJO-Q")}
+];
+
+const BURDEOS = [
+  {n:"Les Drôles", t:{es:"Comer",en:"Eat",fr:"Manger"}, d:{es:"Menú completo por unos 25 €. Hay que reservar sí o sí.",en:"Full set menu for about €25. You have to book ahead.",fr:"Menu complet autour de 25 €. Réservation obligatoire."}, u:MAPA("ChIJx4L9QtAnVQ0RoeMfao4MnJU")},
+  {n:"Arcada", t:{es:"Comer",en:"Eat",fr:"Manger"}, d:{es:"Cocina de temporada y una bodega a la que puedes bajar a escoger el vino.",en:"Seasonal cooking, and a cellar you can go down into to pick your bottle.",fr:"Cuisine de saison et cave où l'on descend choisir sa bouteille."}, u:MAPA("ChIJc-kygzEnVQ0Rg5t8tCx_l3c")},
+  {n:"La Fine Bouche", t:{es:"Comer",en:"Eat",fr:"Manger"}, d:{es:"Menú de mediodía muy bien de precio. Cierra domingo y lunes.",en:"Great-value lunch menu. Closed Sunday and Monday.",fr:"Menu du midi très bon marché. Fermé dimanche et lundi."}, u:MAPA("ChIJq5wKkbonVQ0RHuS04Oxv6fA")},
+  {n:"Mama Shelter", t:{es:"Tomar algo",en:"Drinks",fr:"Boire un verre"}, d:{es:"Terraza en la azotea, buena para el aperitivo del domingo.",en:"Rooftop terrace, good for a Sunday apéritif.",fr:"Terrasse sur le toit, parfaite pour l'apéro du dimanche."}, u:MAPA("ChIJubQP4c4nVQ0RSJYh8YQE8xA")},
+  {n:"Miroir d'eau", t:{es:"Ver",en:"See",fr:"Voir"}, d:{es:"El espejo de agua frente a la Place de la Bourse. Quítate los zapatos.",en:"The water mirror facing Place de la Bourse. Take your shoes off.",fr:"Le miroir d'eau face à la place de la Bourse. Enlevez vos chaussures."}, u:MAPA("ChIJqYZVmtEnVQ0RO36Y31D_VIs")},
+  {n:"Bassins des Lumières", t:{es:"Ver",en:"See",fr:"Voir"}, d:{es:"Una base de submarinos convertida en proyecciones gigantes sobre el agua.",en:"A submarine base turned into giant projections over water.",fr:"Une base sous-marine transformée en projections géantes sur l'eau."}, u:MAPA("ChIJpyY--JApVQ0RqUfd4KL6kX8")},
+  {n:"Cité du Vin", t:{es:"Ver",en:"See",fr:"Voir"}, d:{es:"El museo del vino. La entrada incluye una copa arriba, con vista a la ciudad.",en:"The wine museum. Your ticket includes a glass upstairs, overlooking the city.",fr:"Le musée du vin. L'entrée comprend un verre en haut, avec vue sur la ville."}, u:MAPA("ChIJnc9nRcQnVQ0RGtHWztxMV0E")},
+  {n:"Cathédrale Saint-André", t:{es:"Ver",en:"See",fr:"Voir"}, d:{es:"Gótica, enorme y gratis. Está a dos calles de todo.",en:"Gothic, enormous and free. Two streets from everything.",fr:"Gothique, immense et gratuite. À deux rues de tout."}, u:MAPA("ChIJiRiav8QnVQ0RWaT2EhBnHSw")}
+];
+
 const T = {
   es:{
-    marca:"María & Adam · 24.04.27", eyebrow:"Nos casamos", y:"y",
-    fechaLugar:"Sábado 24 de abril de 2027 · Domaine Sainte-Raphine, Burdeos",
+    menu:["Inicio","Confirmar","El día","Cómo llegar","Hoteles","Burdeos","Vestuario","Ellos dos","Deseos","Playlist","Fotos","Dudas"],
+    eyebrow:"Nos casamos", fechaLugar:"Sábado 24 de abril de 2027\nDomaine Sainte-Raphine, Burdeos",
     dias:"días", horas:"horas", min:"min",
     btnCal:"Añadir al calendario", btnWa:"Dudas por WhatsApp",
-    menu:["Confirmar","El día","Cómo llegar","Hoteles","Vestuario","Deseos","Playlist","Fotos","Dudas"],
     rsvpTit:"Confirma tu asistencia", rsvpSub:"Antes del 24 de enero de 2027",
     lNombre:"Tu nombre y apellido", phNombre:"Ana Pérez", lViene:"¿Vienes?", oSi:"Ahí estaré", oNo:"No podré",
     lAcomp:"Acompañantes", lBus:"Bus", busOps:["Lo tomaría","Llego por mi cuenta"],
@@ -353,7 +386,7 @@ const T = {
     lNota:"Un mensaje para María y Adam", phNota:"Opcional, pero se agradece mucho",
     btnEnviar:"Enviar confirmación", avisoRsvp:"Puedes cambiar tu respuesta escribiendo por WhatsApp.",
     graciasSi:n=>`<h3 style="font-family:var(--display);font-size:24px;margin:0 0 6px">Quedas apuntado, ${n}</h3><p>Nos vemos el 24 de abril en Sainte-Raphine. Te escribimos con los últimos detalles una semana antes.</p>`,
-    graciasNo:"<h3 style=\"font-family:var(--display);font-size:24px;margin:0 0 6px\">Gracias por avisar</h3><p>Te vamos a extrañar. Te mandamos fotos.</p>",
+    graciasNo:'<h3 style="font-family:var(--display);font-size:24px;margin:0 0 6px">Gracias por avisar</h3><p>Te vamos a extrañar. Te mandamos fotos.</p>',
     diaTit:"El día", diaSub:"Sábado · horarios aproximados",
     horario:[["16:00","Llegada","Un rato para saludarse antes de empezar."],
              ["16:30","Ceremonia","En el claro del dominio. Empieza puntual."],
@@ -362,60 +395,60 @@ const T = {
              ["20:00","Cena","Mesas asignadas, busca tu nombre en la entrada."],
              ["23:00","Fiesta","Hasta las 3:30. Trae unos tenis de repuesto."]],
     llegarTit:"Cómo llegar", llegarSub:"62 hectáreas de bosque a 15 min de Burdeos",
-    lugarTxt:"Fargues-Saint-Hilaire, Gironde. En plena campiña bordelesa, a 5 minutos de la circunvalación.",
-    verMapa:"Abrir en Google Maps",
-    aviónTit:"En avión", aviónTxt:"Aeropuerto de Burdeos-Mérignac. Desde Londres y Bogotá hay vuelos con una escala.",
+    lugarTxt:"Fargues-Saint-Hilaire, Gironde. En plena campiña bordelesa, a cinco minutos de la circunvalación.",
+    verMapa:"Abrir en Google Maps", verWeb:"Web del dominio",
+    avionTit:"En avión", avionTxt:"Aeropuerto de Burdeos-Mérignac. Desde Londres hay vuelo directo y desde Bogotá con una escala.",
     busTit:"Bus", busTxt:"Por confirmar. Si somos suficientes, va a haber un bus desde el centro de Burdeos, ida y vuelta. Cuéntanos en tu confirmación si lo tomarías.",
     cocheTit:"En carro", cocheTxt:"Estacionamiento gratis en el dominio. Si vas a tomar, mejor el bus.",
-    hotTit:"Dónde dormir", hotSub:"Tres opciones",
-    hot1Tit:"Las 5 habitaciones del dominio", hot1Txt:"Duermen 10 personas en el mismo lugar de la fiesta. Se reservan directamente con la finca.", hot1Meta:"Preguntar a María y Adam",
-    hot2Tit:"Hotel en Burdeos centro", hot2Txt:"Ideal si quieres pasear el domingo por la ciudad. El autobús sale de aquí.", hot2Meta:"Desde 00 € · Reservar",
-    hot3Tit:"Casa rural cerca", hot3Txt:"Para grupos que quieran alquilar juntos y seguir la fiesta.", hot3Meta:"Desde 00 € · Reservar",
+    vtcTit:"Uber y Bolt", vtcTxt:"Los dos funcionan en Burdeos. De noche y en el campo pueden tardar, así que pídelo con tiempo o vuelve en el bus.",
+    hotTit:"Dónde dormir", hotSub:"Del dominio al centro de Burdeos",
+    hotAviso:"Los precios cambian mucho: reserva pronto y cancela después si hace falta.",
+    burTit:"Burdeos", burSub:"Para quien se queda el fin de semana",
+    burTxt:"Si te quedas el domingo, aquí van algunas cosas que nos gustan. Todo está a menos de veinte minutos del centro.",
     vesTit:"Qué ponerte", vesSub:"Código de vestimenta", vesH3:"Ven bonito, ven cómodo",
     vesTxt:"Ven como te sientas lindo. Lo único práctico: es al aire libre y sobre pasto, así que tacón ancho o algo plano. En abril las noches son frescas, trae algo encima.",
     tags:[["si","Sí: color"],["si","Sí: estampado"],["si","Sí: zapato cómodo"],["no","No: blanco"],["no","No: tacón de aguja"]],
     florTit:"Los colores de la boda", florTxt:"Estas son las flores que va a haber ese día. No es una obligación ni un uniforme: es por si quieres una idea de por dónde van los colores. Lo importante es que te sientas bonito.",
-    desTit:"Deja tu deseo", desSub:"Consejos, promesas, chistes malos",
+    albTit:"Ellos dos", albSub:"Un poco de historia",
+    albTxt:"[Aquí escriben María y Adam: cómo se conocieron, cuánto llevan juntos, lo que quieran contar.]",
+    desTit:"Deséales algo", desSub:"Consejos, promesas, chistes malos",
     lDeQuien:"De parte de", lDeseo:"Tu deseo o consejo", phDeseo:"Que nunca se les acabe la paciencia ni el vino…",
-    lPrivado:"Que solo lo lean María y Adam", btnDeseo:"Colgar en el muro",
-    muroVacio:"El muro está vacío. Cuelga el primero.", privado:"Privado",
+    lPrivado:"Que solo lo lean María y Adam", btnDeseo:"Colgar en el corcho",
+    muroVacio:"El corcho está vacío. Cuelga la primera nota.", privado:"Privado",
     plTit:"Pon una canción", plSub:"La playlist la hacemos entre todos",
-    portadaTxt:"Aquí va la foto de portada de la playlist",
-    plTxt:"Añádela desde tu propio Spotify o déjala aquí y la subimos nosotros.",
-    plLink:"Abrir la playlist en Spotify",
-    lCancion:"Canción", phCancion:"Título", lArtista:"Artista", phArtista:"Quién la canta", btnCancion:"Añadir a la playlist",
-    plVacia:"Todavía no hay canciones. Estrena tú la lista.",
+    plTxt:"La playlist es colaborativa: ábrela en Spotify y agrega tú mismo lo que quieras oír esa noche.",
+    plLink:"Abrir y agregar en Spotify", plPideTit:"¿No tienes Spotify?",
+    lCancion:"Canción", phCancion:"Título", lArtista:"Artista", phArtista:"Quién la canta", btnCancion:"Déjala aquí y la agregamos",
+    plVacia:"Todavía no hay peticiones por aquí.",
     fotTit:"Las fotos de todos", fotSub:"20 disparos por invitado", fotH3:"Tu celular es una cámara desechable",
     fotTxt:"Entra al link, toma tus 20 fotos y ya. Todas caen en el mismo álbum y se revelan el domingo en la mañana.",
-    fotAviso:"Toca un cuadrito para ver cómo se gasta el rollo.", btnFotos:"Abrir mi cámara",
+    btnFotos:"Abrir mi cámara", fotAviso:"Toca un cuadrito para ver cómo se gasta el rollo.",
     faqTit:"Dudas", faqSub:"Lo que ya nos preguntaron",
     faq:[["¿Puedo llevar niños?","Sí. El dominio tiene una sala para ellos con pantalla, juegos y sofás durante la cena."],
          ["¿Hay mesa de regalos?","Con que vengan ya es suficiente. Pero si insisten, aquí está la lista."],
          ["¿Y si llueve?","Todo se pasa al salón Côté Clairière, en el mismo lugar. No cambia nada más."],
-         ["¿Puedo publicar fotos en redes?","Después de la ceremonia, sí. Etiqueta #MariaYAdam2027."]],
+         ["¿Puedo publicar fotos?","Después de la ceremonia, sí. Etiqueta #MariaYAdam2027."]],
     panTit:"Panel de María y Adam", panSub:"Solo para los novios",
     lPin:"Código", btnPin:"Entrar", pinMal:"Código incorrecto.",
-    cifras:["Vienen","No pueden","Autobús"], sinRsvp:"Todavía no hay confirmaciones.",
+    cifras:["Vienen","No pueden","Bus"], sinRsvp:"Todavía no hay confirmaciones.",
     panDeseos:"Mensajes privados", sinDeseos:"Sin mensajes privados.",
     pie:"Hecho con cariño", verPanel:"Panel de los novios", verPost:"Ver modo post-boda",
-    postEyebrow:"Nos casamos", postTit:"Gracias por venir",
-    postTxt:"Ya está todo aquí: las fotos de todos, la playlist final y el muro de deseos. Sirvanse.",
+    postEyebrow:"Nos casamos", postTxt:"Gracias por venir.\nYa están las fotos de todos, la playlist final y el corcho de deseos.",
     calTitulo:"Boda de María y Adam"
   },
   en:{
-    marca:"María & Adam · 24.04.27", eyebrow:"We're getting married", y:"and",
-    fechaLugar:"Saturday 24 April 2027 · Domaine Sainte-Raphine, Bordeaux",
+    menu:["Home","RSVP","The day","Getting there","Hotels","Bordeaux","Dress code","The two of them","Wishes","Playlist","Photos","FAQ"],
+    eyebrow:"We're getting married", fechaLugar:"Saturday 24 April 2027\nDomaine Sainte-Raphine, Bordeaux",
     dias:"days", horas:"hours", min:"min",
     btnCal:"Add to calendar", btnWa:"Questions on WhatsApp",
-    menu:["RSVP","The day","Getting there","Hotels","Dress code","Wishes","Playlist","Photos","FAQ"],
     rsvpTit:"Let us know you're coming", rsvpSub:"By 24 January 2027",
     lNombre:"Your full name", phNombre:"Ana Pérez", lViene:"Are you coming?", oSi:"Count me in", oNo:"Can't make it",
-    lAcomp:"Guests with you", lBus:"Coach", busOps:["I would use it","Making my own way"],
+    lAcomp:"Guests with you", lBus:"Coach", busOps:["I would take it","Making my own way"],
     lComida:"Anything you don't eat", phComida:"Vegetarian, gluten-free, allergies…",
     lNota:"A message for María and Adam", phNota:"Optional, but always welcome",
     btnEnviar:"Send my answer", avisoRsvp:"You can change your answer on WhatsApp.",
     graciasSi:n=>`<h3 style="font-family:var(--display);font-size:24px;margin:0 0 6px">You're on the list, ${n}</h3><p>See you on 24 April at Sainte-Raphine. We'll send the final details a week before.</p>`,
-    graciasNo:"<h3 style=\"font-family:var(--display);font-size:24px;margin:0 0 6px\">Thanks for telling us</h3><p>We'll miss you. Photos are coming your way.</p>",
+    graciasNo:'<h3 style="font-family:var(--display);font-size:24px;margin:0 0 6px">Thanks for telling us</h3><p>We\'ll miss you. Photos are coming your way.</p>',
     diaTit:"The day", diaSub:"Saturday · approximate times",
     horario:[["16:00","Arrival","Time to say hello before things start."],
              ["16:30","Ceremony","In the clearing. It starts on time."],
@@ -425,51 +458,51 @@ const T = {
              ["23:00","Party","Until 3:30. Bring spare trainers."]],
     llegarTit:"Getting there", llegarSub:"62 hectares of woodland, 15 min from Bordeaux",
     lugarTxt:"Fargues-Saint-Hilaire, Gironde. Deep in the Bordeaux countryside, five minutes off the ring road.",
-    verMapa:"Open in Google Maps",
-    aviónTit:"By plane", aviónTxt:"Bordeaux-Mérignac airport. One-stop flights from London and Bogotá.",
+    verMapa:"Open in Google Maps", verWeb:"Venue website",
+    avionTit:"By plane", avionTxt:"Bordeaux-Mérignac airport. Direct flights from London, one stop from Bogotá.",
     busTit:"Coach", busTxt:"To be confirmed. If enough of you want it, there will be a coach from central Bordeaux and back. Tell us in your RSVP whether you would use it.",
     cocheTit:"By car", cocheTxt:"Free parking at the estate. If you're drinking, take the coach.",
-    hotTit:"Where to sleep", hotSub:"Three options",
-    hot1Tit:"The estate's 5 bedrooms", hot1Txt:"Sleeps 10 people right where the party is. Booked directly with the venue.", hot1Meta:"Ask María and Adam",
-    hot2Tit:"Hotel in central Bordeaux", hot2Txt:"Best if you want to wander the city on Sunday. The coach leaves from here.", hot2Meta:"From €00 · Book",
-    hot3Tit:"Country house nearby", hot3Txt:"For groups who want to share a place and keep the party going.", hot3Meta:"From €00 · Book",
-    vesTit:"What to wear", vesSub:"Dress code", vesH3:"Formal, with colour",
-    vesTxt:"It's outdoors and on grass, so block heels or something flat and lovely. April nights get cold, bring a layer.",
+    vtcTit:"Uber and Bolt", vtcTxt:"Both work in Bordeaux. Late at night and out in the countryside they can take a while, so book early or take the coach back.",
+    hotTit:"Where to sleep", hotSub:"From the estate to central Bordeaux",
+    hotAviso:"Prices move a lot: book early and cancel later if you need to.",
+    burTit:"Bordeaux", burSub:"For anyone staying the weekend",
+    burTxt:"If you're around on Sunday, here are a few things we love. Everything is under twenty minutes from the centre.",
+    vesTit:"What to wear", vesSub:"Dress code", vesH3:"Come lovely, come comfortable",
+    vesTxt:"Wear whatever makes you feel good. One practical note: it's outdoors and on grass, so block heels or something flat. April nights get cold, bring a layer.",
     tags:[["si","Yes: colour"],["si","Yes: prints"],["si","Yes: comfy shoes"],["no","No: white"],["no","No: stilettos"]],
     florTit:"The colours of the day", florTxt:"These are the flowers that will be there. Not a rule and not a uniform, just in case you want a hint of where the colours are going. What matters is that you feel good.",
-    desTit:"Leave a wish", desSub:"Advice, promises, terrible jokes",
+    albTit:"The two of them", albSub:"A bit of history",
+    albTxt:"[María and Adam write here: how they met, how long they've been together, whatever they want to tell.]",
+    desTit:"Leave them a wish", desSub:"Advice, promises, terrible jokes",
     lDeQuien:"From", lDeseo:"Your wish or advice", phDeseo:"May you never run out of patience, or wine…",
-    lPrivado:"Only María and Adam should read this", btnDeseo:"Pin it to the wall",
-    muroVacio:"The wall is empty. Be the first.", privado:"Private",
+    lPrivado:"Only María and Adam should read this", btnDeseo:"Pin it to the board",
+    muroVacio:"The board is empty. Pin the first note.", privado:"Private",
     plTit:"Request a song", plSub:"We're building the playlist together",
-    portadaTxt:"Playlist cover photo goes here",
-    plTxt:"Add it from your own Spotify, or leave it here and we'll add it.",
-    plLink:"Open the playlist on Spotify",
-    lCancion:"Song", phCancion:"Title", lArtista:"Artist", phArtista:"Who sings it", btnCancion:"Add to the playlist",
-    plVacia:"No songs yet. Go on, start it.",
+    plTxt:"The playlist is collaborative: open it in Spotify and add whatever you want to hear that night.",
+    plLink:"Open and add on Spotify", plPideTit:"No Spotify?",
+    lCancion:"Song", phCancion:"Title", lArtista:"Artist", phArtista:"Who sings it", btnCancion:"Leave it here and we'll add it",
+    plVacia:"No requests here yet.",
     fotTit:"Everyone's photos", fotSub:"20 shots per guest", fotH3:"Your phone is a disposable camera",
-    fotTxt:"Scan the code, take your 20 photos, that's it. They all land in the same album and get developed on Sunday morning.",
-    fotAviso:"Tap a frame to see the roll being used up.", btnFotos:"Open my camera",
+    fotTxt:"Open the link, take your 20 photos, that's it. They all land in the same album and get developed on Sunday morning.",
+    btnFotos:"Open my camera", fotAviso:"Tap a frame to see the roll being used up.",
     faqTit:"FAQ", faqSub:"What people have asked us",
     faq:[["Can I bring the kids?","Yes. The estate has a room for them with a screen, games and sofas during dinner."],
          ["Is there a gift list?","Just come. But if you insist, here's the list."],
          ["What if it rains?","Everything moves into the Côté Clairière hall, same place. Nothing else changes."],
-         ["Can I post photos online?","After the ceremony, yes. Tag #MariaYAdam2027."]],
+         ["Can I post photos?","After the ceremony, yes. Tag #MariaYAdam2027."]],
     panTit:"María and Adam's dashboard", panSub:"For the couple only",
     lPin:"Code", btnPin:"Enter", pinMal:"Wrong code.",
     cifras:["Coming","Can't","Coach"], sinRsvp:"No answers yet.",
     panDeseos:"Private messages", sinDeseos:"No private messages.",
     pie:"Made with love", verPanel:"Couple's dashboard", verPost:"Preview after-party mode",
-    postEyebrow:"We got married", postTit:"Thank you for coming",
-    postTxt:"It's all here: everyone's photos, the final playlist and the wall of wishes. Help yourselves.",
+    postEyebrow:"We got married", postTxt:"Thank you for coming.\nEveryone's photos, the final playlist and the board of wishes are all here.",
     calTitulo:"María and Adam's wedding"
   },
   fr:{
-    marca:"María & Adam · 24.04.27", eyebrow:"On se marie", y:"et",
-    fechaLugar:"Samedi 24 avril 2027 · Domaine Sainte-Raphine, Bordeaux",
+    menu:["Accueil","Réponse","Le jour J","Y aller","Hébergement","Bordeaux","Tenue","Eux deux","Voeux","Playlist","Photos","Questions"],
+    eyebrow:"On se marie", fechaLugar:"Samedi 24 avril 2027\nDomaine Sainte-Raphine, Bordeaux",
     dias:"jours", horas:"heures", min:"min",
     btnCal:"Ajouter au calendrier", btnWa:"Une question sur WhatsApp",
-    menu:["Réponse","Le jour J","Y aller","Hébergement","Tenue","Voeux","Playlist","Photos","Questions"],
     rsvpTit:"Dites-nous si vous venez", rsvpSub:"Avant le 24 janvier 2027",
     lNombre:"Nom et prénom", phNombre:"Ana Pérez", lViene:"Vous venez ?", oSi:"Je serai là", oNo:"Je ne peux pas",
     lAcomp:"Accompagnants", lBus:"Navette", busOps:["Je la prendrais","Je viens par mes propres moyens"],
@@ -477,7 +510,7 @@ const T = {
     lNota:"Un mot pour María et Adam", phNota:"Facultatif, mais ça fait plaisir",
     btnEnviar:"Envoyer ma réponse", avisoRsvp:"Vous pouvez changer votre réponse sur WhatsApp.",
     graciasSi:n=>`<h3 style="font-family:var(--display);font-size:24px;margin:0 0 6px">C'est noté, ${n}</h3><p>Rendez-vous le 24 avril à Sainte-Raphine. Les derniers détails arrivent une semaine avant.</p>`,
-    graciasNo:"<h3 style=\"font-family:var(--display);font-size:24px;margin:0 0 6px\">Merci de nous prévenir</h3><p>Vous allez nous manquer. On vous envoie les photos.</p>",
+    graciasNo:'<h3 style="font-family:var(--display);font-size:24px;margin:0 0 6px">Merci de nous prévenir</h3><p>Vous allez nous manquer. On vous envoie les photos.</p>',
     diaTit:"Le jour J", diaSub:"Samedi · horaires indicatifs",
     horario:[["16:00","Arrivée","Le temps de se dire bonjour avant de commencer."],
              ["16:30","Cérémonie","Dans la clairière du domaine. Ça commence à l'heure."],
@@ -486,32 +519,34 @@ const T = {
              ["20:00","Passage à table","Plan de table à l'entrée, cherchez votre nom."],
              ["23:00","Soirée","Jusqu'à 3h30. Prévoyez des baskets."]],
     llegarTit:"Y aller", llegarSub:"62 hectares de forêt à 15 min de Bordeaux",
-    lugarTxt:"Fargues-Saint-Hilaire, Gironde. En pleine campagne bordelaise, à 5 minutes de la rocade.",
-    verMapa:"Ouvrir dans Google Maps",
-    aviónTit:"En avion", aviónTxt:"Aéroport de Bordeaux-Mérignac. Vols avec une escale depuis Londres et Bogotá.",
+    lugarTxt:"Fargues-Saint-Hilaire, Gironde. En pleine campagne bordelaise, à cinq minutes de la rocade.",
+    verMapa:"Ouvrir dans Google Maps", verWeb:"Site du domaine",
+    avionTit:"En avion", avionTxt:"Aéroport de Bordeaux-Mérignac. Vol direct depuis Londres, une escale depuis Bogotá.",
     busTit:"Navette", busTxt:"À confirmer. S'il y a assez de monde, une navette fera l'aller-retour depuis le centre de Bordeaux. Dites-nous dans votre réponse si vous la prendriez.",
     cocheTit:"En voiture", cocheTxt:"Parking gratuit au domaine. Si vous buvez, la navette est une meilleure idée.",
-    hotTit:"Où dormir", hotSub:"Trois options",
-    hot1Tit:"Les 5 chambres du domaine", hot1Txt:"10 personnes dorment sur place, là où se passe la fête. Réservation directe avec le domaine.", hot1Meta:"Demander à María et Adam",
-    hot2Tit:"Hôtel dans Bordeaux centre", hot2Txt:"Parfait si vous voulez flâner en ville le dimanche. La navette part d'ici.", hot2Meta:"À partir de 00 € · Réserver",
-    hot3Tit:"Gîte à proximité", hot3Txt:"Pour les groupes qui veulent louer ensemble et prolonger la soirée.", hot3Meta:"À partir de 00 € · Réserver",
-    vesTit:"Quoi porter", vesSub:"Code vestimentaire", vesH3:"Habillé, avec de la couleur",
-    vesTxt:"C'est dehors et sur l'herbe : pensez talon large ou quelque chose de plat et joli. En avril les soirées sont fraîches, prévoyez une veste.",
+    vtcTit:"Uber et Bolt", vtcTxt:"Les deux fonctionnent à Bordeaux. La nuit et à la campagne, l'attente peut être longue : commandez à l'avance ou rentrez en navette.",
+    hotTit:"Où dormir", hotSub:"Du domaine au centre de Bordeaux",
+    hotAviso:"Les prix bougent beaucoup : réservez tôt, quitte à annuler ensuite.",
+    burTit:"Bordeaux", burSub:"Pour ceux qui restent le week-end",
+    burTxt:"Si vous êtes là dimanche, voici quelques adresses qu'on aime. Tout est à moins de vingt minutes du centre.",
+    vesTit:"Quoi porter", vesSub:"Code vestimentaire", vesH3:"Venez beaux, venez à l'aise",
+    vesTxt:"Portez ce qui vous fait vous sentir bien. Une seule note pratique : c'est dehors et sur l'herbe, donc talon large ou quelque chose de plat. En avril les soirées sont fraîches, prévoyez une veste.",
     tags:[["si","Oui : la couleur"],["si","Oui : les imprimés"],["si","Oui : chaussures confortables"],["no","Non : le blanc"],["no","Non : les talons aiguilles"]],
     florTit:"Les couleurs du jour", florTxt:"Voici les fleurs qui seront là. Ce n'est ni une règle ni un uniforme, juste une idée de la direction des couleurs. L'essentiel, c'est que vous vous sentiez bien.",
-    desTit:"Laissez un voeu", desSub:"Conseils, promesses, mauvaises blagues",
+    albTit:"Eux deux", albSub:"Un peu d'histoire",
+    albTxt:"[María et Adam écrivent ici : comment ils se sont rencontrés, depuis combien de temps, ce qu'ils veulent raconter.]",
+    desTit:"Laissez-leur un voeu", desSub:"Conseils, promesses, mauvaises blagues",
     lDeQuien:"De la part de", lDeseo:"Votre voeu ou conseil", phDeseo:"Qu'ils ne manquent jamais de patience, ni de vin…",
-    lPrivado:"Que seuls María et Adam le lisent", btnDeseo:"Afficher sur le mur",
-    muroVacio:"Le mur est vide. Soyez le premier.", privado:"Privé",
+    lPrivado:"Que seuls María et Adam le lisent", btnDeseo:"Épingler sur le liège",
+    muroVacio:"Le liège est vide. Épinglez le premier mot.", privado:"Privé",
     plTit:"Proposez une chanson", plSub:"La playlist, on la fait tous ensemble",
-    portadaTxt:"La photo de couverture de la playlist va ici",
-    plTxt:"Ajoutez-la depuis votre propre Spotify, ou laissez-la ici et on s'en occupe.",
-    plLink:"Ouvrir la playlist sur Spotify",
-    lCancion:"Chanson", phCancion:"Titre", lArtista:"Artiste", phArtista:"Qui la chante", btnCancion:"Ajouter à la playlist",
-    plVacia:"Pas encore de chansons. Lancez-vous.",
+    plTxt:"La playlist est collaborative : ouvrez-la dans Spotify et ajoutez vous-même ce que vous voulez entendre.",
+    plLink:"Ouvrir et ajouter sur Spotify", plPideTit:"Pas de Spotify ?",
+    lCancion:"Chanson", phCancion:"Titre", lArtista:"Artiste", phArtista:"Qui la chante", btnCancion:"Laissez-la ici, on l'ajoute",
+    plVacia:"Pas encore de demandes ici.",
     fotTit:"Les photos de tout le monde", fotSub:"20 photos par invité", fotH3:"Votre téléphone est un appareil jetable",
-    fotTxt:"Scannez le code, prenez vos 20 photos, c'est tout. Elles arrivent toutes dans le même album et se développent dimanche matin.",
-    fotAviso:"Touchez une vignette pour voir la pellicule se remplir.", btnFotos:"Ouvrir mon appareil",
+    fotTxt:"Ouvrez le lien, prenez vos 20 photos, c'est tout. Elles arrivent toutes dans le même album et se développent dimanche matin.",
+    btnFotos:"Ouvrir mon appareil", fotAviso:"Touchez une vignette pour voir la pellicule se remplir.",
     faqTit:"Questions", faqSub:"Ce qu'on nous a déjà demandé",
     faq:[["Je peux venir avec les enfants ?","Oui. Le domaine a une salle pour eux avec écran, jeux et canapés pendant le dîner."],
          ["Y a-t-il une liste de mariage ?","Votre présence suffit. Mais si vous insistez, la voici."],
@@ -522,16 +557,15 @@ const T = {
     cifras:["Présents","Absents","Navette"], sinRsvp:"Pas encore de réponses.",
     panDeseos:"Messages privés", sinDeseos:"Aucun message privé.",
     pie:"Fait avec amour", verPanel:"Tableau des mariés", verPost:"Aperçu du mode après-mariage",
-    postEyebrow:"On s'est mariés", postTit:"Merci d'être venus",
-    postTxt:"Tout est là : les photos de chacun, la playlist finale et le mur des voeux. Servez-vous.",
+    postEyebrow:"On s'est mariés", postTxt:"Merci d'être venus.\nLes photos de chacun, la playlist finale et le liège des voeux sont là.",
     calTitulo:"Mariage de María et Adam"
   }
 };
 
+const PAGINAS = ["inicio","rsvp","dia","llegar","hoteles","burdeos","vestuario","album","deseos","playlist","fotos","faq"];
 let lang = "es";
 let postBoda = new Date() > new Date(new Date(FECHA_BODA).getTime() + 36*3600000);
 
-/* ---------- almacenamiento (demo, con respaldo en memoria) ---------- */
 const memoria = {};
 async function leer(clave){
   try{ const r = await window.storage.get(clave, true); return r ? JSON.parse(r.value) : null; }
@@ -542,7 +576,15 @@ async function guardar(clave, valor){
   try{ await window.storage.set(clave, JSON.stringify(valor), true); }catch(e){}
 }
 
-/* ---------- idioma ---------- */
+function ir(pag){
+  PAGINAS.forEach(p => document.getElementById("p-"+p).classList.toggle("activa", p===pag));
+  document.querySelectorAll("#menu button").forEach(b =>
+    b.dataset.pag===pag ? b.setAttribute("aria-current","page") : b.removeAttribute("aria-current"));
+  window.scrollTo(0,0);
+  history.replaceState(null,"","#"+pag);
+}
+document.getElementById("logo").addEventListener("click", ()=> ir("inicio"));
+
 function traducir(){
   const t = T[lang];
   document.documentElement.lang = lang;
@@ -551,30 +593,42 @@ function traducir(){
     if(typeof v === "string") el.textContent = v;
   });
   document.querySelectorAll("[data-ph]").forEach(el=> el.placeholder = t[el.dataset.ph]);
-  document.getElementById("btnFotos").href = URL_FOTOS;
-  document.getElementById("spotify").href = URL_SPOTIFY;
 
-  const ids = ["rsvp","dia","llegar","hoteles","vestuario","deseos","playlist","fotos","faq"];
-  document.getElementById("menu").innerHTML = t.menu.map((m,i)=>`<a href="#${ids[i]}">${m}</a>`).join("");
+  const activa = PAGINAS.find(p => document.getElementById("p-"+p).classList.contains("activa")) || "inicio";
+  document.getElementById("menu").innerHTML = t.menu.map((m,i)=>
+    `<button data-pag="${PAGINAS[i]}"${PAGINAS[i]===activa?' aria-current="page"':''}>${m}</button>`).join("");
+  document.querySelectorAll("#menu button").forEach(b=>
+    b.addEventListener("click", ()=> ir(b.dataset.pag)));
+
   document.getElementById("bus").innerHTML = t.busOps.map(o=>`<option>${o}</option>`).join("");
   document.getElementById("horario").innerHTML = t.horario.map(([h,tit,txt])=>
     `<div class="hora"><time>${h}</time><div><strong>${tit}</strong><em>${txt}</em></div></div>`).join("");
   document.getElementById("tagsVes").innerHTML = t.tags.map(([c,x])=>`<span class="tag ${c}">${x}</span>`).join("");
   document.getElementById("faqLista").innerHTML = t.faq.map(([p,r])=>
     `<details><summary>${p}</summary><p>${r}</p></details>`).join("");
-  document.querySelectorAll(".idioma button").forEach(b=> b.setAttribute("aria-pressed", b.dataset.lang===lang));
+
+  document.getElementById("listaHoteles").innerHTML = HOTELES.map(h=>
+    `<div class="card"><h3>${h.n}</h3><p>${h.d[lang]}</p><a class="enlace" href="${h.u}" target="_blank" rel="noopener">${t.verMapa}</a></div>`).join("");
+  document.getElementById("listaBurdeos").innerHTML = BURDEOS.map(b=>
+    `<div class="card"><p class="etiqueta">${b.t[lang]}</p><h3>${b.n}</h3><p>${b.d[lang]}</p><a class="enlace" href="${b.u}" target="_blank" rel="noopener">${t.verMapa}</a></div>`).join("");
+
+  document.getElementById("btnFotos").href = URL_FOTOS;
+  document.getElementById("spotify").href = URL_SPOTIFY;
+  document.getElementById("spotEmbed").src = "https://open.spotify.com/embed/playlist/" + ID_SPOTIFY;
+  document.getElementById("uber").href =
+    "https://m.uber.com/ul/?action=setPickup&pickup=my_location&dropoff%5Bformatted_address%5D=" +
+    encodeURIComponent("Domaine Sainte-Raphine, Fargues-Saint-Hilaire");
 
   if(postBoda){
     document.querySelector(".eyebrow").textContent = t.postEyebrow;
     document.querySelector(".fecha").textContent = t.postTxt;
   }
+  document.querySelectorAll(".idioma button").forEach(b=> b.setAttribute("aria-pressed", b.dataset.lang===lang));
   pintaCuenta(); pintaMuro(); pintaLista();
 }
-document.querySelectorAll(".idioma button").forEach(b=>{
-  b.addEventListener("click", ()=>{ lang = b.dataset.lang; traducir(); });
-});
+document.querySelectorAll(".idioma button").forEach(b=>
+  b.addEventListener("click", ()=>{ lang = b.dataset.lang; traducir(); }));
 
-/* ---------- cuenta atrás ---------- */
 function pintaCuenta(){
   const cuenta = document.getElementById("cuenta");
   if(postBoda){ cuenta.innerHTML = ""; return; }
@@ -587,23 +641,24 @@ function pintaCuenta(){
 }
 setInterval(pintaCuenta, 30000);
 
-/* ---------- calendario y whatsapp ---------- */
 document.getElementById("btnCal").addEventListener("click", ()=>{
   const f = d => d.toISOString().replace(/[-:]/g,"").split(".")[0]+"Z";
-  const ini = new Date(FECHA_BODA), fin = new Date(ini.getTime()+11*3600000);
-  const ics = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//adam-majo//ES","BEGIN:VEVENT",
-    "UID:adam-majo-2027@boda","DTSTAMP:"+f(new Date()),"DTSTART:"+f(ini),"DTEND:"+f(fin),
+  const ini = new Date(FECHA_BODA), fin = new Date(ini.getTime()+11.5*3600000);
+  const ics = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//maria-adam//ES","BEGIN:VEVENT",
+    "UID:maria-adam-2027@boda","DTSTAMP:"+f(new Date()),"DTSTART:"+f(ini),"DTEND:"+f(fin),
     "SUMMARY:"+T[lang].calTitulo,"LOCATION:Domaine Sainte-Raphine, Fargues-Saint-Hilaire",
     "END:VEVENT","END:VCALENDAR"].join("\r\n");
   const a = document.createElement("a");
   a.href = URL.createObjectURL(new Blob([ics],{type:"text/calendar"}));
-  a.download = "adam-majo-2027.ics"; a.click();
+  a.download = "maria-adam-2027.ics"; a.click();
 });
 document.getElementById("btnWa").addEventListener("click", ()=>{
-  window.open("https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(lang==="es"?"Hola! Tengo una duda sobre la boda:":"Hi! A question about the wedding:"),"_blank");
+  window.open("https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(
+    lang==="es" ? "Hola! Tengo una duda sobre la boda:" :
+    lang==="fr" ? "Bonjour ! J'ai une question sur le mariage :" :
+                  "Hi! A question about the wedding:"),"_blank");
 });
 
-/* ---------- rsvp ---------- */
 let asiste = null;
 document.querySelectorAll("#asiste button").forEach(b=>{
   b.addEventListener("click", ()=>{
@@ -617,7 +672,7 @@ async function aGoogleForm(d){
   p.append(CAMPOS.nombre,d.nombre); p.append(CAMPOS.asiste,d.asiste);
   p.append(CAMPOS.acomp,d.acompanantes); p.append(CAMPOS.bus,d.bus);
   p.append(CAMPOS.comida,d.comida); p.append(CAMPOS.nota,d.nota);
-  try{ await fetch(`https://docs.google.com/forms/d/e/${FORM_ID}/formResponse?`+p.toString(),{method:"POST",mode:"no-cors"}); }catch(e){}
+  try{ await fetch("https://docs.google.com/forms/d/e/"+FORM_ID+"/formResponse?"+p.toString(),{method:"POST",mode:"no-cors"}); }catch(e){}
 }
 document.getElementById("enviar").addEventListener("click", async ()=>{
   const nombre = document.getElementById("nombre").value.trim();
@@ -637,15 +692,14 @@ document.getElementById("enviar").addEventListener("click", async ()=>{
   g.innerHTML = asiste === "si" ? T[lang].graciasSi(nombre.split(" ")[0]) : T[lang].graciasNo;
 });
 
-/* ---------- muro de deseos ---------- */
-const COLORES = ["rgba(232,87,124,.14)","rgba(242,160,61,.16)","rgba(95,195,164,.16)","rgba(122,104,230,.14)"];
+const PAPELES = ["#FBF3D5","#FDE2D0","#F6DCE6","#E4EEDC","#FBE9C8","#E9E2F2"];
 async function pintaMuro(){
   const todos = (await leer("deseos")) || [];
   const publicos = todos.filter(d=>!d.privado);
   const muro = document.getElementById("muro");
   muro.innerHTML = publicos.length
-    ? publicos.map((d,i)=>`<div class="deseo" style="background:${COLORES[i%4]}"><p>“${d.texto}”</p><b>${d.nombre}</b></div>`).join("")
-    : `<p class="aviso" style="width:100%">${T[lang].muroVacio}</p>`;
+    ? publicos.map((d,i)=>`<div class="nota" style="background:${PAPELES[i%PAPELES.length]}"><p>“${d.texto}”</p><b>${d.nombre}</b></div>`).join("")
+    : `<p class="vacio">${T[lang].muroVacio}</p>`;
 }
 document.getElementById("btnDeseo").addEventListener("click", async ()=>{
   const nombre = document.getElementById("deNombre").value.trim() || "Anónimo";
@@ -659,7 +713,6 @@ document.getElementById("btnDeseo").addEventListener("click", async ()=>{
   pintaMuro();
 });
 
-/* ---------- playlist ---------- */
 async function pintaLista(){
   const canciones = (await leer("playlist")) || [];
   document.getElementById("listaCanciones").innerHTML = canciones.length
@@ -676,7 +729,24 @@ document.getElementById("agregar").addEventListener("click", async ()=>{
   pintaLista();
 });
 
-/* ---------- carrete y qr ---------- */
+(function(){
+  const cajaAlbum = document.getElementById("album");
+  for(let i=1;i<=NUM_ALBUM;i++){
+    const im = document.createElement("img");
+    im.src = "img/album/foto-" + String(i).padStart(2,"0") + ".jpg";
+    im.loading = "lazy"; im.alt = "";
+    im.addEventListener("click", ()=>{
+      document.getElementById("lupaImg").src = im.src;
+      document.getElementById("lupa").classList.add("abierta");
+    });
+    cajaAlbum.appendChild(im);
+  }
+  const cerrar = ()=> document.getElementById("lupa").classList.remove("abierta");
+  document.getElementById("cerrarLupa").addEventListener("click", cerrar);
+  document.getElementById("lupa").addEventListener("click", e=>{ if(e.target.id==="lupa") cerrar(); });
+  document.addEventListener("keydown", e=>{ if(e.key==="Escape") cerrar(); });
+})();
+
 const frames = document.getElementById("frames");
 for(let i=1;i<=TOPE_FOTOS;i++){
   const f = document.createElement("div");
@@ -685,8 +755,6 @@ for(let i=1;i<=TOPE_FOTOS;i++){
   frames.appendChild(f);
 }
 
-
-/* ---------- panel privado ---------- */
 document.getElementById("verPanel").addEventListener("click", ()=>{
   const p = document.getElementById("panel");
   p.hidden = false; p.scrollIntoView({behavior:"smooth"});
@@ -706,72 +774,62 @@ document.getElementById("btnPin").addEventListener("click", async ()=>{
   const nop = lista.filter(x=>x.asiste==="no").length;
   const bus = lista.filter(x=>x.asiste==="si" && x.bus===t.busOps[0]).reduce((n,x)=>n+1+Number(x.acompanantes||0),0);
   caja.innerHTML =
-    `<div class="cifras"><div><b>${vienen}</b><span>${t.cifras[0]}</span></div>
-     <div><b>${nop}</b><span>${t.cifras[1]}</span></div>
-     <div><b>${bus}</b><span>${t.cifras[2]}</span></div></div>` +
+    '<div class="cifras"><div><b>'+vienen+'</b><span>'+t.cifras[0]+'</span></div>' +
+    '<div><b>'+nop+'</b><span>'+t.cifras[1]+'</span></div>' +
+    '<div><b>'+bus+'</b><span>'+t.cifras[2]+'</span></div></div>' +
     (lista.length ? lista.map(x=>
-      `<div class="invitado"><b>${x.nombre}</b> ${x.asiste==="si"?"✓":"✗"} ${Number(x.acompanantes)?"+"+x.acompanantes:""}
-       <em>${[x.bus, x.comida, x.nota].filter(Boolean).join(" · ")}</em></div>`).join("")
-      : `<p>${t.sinRsvp}</p>`) +
-    `<h3 style="font-family:var(--display);font-size:20px;margin:22px 0 6px">${t.panDeseos}</h3>` +
+      '<div class="invitado"><b>'+x.nombre+'</b> '+(x.asiste==="si"?"✓":"✗")+' '+(Number(x.acompanantes)?"+"+x.acompanantes:"")+
+      '<em>'+[x.bus, x.comida, x.nota].filter(Boolean).join(" · ")+'</em></div>').join("")
+      : "<p>"+t.sinRsvp+"</p>") +
+    '<h3 style="font-family:var(--display);font-size:20px;margin:22px 0 6px">'+t.panDeseos+'</h3>' +
     (deseos.length ? deseos.map(d=>
-      `<div class="invitado"><span class="privado">${t.privado}</span><br>“${d.texto}”<em>${d.nombre}</em></div>`).join("")
-      : `<p>${t.sinDeseos}</p>`);
+      '<div class="invitado"><span class="privado">'+t.privado+'</span><br>“'+d.texto+'”<em>'+d.nombre+'</em></div>').join("")
+      : "<p>"+t.sinDeseos+"</p>");
 });
 
-/* ---------- vista previa modo post-boda ---------- */
 document.getElementById("verPost").addEventListener("click", ()=>{
   postBoda = !postBoda;
-  ["rsvp","dia","llegar","hoteles","vestuario"].forEach(id=> document.getElementById(id).hidden = postBoda);
-  document.querySelector(".acciones").hidden = postBoda;
-  if(!postBoda){ document.querySelector(".eyebrow").textContent = T[lang].eyebrow; document.querySelector(".fecha").textContent = T[lang].fechaLugar; }
-  traducir();
-  window.scrollTo({top:0,behavior:"smooth"});
+  if(!postBoda){
+    document.querySelector(".eyebrow").textContent = T[lang].eyebrow;
+    document.querySelector(".fecha").textContent = T[lang].fechaLugar;
+  }
+  traducir(); ir("inicio");
 });
 
-traducir();
-if(postBoda){ ["rsvp","dia","llegar","hoteles","vestuario"].forEach(id=> document.getElementById(id).hidden = true); document.querySelector(".acciones").hidden = true; }
-
-/* ---------- se actualiza sola, y funciona sin señal ---------- */
-if("serviceWorker" in navigator){
-  let recargando = false;
-  navigator.serviceWorker.addEventListener("controllerchange", ()=>{
-    if(recargando) return;          // una sola recarga, nunca un bucle
-    recargando = true; location.reload();
-  });
-  window.addEventListener("load", async ()=>{
-    try{
-      const reg = await navigator.serviceWorker.register("sw.js", {updateViaCache:"none"});
-      reg.update();
-      // y cada vez que se vuelve a la pestaña
-      document.addEventListener("visibilitychange", ()=>{ if(!document.hidden) reg.update(); });
-      setInterval(()=> reg.update(), 60*60*1000);
-    }catch(e){}
-  });
-}
-
-
-/* ---------- flores del fondo ---------- */
 (function(){
   const flores = ["flor-crema","flor-durazno","flor-rosa","flor-lila","flor-hibisco","flor-amarilla"];
-  const sitios = [
-    [6,340,54,-14],[82,520,42,22],[10,760,46,9],[76,980,58,-25],
-    [4,1240,40,17],[86,1460,50,-8],[12,1720,56,28],[80,1960,44,-19],
-    [6,2240,48,12],[84,2480,52,-30],[14,2760,42,6],[78,3020,56,20],
-    [8,3300,46,-12],[82,3560,50,25]
-  ];
+  const sitios = [[4,9,52,-14],[93,18,40,22],[6,41,44,9],[95,60,54,-25],[3,76,38,17],[96,90,48,-8],[52,97,42,20]];
   const capa = document.createElement("div");
   capa.className = "jardin"; capa.setAttribute("aria-hidden","true");
   sitios.forEach(([x,y,tam,giro],i)=>{
     const f = document.createElement("img");
     f.src = "img/" + flores[i % flores.length] + ".png";
     f.loading = "lazy"; f.alt = "";
-    f.style.cssText = `left:${x}%;top:${y}px;width:${tam}px;transform:translate(-50%,0) rotate(${giro}deg)`;
+    f.style.cssText = "left:"+x+"%;top:"+y+"%;width:"+tam+"px;transform:translate(-50%,-50%) rotate("+giro+"deg)";
     capa.appendChild(f);
   });
   document.body.appendChild(capa);
 })();
 
+traducir();
+const inicial = location.hash.replace("#","");
+ir(PAGINAS.includes(inicial) ? inicial : "inicio");
+
+if("serviceWorker" in navigator){
+  let recargando = false;
+  navigator.serviceWorker.addEventListener("controllerchange", ()=>{
+    if(recargando) return;
+    recargando = true; location.reload();
+  });
+  window.addEventListener("load", async ()=>{
+    try{
+      const reg = await navigator.serviceWorker.register("sw.js", {updateViaCache:"none"});
+      reg.update();
+      document.addEventListener("visibilitychange", ()=>{ if(!document.hidden) reg.update(); });
+      setInterval(()=> reg.update(), 60*60*1000);
+    }catch(e){}
+  });
+}
 </script>
 </body>
 </html>
