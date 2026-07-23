@@ -40,7 +40,7 @@ Queda mucho mejor en una invitación impresa.
 |---|---|---|
 | RSVP real | Google Forms vinculado a Sheets, con el correo nuevo | pendiente del link de tu amiga |
 | Playlist | Spotify colaborativa, pegar link en `URL_SPOTIFY` | pendiente, ejemplo por ahora |
-| Álbum de fotos | App tipo Lense o JoinMyMoment, pegar link en `URL_FOTOS` | pendiente |
+| Cámara desechable | Crear el evento en Lense o JoinMyMoment y pegar el link en `URL_FOTOS` | pendiente |
 | WhatsApp de Adam | Añadir segundo botón | pendiente |
 | Autobús | Confirmar si lo habrá | pendiente |
 
@@ -51,5 +51,5 @@ Todo eso se cambia en las diez líneas del bloque `EDITA AQUÍ`, al principio de
 - Abre el link en un móvil de verdad, no solo en el ordenador.
 - Prueba los tres idiomas.
 - Cambia el PIN del panel: ahora es `2404`, o sea la fecha de la boda. Adivinable.
-- Comprueba que el QR lleve al álbum correcto.
+- Comprueba que el botón de la cámara abra el álbum correcto.
 - Pide a dos personas que hagan un RSVP de prueba y bórralos después.

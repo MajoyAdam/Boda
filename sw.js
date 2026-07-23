@@ -1,11 +1,18 @@
-/* Estrategia: red primero, caché de reserva.
-   Así nadie ve una versión vieja, pero el día de la boda,
-   en medio del bosque y sin señal, la app sigue abriendo. */
-const CACHE = "boda-adam-majo-v1";
-const BASE = ["./", "./index.html", "./icon-192.png", "./icon-512.png"];
+/* Sube este número cada vez que cambies algo importante.
+   Al detectarlo, la app se actualiza sola en el celular de todos. */
+const CACHE = "boda-v2";
+
+const BASE = [
+  "./", "./index.html", "./manifest.json",
+  "./img/portada.jpg",
+  "./img/flor-crema.png", "./img/flor-durazno.png", "./img/flor-rosa.png",
+  "./img/flor-lila.png", "./img/flor-hibisco.png", "./img/flor-amarilla.png"
+];
 
 self.addEventListener("install", e => {
-  e.waitUntil(caches.open(CACHE).then(c => c.addAll(BASE)).then(() => self.skipWaiting()));
+  // no espera a que se cierren las pestañas viejas: entra ya
+  self.skipWaiting();
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll(BASE)).catch(()=>{}));
 });
 
 self.addEventListener("activate", e => {
@@ -16,6 +23,8 @@ self.addEventListener("activate", e => {
   );
 });
 
+/* Red primero: siempre se ve la última versión.
+   La caché solo entra cuando no hay señal. */
 self.addEventListener("fetch", e => {
   if (e.request.method !== "GET") return;
   e.respondWith(

@@ -3,149 +3,152 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Adam & Majo · 24 abril 2027</title>
-<meta name="description" content="Toda la información de la boda de Adam y Majo: cómo llegar, dónde dormir, qué ponerte y confirmar tu asistencia.">
-<meta name="theme-color" content="#F2EEFA">
+<title>María & Adam · 24 abril 2027</title>
+<meta name="description" content="Toda la información de la boda de María y Adam: cómo llegar, dónde dormir, qué ponerte y confirmar tu asistencia.">
+<meta name="theme-color" content="#82A07C">
 <link rel="icon" href="favicon.png">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="manifest" href="manifest.json">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Adam & Majo · 24 abril 2027">
+<meta property="og:title" content="María & Adam · 24 abril 2027">
 <meta property="og:description" content="Domaine Sainte-Raphine, Burdeos. Confirma tu asistencia aquí.">
-<meta property="og:image" content="og.png">
+<meta property="og:image" content="og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,900&family=Outfit:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Outfit:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
   :root{
-    --papel:#F2EEFA; --tinta:#2C2140;
-    --cereza:#E8577C; --mandarina:#F2A03D; --menta:#5FC3A4; --uva:#7A68E6;
-    --linea:rgba(44,33,64,.14);
-    --display:"Fraunces",Georgia,serif;
+    --verde:#82A07C;
+    --verde-hondo:#5F7A5A;
+    --crema:#F7F2E6;
+    --tinta:#2E2A16;
+    --naranja:#FF4C25;
+    --linea:rgba(46,42,22,.16);
+
+    --display:"Baloo 2","Trebuchet MS",cursive;
     --texto:"Outfit","Segoe UI",system-ui,sans-serif;
     --util:"Space Mono",ui-monospace,monospace;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
-  body{margin:0;background:var(--papel);background-image:radial-gradient(rgba(44,33,64,.05) 1px,transparent 1px);background-size:14px 14px;color:var(--tinta);font-family:var(--texto);font-weight:300;font-size:16px;line-height:1.55}
-  .wrap{max-width:560px;margin:0 auto;padding:0 20px 90px}
+  body{margin:0;background:var(--verde);color:var(--tinta);font-family:var(--texto);font-weight:300;font-size:16px;line-height:1.55;position:relative;overflow-x:hidden}
+  .jardin{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+  .jardin img{position:absolute;opacity:.85;filter:drop-shadow(0 3px 5px rgba(46,42,22,.18))}
+  .wrap{max-width:560px;margin:0 auto;padding:0 20px 90px;position:relative;z-index:1}
 
-  .nav{position:sticky;top:0;z-index:20;background:rgba(242,238,250,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--linea)}
+  .nav{position:sticky;top:0;z-index:20;background:rgba(130,160,124,.94);backdrop-filter:blur(8px);border-bottom:1px solid rgba(46,42,22,.14)}
   .nav-top{max-width:560px;margin:0 auto;display:flex;align-items:center;gap:8px;padding:8px 20px 0}
-  .idioma{margin-left:auto;display:flex;gap:4px;background:#fff;border:1px solid var(--linea);border-radius:999px;padding:3px}
-  .idioma button{border:none;background:none;font-size:17px;line-height:1;padding:5px 8px;border-radius:999px;cursor:pointer;opacity:.4;font-family:var(--util)}
-  .idioma button[aria-pressed="true"]{opacity:1;background:var(--papel)}
-  .marca{font-family:var(--util);font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.5}
+  .idioma{margin-left:auto;display:flex;gap:2px;background:var(--crema);border:1px solid var(--linea);border-radius:999px;padding:3px}
+  .idioma button{border:none;background:none;font-size:15px;line-height:1;padding:5px 7px;border-radius:999px;cursor:pointer;opacity:.42;font-family:var(--util)}
+  .idioma button[aria-pressed="true"]{opacity:1;background:var(--verde);color:var(--crema)}
+  .marca{font-family:var(--util);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--crema)}
   .nav-inner{max-width:560px;margin:0 auto;display:flex;gap:8px;overflow-x:auto;padding:10px 20px;scrollbar-width:none}
   .nav-inner::-webkit-scrollbar{display:none}
-  .nav-inner a{flex:0 0 auto;font-family:var(--util);font-size:11px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--tinta);border:1px solid var(--linea);border-radius:999px;padding:6px 12px;background:#fff}
-  .nav-inner a:hover{background:var(--uva);color:#fff;border-color:var(--uva)}
-  a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--uva);outline-offset:2px}
+  .nav-inner a{flex:0 0 auto;font-family:var(--util);font-size:11px;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;color:var(--tinta);border:1px solid var(--linea);border-radius:999px;padding:6px 12px;background:var(--crema)}
+  .nav-inner a:hover{background:var(--naranja);color:var(--crema);border-color:var(--naranja)}
+  a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--naranja);outline-offset:2px}
 
-  .hero{padding:52px 0 36px;text-align:center}
-  .eyebrow{font-family:var(--util);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--uva);margin:0}
-  .names{font-family:var(--display);font-weight:900;font-variation-settings:"SOFT" 100,"WONK" 1;font-size:clamp(52px,17vw,84px);line-height:.92;margin:14px 0 6px}
-  .names .amp{display:block;font-size:.42em;color:var(--cereza);font-weight:600;font-style:italic;margin:2px 0}
-  .fecha{font-family:var(--util);font-size:13px;letter-spacing:.08em;margin:0}
-  .cuenta{display:flex;justify-content:center;gap:10px;margin-top:24px}
-  .cuenta div{background:#fff;border:1px solid var(--linea);border-radius:14px;padding:10px 4px;width:68px;box-shadow:3px 3px 0 rgba(122,104,230,.18)}
-  .cuenta b{display:block;font-family:var(--display);font-weight:900;font-size:26px;line-height:1}
+  .hero{padding:26px 0 34px;text-align:center}
+  .portada{width:100%;border-radius:10px;display:block;box-shadow:0 8px 26px rgba(46,42,22,.22)}
+  .oculto{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .eyebrow{font-family:var(--util);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--crema);margin:20px 0 0}
+  .fecha{font-family:var(--display);font-weight:600;font-size:21px;color:var(--crema);margin:6px 0 0;line-height:1.3}
+  .cuenta{display:flex;justify-content:center;gap:10px;margin-top:20px}
+  .cuenta div{background:var(--crema);border-radius:14px;padding:10px 4px;width:70px;box-shadow:0 4px 10px rgba(46,42,22,.16)}
+  .cuenta b{display:block;font-family:var(--display);font-weight:800;font-size:26px;line-height:1;color:var(--naranja)}
   .cuenta span{font-family:var(--util);font-size:9px;letter-spacing:.1em;text-transform:uppercase;opacity:.6}
-  .acciones{display:flex;gap:8px;margin-top:22px}
-  .acciones button{flex:1;font-family:var(--util);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:11px 6px;border-radius:12px;border:1px solid var(--tinta);background:#fff;color:var(--tinta);cursor:pointer}
-  .acciones button:active{transform:translateY(1px)}
+  .acciones{display:flex;gap:8px;margin-top:20px}
+  .acciones button{flex:1;font-family:var(--util);font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:11px 6px;border-radius:12px;border:1px solid var(--crema);background:transparent;color:var(--crema);cursor:pointer}
+  .acciones button:hover{background:var(--crema);color:var(--tinta)}
 
   section{margin-top:44px}
-  h2{font-family:var(--display);font-weight:900;font-variation-settings:"SOFT" 100,"WONK" 1;font-size:30px;line-height:1.05;margin:0 0 4px}
-  .sub{font-family:var(--util);font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.55;margin:0 0 18px}
-  .card{background:#fff;border:1px solid var(--linea);border-radius:18px;padding:18px;margin-bottom:12px;box-shadow:4px 4px 0 rgba(44,33,64,.06)}
-  .card h3{margin:0 0 4px;font-family:var(--texto);font-weight:600;font-size:17px}
+  h2{font-family:var(--display);font-weight:800;font-size:34px;line-height:1.02;margin:0 0 4px;color:var(--naranja);text-shadow:0 2px 0 rgba(46,42,22,.12)}
+  .sub{font-family:var(--util);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--crema);opacity:.85;margin:0 0 18px}
+  .card{background:var(--crema);border-radius:18px;padding:18px;margin-bottom:12px;box-shadow:0 5px 14px rgba(46,42,22,.14)}
+  .card h3{margin:0 0 4px;font-family:var(--display);font-weight:600;font-size:19px}
   .card p{margin:0;font-size:14.5px;opacity:.85}
-  .meta{font-family:var(--util);font-size:11px;letter-spacing:.05em;opacity:.55;margin-top:8px}
-  .meta a{color:var(--uva)}
+  .meta{font-family:var(--util);font-size:11px;letter-spacing:.04em;opacity:.6;margin-top:8px}
+  .meta a{color:var(--naranja)}
 
   .hora{display:flex;gap:14px;padding:12px 0;border-bottom:1px dashed var(--linea)}
   .hora:last-child{border:none}
-  .hora time{font-family:var(--util);font-weight:700;font-size:13px;flex:0 0 52px;color:var(--cereza)}
+  .hora time{font-family:var(--util);font-weight:700;font-size:13px;flex:0 0 52px;color:var(--naranja)}
   .hora strong{display:block;font-weight:600;font-size:15px}
   .hora em{font-style:normal;font-size:13.5px;opacity:.7}
 
-  .paleta{display:flex;gap:8px;margin:14px 0 10px}
-  .paleta span{flex:1;height:56px;border-radius:12px;border:1px solid var(--linea)}
-  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+  .paleta{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin:14px 0 4px}
+  .paleta span{aspect-ratio:1;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(46,42,22,.12)}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
   .tag{font-family:var(--util);font-size:11px;padding:5px 10px;border-radius:999px;border:1px solid var(--linea)}
-  .si{background:rgba(95,195,164,.18)} .no{background:rgba(232,87,124,.14)}
+  .si{background:rgba(130,160,124,.28)} .no{background:rgba(255,76,37,.14)}
 
-  label{display:block;font-family:var(--util);font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.6;margin:14px 0 5px}
-  input,select,textarea{width:100%;font-family:var(--texto);font-size:16px;padding:11px 13px;border:1px solid var(--linea);border-radius:12px;background:var(--papel);color:var(--tinta)}
+  label{display:block;font-family:var(--util);font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.6;margin:14px 0 5px}
+  input,select,textarea{width:100%;font-family:var(--texto);font-size:16px;padding:11px 13px;border:1px solid var(--linea);border-radius:12px;background:#fff;color:var(--tinta)}
   textarea{min-height:76px;resize:vertical}
   .fila{display:flex;gap:10px}.fila>*{flex:1}
   .opciones{display:flex;gap:8px;margin-top:5px}
-  .opciones button{flex:1;font-family:var(--texto);font-size:14px;padding:11px;border-radius:12px;border:1px solid var(--linea);background:var(--papel);color:var(--tinta);cursor:pointer}
-  .opciones button[aria-pressed="true"]{background:var(--tinta);color:#fff;border-color:var(--tinta)}
-  .enviar{width:100%;margin-top:20px;font-family:var(--display);font-weight:900;font-size:19px;padding:15px;border:none;border-radius:14px;background:var(--cereza);color:#fff;cursor:pointer;box-shadow:4px 4px 0 var(--tinta)}
-  .enviar:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--tinta)}
+  .opciones button{flex:1;font-family:var(--texto);font-size:14px;padding:11px;border-radius:12px;border:1px solid var(--linea);background:#fff;color:var(--tinta);cursor:pointer}
+  .opciones button[aria-pressed="true"]{background:var(--tinta);color:var(--crema);border-color:var(--tinta)}
+  .enviar{width:100%;margin-top:20px;font-family:var(--display);font-weight:800;font-size:20px;padding:14px;border:none;border-radius:14px;background:var(--naranja);color:var(--crema);cursor:pointer;box-shadow:0 5px 0 #C8371A}
+  .enviar:active{transform:translateY(3px);box-shadow:0 2px 0 #C8371A}
   .aviso{font-family:var(--util);font-size:11px;margin-top:12px;opacity:.6;text-align:center}
   .check{display:flex;align-items:center;gap:9px;margin-top:14px;font-size:14px}
   .check input{width:auto}
 
-  .ticket{position:relative;background:#fff;border:1px solid var(--linea);border-radius:18px;padding:20px;box-shadow:4px 4px 0 rgba(232,87,124,.25)}
-  .ticket::before,.ticket::after{content:"";position:absolute;width:22px;height:22px;background:var(--papel);border:1px solid var(--linea);border-radius:50%;top:calc(50% - 11px)}
-  .ticket::before{left:-12px}.ticket::after{right:-12px}
+  .ticket{position:relative;background:var(--crema);border-radius:18px;padding:20px;box-shadow:0 5px 14px rgba(46,42,22,.16)}
+  .ticket::before,.ticket::after{content:"";position:absolute;width:22px;height:22px;background:var(--verde);border-radius:50%;top:calc(50% - 11px)}
+  .ticket::before{left:-11px}.ticket::after{right:-11px}
 
   .muro{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-  .deseo{flex:1 1 46%;min-width:150px;border-radius:14px;padding:14px;border:1px solid var(--linea);box-shadow:3px 3px 0 rgba(44,33,64,.08);font-size:14px}
+  .deseo{flex:1 1 46%;min-width:150px;border-radius:14px;padding:14px;box-shadow:0 4px 10px rgba(46,42,22,.14);font-size:14px}
   .deseo:nth-child(3n){transform:rotate(-1.4deg)}
   .deseo:nth-child(3n+2){transform:rotate(1.2deg)}
   .deseo p{margin:0 0 8px;font-style:italic}
-  .deseo b{font-family:var(--util);font-size:10px;letter-spacing:.1em;text-transform:uppercase;opacity:.6;font-weight:400}
+  .deseo b{font-family:var(--util);font-size:10px;letter-spacing:.08em;text-transform:uppercase;opacity:.65;font-weight:400}
 
   .cancion{display:flex;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px dashed var(--linea)}
   .cancion:last-child{border:none}
   .cancion span{font-family:var(--util);font-size:11px;opacity:.45;flex:0 0 24px}
   .cancion strong{font-weight:600;font-size:15px}
   .cancion em{font-style:normal;opacity:.6;font-size:13.5px}
-  .portada{width:100%;aspect-ratio:1;border-radius:14px;border:2px dashed var(--linea);display:flex;align-items:center;justify-content:center;font-family:var(--util);font-size:11px;text-align:center;opacity:.5;margin-bottom:14px;padding:20px}
+  .portada-pl{width:100%;aspect-ratio:1;border-radius:14px;border:2px dashed var(--linea);display:flex;align-items:center;justify-content:center;font-family:var(--util);font-size:11px;text-align:center;opacity:.5;margin-bottom:14px;padding:20px}
 
   .rollo{margin:18px -20px;padding:16px 0;background:var(--tinta);border-top:14px solid transparent;border-bottom:14px solid transparent;background-clip:padding-box;position:relative;overflow-x:auto;scrollbar-width:none}
   .rollo::-webkit-scrollbar{display:none}
-  .rollo::before,.rollo::after{content:"";position:absolute;left:0;right:0;height:14px;background-image:repeating-linear-gradient(90deg,var(--papel) 0 9px,transparent 9px 20px)}
+  .rollo::before,.rollo::after{content:"";position:absolute;left:0;right:0;height:14px;background-image:repeating-linear-gradient(90deg,var(--verde) 0 9px,transparent 9px 20px)}
   .rollo::before{top:-14px}.rollo::after{bottom:-14px}
   .frames{display:flex;gap:8px;padding:0 20px;min-width:min-content}
-  .frame{flex:0 0 62px;height:62px;border-radius:6px;border:1px solid rgba(242,238,250,.25);display:flex;align-items:center;justify-content:center;font-family:var(--util);font-size:11px;color:rgba(242,238,250,.5);cursor:pointer}
-  .frame.usado{background:var(--mandarina);color:var(--tinta);border-color:var(--mandarina)}
-  #qr{display:flex;justify-content:center;margin:16px 0 6px}
-  #qr img,#qr canvas{border-radius:12px;border:8px solid #fff;box-shadow:4px 4px 0 rgba(44,33,64,.1)}
-  .qr-fallback{font-family:var(--util);font-size:12px;text-align:center;opacity:.6;padding:30px;border:2px dashed var(--linea);border-radius:14px}
+  .frame{flex:0 0 62px;height:62px;border-radius:6px;border:1px solid rgba(247,242,230,.25);display:flex;align-items:center;justify-content:center;font-family:var(--util);font-size:11px;color:rgba(247,242,230,.5);cursor:pointer}
+  .frame.usado{background:var(--naranja);color:var(--crema);border-color:var(--naranja)}
+  .btn-fotos{display:block;text-align:center;text-decoration:none;margin-top:16px;font-family:var(--display);font-weight:800;font-size:20px;padding:14px;border-radius:14px;background:var(--naranja);color:var(--crema);box-shadow:0 5px 0 #C8371A}
 
-  details{background:#fff;border:1px solid var(--linea);border-radius:14px;padding:14px 16px;margin-bottom:8px}
+  details{background:var(--crema);border-radius:14px;padding:14px 16px;margin-bottom:8px}
   summary{cursor:pointer;font-weight:600;font-size:15px;list-style:none}
   summary::-webkit-details-marker{display:none}
-  summary::after{content:"+";float:right;font-family:var(--util);color:var(--cereza)}
+  summary::after{content:"+";float:right;font-family:var(--util);color:var(--naranja)}
   details[open] summary::after{content:"–"}
   details p{margin:10px 0 0;font-size:14.5px;opacity:.8}
 
-  .panel{background:var(--tinta);color:var(--papel);border-radius:18px;padding:20px;margin-top:44px}
-  .panel h2{color:var(--papel);font-size:26px}
-  .panel .sub{color:rgba(242,238,250,.6)}
-  .panel input{background:rgba(242,238,250,.1);border-color:rgba(242,238,250,.25);color:var(--papel)}
-  .panel label{color:rgba(242,238,250,.6)}
+  .panel{background:var(--tinta);color:var(--crema);border-radius:18px;padding:20px;margin-top:44px}
+  .panel h2{color:var(--crema);font-size:28px;text-shadow:none}
+  .panel .sub{color:rgba(247,242,230,.6)}
+  .panel input{background:rgba(247,242,230,.1);border-color:rgba(247,242,230,.25);color:var(--crema)}
+  .panel label{color:rgba(247,242,230,.6)}
   .cifras{display:flex;gap:8px;margin:16px 0}
-  .cifras div{flex:1;background:rgba(242,238,250,.08);border-radius:12px;padding:12px 8px;text-align:center}
-  .cifras b{display:block;font-family:var(--display);font-weight:900;font-size:24px}
-  .cifras span{font-family:var(--util);font-size:9px;letter-spacing:.08em;text-transform:uppercase;opacity:.6}
-  .invitado{border-bottom:1px solid rgba(242,238,250,.14);padding:10px 0;font-size:14px}
-  .invitado b{font-weight:600}
+  .cifras div{flex:1;background:rgba(247,242,230,.08);border-radius:12px;padding:12px 8px;text-align:center}
+  .cifras b{display:block;font-family:var(--display);font-weight:800;font-size:24px}
+  .cifras span{font-family:var(--util);font-size:9px;letter-spacing:.06em;text-transform:uppercase;opacity:.6}
+  .invitado{border-bottom:1px solid rgba(247,242,230,.14);padding:10px 0;font-size:14px}
   .invitado em{font-style:normal;display:block;font-size:12.5px;opacity:.65}
-  .privado{font-family:var(--util);font-size:10px;color:var(--mandarina);letter-spacing:.08em;text-transform:uppercase}
+  .privado{font-family:var(--util);font-size:10px;color:var(--naranja);letter-spacing:.06em;text-transform:uppercase}
 
-  footer{text-align:center;margin-top:48px;font-family:var(--util);font-size:11px;letter-spacing:.08em;opacity:.45}
-  footer button{background:none;border:none;font-family:var(--util);font-size:11px;color:var(--tinta);opacity:.6;cursor:pointer;text-decoration:underline;margin-top:8px}
+  footer{text-align:center;margin-top:48px;font-family:var(--util);font-size:11px;letter-spacing:.06em;color:var(--crema);opacity:.75}
+  footer button{background:none;border:none;font-family:var(--util);font-size:11px;color:var(--crema);opacity:.8;cursor:pointer;text-decoration:underline;margin-top:8px}
 </style>
 </head>
 <body>
@@ -164,8 +167,9 @@
 <div class="wrap">
 
   <header class="hero">
+    <h1 class="oculto">María y Adam · 24 de abril de 2027</h1>
+    <img class="portada" src="img/portada.jpg" alt="María y Adam">
     <p class="eyebrow" data-t="eyebrow"></p>
-    <h1 class="names">Adam <span class="amp" data-t="y"></span> Majo</h1>
     <p class="fecha" data-t="fechaLugar"></p>
     <div class="cuenta" id="cuenta"></div>
     <div class="acciones">
@@ -240,12 +244,18 @@
     <div class="card">
       <h3 data-t="vesH3"></h3>
       <p data-t="vesTxt"></p>
-      <div class="paleta">
-        <span style="background:#E8577C"></span><span style="background:#F2A03D"></span>
-        <span style="background:#5FC3A4"></span><span style="background:#7A68E6"></span>
-        <span style="background:#F2EEFA"></span>
-      </div>
       <div class="tags" id="tagsVes"></div>
+    </div>
+    <div class="card">
+      <h3 data-t="florTit"></h3>
+      <p data-t="florTxt"></p>
+      <div class="paleta">
+        <span style="background:#E8720F"></span><span style="background:#E0507A"></span>
+        <span style="background:#F07A20"></span><span style="background:#D9639B"></span>
+        <span style="background:#F3C9AC"></span><span style="background:#EE7BA8"></span>
+        <span style="background:#F2E3D0"></span><span style="background:#E8207A"></span>
+        <span style="background:#82A07C"></span><span style="background:#FF4C25"></span>
+      </div>
     </div>
   </section>
 
@@ -258,7 +268,7 @@
       <label data-t="lDeseo" for="deTexto"></label>
       <textarea id="deTexto" data-ph="phDeseo"></textarea>
       <div class="check"><input type="checkbox" id="dePrivado"><label for="dePrivado" style="margin:0;text-transform:none;letter-spacing:0;font-family:var(--texto);font-size:14px;opacity:.9" data-t="lPrivado"></label></div>
-      <button class="enviar" id="btnDeseo" style="background:var(--mandarina)" data-t="btnDeseo"></button>
+      <button class="enviar" id="btnDeseo" data-t="btnDeseo"></button>
     </div>
     <div class="muro" id="muro"></div>
   </section>
@@ -267,7 +277,7 @@
     <h2 data-t="plTit"></h2>
     <p class="sub" data-t="plSub"></p>
     <div class="card">
-      <div class="portada" data-t="portadaTxt"></div>
+      <div class="portada-pl" data-t="portadaTxt"></div>
       <p data-t="plTxt"></p>
       <p class="meta"><a href="#" id="spotify" target="_blank" rel="noopener" data-t="plLink"></a></p>
     </div>
@@ -276,7 +286,7 @@
       <input id="tema" type="text" data-ph="phCancion">
       <label data-t="lArtista" for="artista"></label>
       <input id="artista" type="text" data-ph="phArtista">
-      <button class="enviar" id="agregar" style="background:var(--uva)" data-t="btnCancion"></button>
+      <button class="enviar" id="agregar" data-t="btnCancion"></button>
     </div>
     <div class="card" id="listaCanciones"></div>
   </section>
@@ -287,8 +297,7 @@
     <div class="card">
       <h3 data-t="fotH3"></h3>
       <p data-t="fotTxt"></p>
-      <div id="qr"></div>
-      <p class="meta" style="text-align:center" id="urlFotos"></p>
+      <a class="btn-fotos" id="btnFotos" href="#" target="_blank" rel="noopener" data-t="btnFotos"></a>
     </div>
     <div class="rollo" aria-hidden="true"><div class="frames" id="frames"></div></div>
     <p class="aviso" data-t="fotAviso"></p>
@@ -306,7 +315,7 @@
     <div id="panLogin">
       <label data-t="lPin" for="pin"></label>
       <input id="pin" type="password" inputmode="numeric" placeholder="••••">
-      <button class="enviar" id="btnPin" style="background:var(--menta);box-shadow:4px 4px 0 rgba(242,238,250,.3)" data-t="btnPin"></button>
+      <button class="enviar" id="btnPin" data-t="btnPin"></button>
     </div>
     <div id="panDatos" hidden></div>
   </section>
@@ -318,7 +327,6 @@
   </footer>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
 /* ==================== EDITA AQUÍ ==================== */
 const FECHA_BODA   = "2027-04-24T16:00:00";
@@ -333,42 +341,43 @@ const CAMPOS       = { nombre:"entry.000000001", asiste:"entry.000000002", acomp
 
 const T = {
   es:{
-    marca:"Adam & Majo · 24.04.27", eyebrow:"Nos casamos", y:"y",
+    marca:"María & Adam · 24.04.27", eyebrow:"Nos casamos", y:"y",
     fechaLugar:"Sábado 24 de abril de 2027 · Domaine Sainte-Raphine, Burdeos",
     dias:"días", horas:"horas", min:"min",
     btnCal:"Añadir al calendario", btnWa:"Dudas por WhatsApp",
     menu:["Confirmar","El día","Cómo llegar","Hoteles","Vestuario","Deseos","Playlist","Fotos","Dudas"],
     rsvpTit:"Confirma tu asistencia", rsvpSub:"Antes del 24 de enero de 2027",
     lNombre:"Tu nombre y apellido", phNombre:"Ana Pérez", lViene:"¿Vienes?", oSi:"Ahí estaré", oNo:"No podré",
-    lAcomp:"Acompañantes", lBus:"Autobús", busOps:["Lo usaría","Llego por mi cuenta"],
+    lAcomp:"Acompañantes", lBus:"Bus", busOps:["Lo tomaría","Llego por mi cuenta"],
     lComida:"Algo que no comes", phComida:"Vegetariana, sin gluten, alergias…",
-    lNota:"Un mensaje para Adam y Majo", phNota:"Opcional, pero se agradece",
+    lNota:"Un mensaje para María y Adam", phNota:"Opcional, pero se agradece mucho",
     btnEnviar:"Enviar confirmación", avisoRsvp:"Puedes cambiar tu respuesta escribiendo por WhatsApp.",
     graciasSi:n=>`<h3 style="font-family:var(--display);font-size:24px;margin:0 0 6px">Quedas apuntado, ${n}</h3><p>Nos vemos el 24 de abril en Sainte-Raphine. Te escribimos con los últimos detalles una semana antes.</p>`,
-    graciasNo:"<h3 style=\"font-family:var(--display);font-size:24px;margin:0 0 6px\">Gracias por avisar</h3><p>Te vamos a echar de menos. Te mandamos fotos.</p>",
+    graciasNo:"<h3 style=\"font-family:var(--display);font-size:24px;margin:0 0 6px\">Gracias por avisar</h3><p>Te vamos a extrañar. Te mandamos fotos.</p>",
     diaTit:"El día", diaSub:"Sábado · horarios aproximados",
     horario:[["16:00","Llegada","Un rato para saludarse antes de empezar."],
              ["16:30","Ceremonia","En el claro del dominio. Empieza puntual."],
              ["17:30","Sorpresa","Confía en nosotros y quédate sentado."],
              ["18:00","Cóctel","En el jardín, bajo los árboles."],
              ["20:00","Cena","Mesas asignadas, busca tu nombre en la entrada."],
-             ["23:00","Fiesta","Hasta las 3:30. Trae zapatillas de repuesto."]],
+             ["23:00","Fiesta","Hasta las 3:30. Trae unos tenis de repuesto."]],
     llegarTit:"Cómo llegar", llegarSub:"62 hectáreas de bosque a 15 min de Burdeos",
     lugarTxt:"Fargues-Saint-Hilaire, Gironde. En plena campiña bordelesa, a 5 minutos de la circunvalación.",
     verMapa:"Abrir en Google Maps",
     aviónTit:"En avión", aviónTxt:"Aeropuerto de Burdeos-Mérignac. Desde Londres y Bogotá hay vuelos con una escala.",
-    busTit:"Autobús", busTxt:"Por confirmar. Si hay suficiente gente habrá autobús desde el centro de Burdeos, ida y vuelta. Dinos en tu confirmación si lo usarías.",
-    cocheTit:"En coche", cocheTxt:"Parking gratuito en el dominio. Si vas a beber, el autobús es mejor idea.",
+    busTit:"Bus", busTxt:"Por confirmar. Si somos suficientes, va a haber un bus desde el centro de Burdeos, ida y vuelta. Cuéntanos en tu confirmación si lo tomarías.",
+    cocheTit:"En carro", cocheTxt:"Estacionamiento gratis en el dominio. Si vas a tomar, mejor el bus.",
     hotTit:"Dónde dormir", hotSub:"Tres opciones",
-    hot1Tit:"Las 5 habitaciones del dominio", hot1Txt:"Duermen 10 personas en el mismo lugar de la fiesta. Se reservan directamente con la finca.", hot1Meta:"Preguntar a Adam y Majo",
+    hot1Tit:"Las 5 habitaciones del dominio", hot1Txt:"Duermen 10 personas en el mismo lugar de la fiesta. Se reservan directamente con la finca.", hot1Meta:"Preguntar a María y Adam",
     hot2Tit:"Hotel en Burdeos centro", hot2Txt:"Ideal si quieres pasear el domingo por la ciudad. El autobús sale de aquí.", hot2Meta:"Desde 00 € · Reservar",
     hot3Tit:"Casa rural cerca", hot3Txt:"Para grupos que quieran alquilar juntos y seguir la fiesta.", hot3Meta:"Desde 00 € · Reservar",
-    vesTit:"Qué ponerte", vesSub:"Código de vestimenta", vesH3:"Formal con color",
-    vesTxt:"Es al aire libre y sobre césped: piensa en tacón ancho o algo plano bonito. En abril refresca de noche, trae algo encima.",
+    vesTit:"Qué ponerte", vesSub:"Código de vestimenta", vesH3:"Ven bonito, ven cómodo",
+    vesTxt:"Ven como te sientas lindo. Lo único práctico: es al aire libre y sobre pasto, así que tacón ancho o algo plano. En abril las noches son frescas, trae algo encima.",
     tags:[["si","Sí: color"],["si","Sí: estampado"],["si","Sí: zapato cómodo"],["no","No: blanco"],["no","No: tacón de aguja"]],
+    florTit:"Los colores de la boda", florTxt:"Estas son las flores que va a haber ese día. No es una obligación ni un uniforme: es por si quieres una idea de por dónde van los colores. Lo importante es que te sientas bonito.",
     desTit:"Deja tu deseo", desSub:"Consejos, promesas, chistes malos",
     lDeQuien:"De parte de", lDeseo:"Tu deseo o consejo", phDeseo:"Que nunca se les acabe la paciencia ni el vino…",
-    lPrivado:"Que solo lo lean Adam y Majo", btnDeseo:"Colgar en el muro",
+    lPrivado:"Que solo lo lean María y Adam", btnDeseo:"Colgar en el muro",
     muroVacio:"El muro está vacío. Cuelga el primero.", privado:"Privado",
     plTit:"Pon una canción", plSub:"La playlist la hacemos entre todos",
     portadaTxt:"Aquí va la foto de portada de la playlist",
@@ -376,25 +385,25 @@ const T = {
     plLink:"Abrir la playlist en Spotify",
     lCancion:"Canción", phCancion:"Título", lArtista:"Artista", phArtista:"Quién la canta", btnCancion:"Añadir a la playlist",
     plVacia:"Todavía no hay canciones. Estrena tú la lista.",
-    fotTit:"Las fotos de todos", fotSub:"20 disparos por invitado", fotH3:"Tu móvil es una cámara desechable",
-    fotTxt:"Escanea el código, haz tus 20 fotos y ya está. Todas caen en el mismo álbum y se revelan el domingo por la mañana.",
-    fotAviso:"Toca un fotograma para ver cómo se gasta el carrete.",
+    fotTit:"Las fotos de todos", fotSub:"20 disparos por invitado", fotH3:"Tu celular es una cámara desechable",
+    fotTxt:"Entra al link, toma tus 20 fotos y ya. Todas caen en el mismo álbum y se revelan el domingo en la mañana.",
+    fotAviso:"Toca un cuadrito para ver cómo se gasta el rollo.", btnFotos:"Abrir mi cámara",
     faqTit:"Dudas", faqSub:"Lo que ya nos preguntaron",
     faq:[["¿Puedo llevar niños?","Sí. El dominio tiene una sala para ellos con pantalla, juegos y sofás durante la cena."],
-         ["¿Hay mesa de regalos?","Vuestra presencia basta, pero si insistís, aquí va la lista."],
-         ["¿Y si llueve?","Todo se mueve a la sala Côté Clairière, en el mismo sitio. No cambia nada."],
-         ["¿Puedo publicar fotos en redes?","Después de la ceremonia, sí. Etiqueta #AdamYMajo2027."]],
-    panTit:"Panel de Adam y Majo", panSub:"Solo para los novios",
+         ["¿Hay mesa de regalos?","Con que vengan ya es suficiente. Pero si insisten, aquí está la lista."],
+         ["¿Y si llueve?","Todo se pasa al salón Côté Clairière, en el mismo lugar. No cambia nada más."],
+         ["¿Puedo publicar fotos en redes?","Después de la ceremonia, sí. Etiqueta #MariaYAdam2027."]],
+    panTit:"Panel de María y Adam", panSub:"Solo para los novios",
     lPin:"Código", btnPin:"Entrar", pinMal:"Código incorrecto.",
     cifras:["Vienen","No pueden","Autobús"], sinRsvp:"Todavía no hay confirmaciones.",
     panDeseos:"Mensajes privados", sinDeseos:"Sin mensajes privados.",
     pie:"Hecho con cariño", verPanel:"Panel de los novios", verPost:"Ver modo post-boda",
     postEyebrow:"Nos casamos", postTit:"Gracias por venir",
     postTxt:"Ya está todo aquí: las fotos de todos, la playlist final y el muro de deseos. Sirvanse.",
-    calTitulo:"Boda de Adam y Majo"
+    calTitulo:"Boda de María y Adam"
   },
   en:{
-    marca:"Adam & Majo · 24.04.27", eyebrow:"We're getting married", y:"and",
+    marca:"María & Adam · 24.04.27", eyebrow:"We're getting married", y:"and",
     fechaLugar:"Saturday 24 April 2027 · Domaine Sainte-Raphine, Bordeaux",
     dias:"days", horas:"hours", min:"min",
     btnCal:"Add to calendar", btnWa:"Questions on WhatsApp",
@@ -403,7 +412,7 @@ const T = {
     lNombre:"Your full name", phNombre:"Ana Pérez", lViene:"Are you coming?", oSi:"Count me in", oNo:"Can't make it",
     lAcomp:"Guests with you", lBus:"Coach", busOps:["I would use it","Making my own way"],
     lComida:"Anything you don't eat", phComida:"Vegetarian, gluten-free, allergies…",
-    lNota:"A message for Adam and Majo", phNota:"Optional, but always welcome",
+    lNota:"A message for María and Adam", phNota:"Optional, but always welcome",
     btnEnviar:"Send my answer", avisoRsvp:"You can change your answer on WhatsApp.",
     graciasSi:n=>`<h3 style="font-family:var(--display);font-size:24px;margin:0 0 6px">You're on the list, ${n}</h3><p>See you on 24 April at Sainte-Raphine. We'll send the final details a week before.</p>`,
     graciasNo:"<h3 style=\"font-family:var(--display);font-size:24px;margin:0 0 6px\">Thanks for telling us</h3><p>We'll miss you. Photos are coming your way.</p>",
@@ -421,15 +430,16 @@ const T = {
     busTit:"Coach", busTxt:"To be confirmed. If enough of you want it, there will be a coach from central Bordeaux and back. Tell us in your RSVP whether you would use it.",
     cocheTit:"By car", cocheTxt:"Free parking at the estate. If you're drinking, take the coach.",
     hotTit:"Where to sleep", hotSub:"Three options",
-    hot1Tit:"The estate's 5 bedrooms", hot1Txt:"Sleeps 10 people right where the party is. Booked directly with the venue.", hot1Meta:"Ask Adam and Majo",
+    hot1Tit:"The estate's 5 bedrooms", hot1Txt:"Sleeps 10 people right where the party is. Booked directly with the venue.", hot1Meta:"Ask María and Adam",
     hot2Tit:"Hotel in central Bordeaux", hot2Txt:"Best if you want to wander the city on Sunday. The coach leaves from here.", hot2Meta:"From €00 · Book",
     hot3Tit:"Country house nearby", hot3Txt:"For groups who want to share a place and keep the party going.", hot3Meta:"From €00 · Book",
     vesTit:"What to wear", vesSub:"Dress code", vesH3:"Formal, with colour",
     vesTxt:"It's outdoors and on grass, so block heels or something flat and lovely. April nights get cold, bring a layer.",
     tags:[["si","Yes: colour"],["si","Yes: prints"],["si","Yes: comfy shoes"],["no","No: white"],["no","No: stilettos"]],
+    florTit:"The colours of the day", florTxt:"These are the flowers that will be there. Not a rule and not a uniform, just in case you want a hint of where the colours are going. What matters is that you feel good.",
     desTit:"Leave a wish", desSub:"Advice, promises, terrible jokes",
     lDeQuien:"From", lDeseo:"Your wish or advice", phDeseo:"May you never run out of patience, or wine…",
-    lPrivado:"Only Adam and Majo should read this", btnDeseo:"Pin it to the wall",
+    lPrivado:"Only María and Adam should read this", btnDeseo:"Pin it to the wall",
     muroVacio:"The wall is empty. Be the first.", privado:"Private",
     plTit:"Request a song", plSub:"We're building the playlist together",
     portadaTxt:"Playlist cover photo goes here",
@@ -439,23 +449,23 @@ const T = {
     plVacia:"No songs yet. Go on, start it.",
     fotTit:"Everyone's photos", fotSub:"20 shots per guest", fotH3:"Your phone is a disposable camera",
     fotTxt:"Scan the code, take your 20 photos, that's it. They all land in the same album and get developed on Sunday morning.",
-    fotAviso:"Tap a frame to see the roll being used up.",
+    fotAviso:"Tap a frame to see the roll being used up.", btnFotos:"Open my camera",
     faqTit:"FAQ", faqSub:"What people have asked us",
     faq:[["Can I bring the kids?","Yes. The estate has a room for them with a screen, games and sofas during dinner."],
          ["Is there a gift list?","Just come. But if you insist, here's the list."],
          ["What if it rains?","Everything moves into the Côté Clairière hall, same place. Nothing else changes."],
-         ["Can I post photos online?","After the ceremony, yes. Tag #AdamYMajo2027."]],
-    panTit:"Adam and Majo's dashboard", panSub:"For the couple only",
+         ["Can I post photos online?","After the ceremony, yes. Tag #MariaYAdam2027."]],
+    panTit:"María and Adam's dashboard", panSub:"For the couple only",
     lPin:"Code", btnPin:"Enter", pinMal:"Wrong code.",
     cifras:["Coming","Can't","Coach"], sinRsvp:"No answers yet.",
     panDeseos:"Private messages", sinDeseos:"No private messages.",
     pie:"Made with love", verPanel:"Couple's dashboard", verPost:"Preview after-party mode",
     postEyebrow:"We got married", postTit:"Thank you for coming",
     postTxt:"It's all here: everyone's photos, the final playlist and the wall of wishes. Help yourselves.",
-    calTitulo:"Adam and Majo's wedding"
+    calTitulo:"María and Adam's wedding"
   },
   fr:{
-    marca:"Adam & Majo · 24.04.27", eyebrow:"On se marie", y:"et",
+    marca:"María & Adam · 24.04.27", eyebrow:"On se marie", y:"et",
     fechaLugar:"Samedi 24 avril 2027 · Domaine Sainte-Raphine, Bordeaux",
     dias:"jours", horas:"heures", min:"min",
     btnCal:"Ajouter au calendrier", btnWa:"Une question sur WhatsApp",
@@ -464,7 +474,7 @@ const T = {
     lNombre:"Nom et prénom", phNombre:"Ana Pérez", lViene:"Vous venez ?", oSi:"Je serai là", oNo:"Je ne peux pas",
     lAcomp:"Accompagnants", lBus:"Navette", busOps:["Je la prendrais","Je viens par mes propres moyens"],
     lComida:"Ce que vous ne mangez pas", phComida:"Végétarien, sans gluten, allergies…",
-    lNota:"Un mot pour Adam et Majo", phNota:"Facultatif, mais ça fait plaisir",
+    lNota:"Un mot pour María et Adam", phNota:"Facultatif, mais ça fait plaisir",
     btnEnviar:"Envoyer ma réponse", avisoRsvp:"Vous pouvez changer votre réponse sur WhatsApp.",
     graciasSi:n=>`<h3 style="font-family:var(--display);font-size:24px;margin:0 0 6px">C'est noté, ${n}</h3><p>Rendez-vous le 24 avril à Sainte-Raphine. Les derniers détails arrivent une semaine avant.</p>`,
     graciasNo:"<h3 style=\"font-family:var(--display);font-size:24px;margin:0 0 6px\">Merci de nous prévenir</h3><p>Vous allez nous manquer. On vous envoie les photos.</p>",
@@ -482,15 +492,16 @@ const T = {
     busTit:"Navette", busTxt:"À confirmer. S'il y a assez de monde, une navette fera l'aller-retour depuis le centre de Bordeaux. Dites-nous dans votre réponse si vous la prendriez.",
     cocheTit:"En voiture", cocheTxt:"Parking gratuit au domaine. Si vous buvez, la navette est une meilleure idée.",
     hotTit:"Où dormir", hotSub:"Trois options",
-    hot1Tit:"Les 5 chambres du domaine", hot1Txt:"10 personnes dorment sur place, là où se passe la fête. Réservation directe avec le domaine.", hot1Meta:"Demander à Adam et Majo",
+    hot1Tit:"Les 5 chambres du domaine", hot1Txt:"10 personnes dorment sur place, là où se passe la fête. Réservation directe avec le domaine.", hot1Meta:"Demander à María et Adam",
     hot2Tit:"Hôtel dans Bordeaux centre", hot2Txt:"Parfait si vous voulez flâner en ville le dimanche. La navette part d'ici.", hot2Meta:"À partir de 00 € · Réserver",
     hot3Tit:"Gîte à proximité", hot3Txt:"Pour les groupes qui veulent louer ensemble et prolonger la soirée.", hot3Meta:"À partir de 00 € · Réserver",
     vesTit:"Quoi porter", vesSub:"Code vestimentaire", vesH3:"Habillé, avec de la couleur",
     vesTxt:"C'est dehors et sur l'herbe : pensez talon large ou quelque chose de plat et joli. En avril les soirées sont fraîches, prévoyez une veste.",
     tags:[["si","Oui : la couleur"],["si","Oui : les imprimés"],["si","Oui : chaussures confortables"],["no","Non : le blanc"],["no","Non : les talons aiguilles"]],
+    florTit:"Les couleurs du jour", florTxt:"Voici les fleurs qui seront là. Ce n'est ni une règle ni un uniforme, juste une idée de la direction des couleurs. L'essentiel, c'est que vous vous sentiez bien.",
     desTit:"Laissez un voeu", desSub:"Conseils, promesses, mauvaises blagues",
     lDeQuien:"De la part de", lDeseo:"Votre voeu ou conseil", phDeseo:"Qu'ils ne manquent jamais de patience, ni de vin…",
-    lPrivado:"Que seuls Adam et Majo le lisent", btnDeseo:"Afficher sur le mur",
+    lPrivado:"Que seuls María et Adam le lisent", btnDeseo:"Afficher sur le mur",
     muroVacio:"Le mur est vide. Soyez le premier.", privado:"Privé",
     plTit:"Proposez une chanson", plSub:"La playlist, on la fait tous ensemble",
     portadaTxt:"La photo de couverture de la playlist va ici",
@@ -500,20 +511,20 @@ const T = {
     plVacia:"Pas encore de chansons. Lancez-vous.",
     fotTit:"Les photos de tout le monde", fotSub:"20 photos par invité", fotH3:"Votre téléphone est un appareil jetable",
     fotTxt:"Scannez le code, prenez vos 20 photos, c'est tout. Elles arrivent toutes dans le même album et se développent dimanche matin.",
-    fotAviso:"Touchez une vignette pour voir la pellicule se remplir.",
+    fotAviso:"Touchez une vignette pour voir la pellicule se remplir.", btnFotos:"Ouvrir mon appareil",
     faqTit:"Questions", faqSub:"Ce qu'on nous a déjà demandé",
     faq:[["Je peux venir avec les enfants ?","Oui. Le domaine a une salle pour eux avec écran, jeux et canapés pendant le dîner."],
          ["Y a-t-il une liste de mariage ?","Votre présence suffit. Mais si vous insistez, la voici."],
          ["Et s'il pleut ?","Tout se replie dans la salle Côté Clairière, au même endroit. Rien ne change."],
-         ["Je peux publier des photos ?","Après la cérémonie, oui. Taguez #AdamYMajo2027."]],
-    panTit:"Tableau de bord d'Adam et Majo", panSub:"Réservé aux mariés",
+         ["Je peux publier des photos ?","Après la cérémonie, oui. Taguez #MariaYAdam2027."]],
+    panTit:"Tableau de bord de María et Adam", panSub:"Réservé aux mariés",
     lPin:"Code", btnPin:"Entrer", pinMal:"Code incorrect.",
     cifras:["Présents","Absents","Navette"], sinRsvp:"Pas encore de réponses.",
     panDeseos:"Messages privés", sinDeseos:"Aucun message privé.",
     pie:"Fait avec amour", verPanel:"Tableau des mariés", verPost:"Aperçu du mode après-mariage",
     postEyebrow:"On s'est mariés", postTit:"Merci d'être venus",
     postTxt:"Tout est là : les photos de chacun, la playlist finale et le mur des voeux. Servez-vous.",
-    calTitulo:"Mariage d'Adam et Majo"
+    calTitulo:"Mariage de María et Adam"
   }
 };
 
@@ -540,7 +551,7 @@ function traducir(){
     if(typeof v === "string") el.textContent = v;
   });
   document.querySelectorAll("[data-ph]").forEach(el=> el.placeholder = t[el.dataset.ph]);
-  document.getElementById("urlFotos").textContent = URL_FOTOS.replace(/^https?:\/\//,"");
+  document.getElementById("btnFotos").href = URL_FOTOS;
   document.getElementById("spotify").href = URL_SPOTIFY;
 
   const ids = ["rsvp","dia","llegar","hoteles","vestuario","deseos","playlist","fotos","faq"];
@@ -673,9 +684,7 @@ for(let i=1;i<=TOPE_FOTOS;i++){
   f.addEventListener("click", ()=>f.classList.toggle("usado"));
   frames.appendChild(f);
 }
-const caja = document.getElementById("qr");
-try{ new QRCode(caja,{text:URL_FOTOS,width:148,height:148,colorDark:"#2C2140",colorLight:"#ffffff"}); }
-catch(e){ caja.innerHTML = '<div class="qr-fallback">QR · '+URL_FOTOS+'</div>'; }
+
 
 /* ---------- panel privado ---------- */
 document.getElementById("verPanel").addEventListener("click", ()=>{
@@ -723,10 +732,46 @@ document.getElementById("verPost").addEventListener("click", ()=>{
 traducir();
 if(postBoda){ ["rsvp","dia","llegar","hoteles","vestuario"].forEach(id=> document.getElementById(id).hidden = true); document.querySelector(".acciones").hidden = true; }
 
-/* ---------- funciona sin señal en el campo ---------- */
+/* ---------- se actualiza sola, y funciona sin señal ---------- */
 if("serviceWorker" in navigator){
-  window.addEventListener("load", ()=> navigator.serviceWorker.register("sw.js").catch(()=>{}));
+  let recargando = false;
+  navigator.serviceWorker.addEventListener("controllerchange", ()=>{
+    if(recargando) return;          // una sola recarga, nunca un bucle
+    recargando = true; location.reload();
+  });
+  window.addEventListener("load", async ()=>{
+    try{
+      const reg = await navigator.serviceWorker.register("sw.js", {updateViaCache:"none"});
+      reg.update();
+      // y cada vez que se vuelve a la pestaña
+      document.addEventListener("visibilitychange", ()=>{ if(!document.hidden) reg.update(); });
+      setInterval(()=> reg.update(), 60*60*1000);
+    }catch(e){}
+  });
 }
+
+
+/* ---------- flores del fondo ---------- */
+(function(){
+  const flores = ["flor-crema","flor-durazno","flor-rosa","flor-lila","flor-hibisco","flor-amarilla"];
+  const sitios = [
+    [6,340,54,-14],[82,520,42,22],[10,760,46,9],[76,980,58,-25],
+    [4,1240,40,17],[86,1460,50,-8],[12,1720,56,28],[80,1960,44,-19],
+    [6,2240,48,12],[84,2480,52,-30],[14,2760,42,6],[78,3020,56,20],
+    [8,3300,46,-12],[82,3560,50,25]
+  ];
+  const capa = document.createElement("div");
+  capa.className = "jardin"; capa.setAttribute("aria-hidden","true");
+  sitios.forEach(([x,y,tam,giro],i)=>{
+    const f = document.createElement("img");
+    f.src = "img/" + flores[i % flores.length] + ".png";
+    f.loading = "lazy"; f.alt = "";
+    f.style.cssText = `left:${x}%;top:${y}px;width:${tam}px;transform:translate(-50%,0) rotate(${giro}deg)`;
+    capa.appendChild(f);
+  });
+  document.body.appendChild(capa);
+})();
+
 </script>
 </body>
 </html>

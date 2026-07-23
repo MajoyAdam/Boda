@@ -1,4 +1,4 @@
-# Boda de Adam y Majo · 24 de abril de 2027
+# Boda de María y Adam · 24 de abril de 2027
 
 Domaine Sainte-Raphine, Fargues-Saint-Hilaire (Burdeos).
 
@@ -13,7 +13,11 @@ Página única, sin dependencias ni compilación. Se abre tal cual.
 | `sw.js` | Hace que funcione sin señal el día de la boda |
 | `icon-192.png` / `icon-512.png` | Icono de la app |
 | `favicon.png` | Icono de la pestaña del navegador |
-| `og.png` | Imagen que aparece al compartir el link por WhatsApp |
+| `og.jpg` | Imagen que aparece al compartir el link por WhatsApp |
+| `img/portada.jpg` | La portada de la página principal |
+| `img/flor-*.png` | Las seis flores prensadas del fondo |
+
+**La carpeta `img/` se sube tal cual, como carpeta.** El resto van sueltos en la raíz.
 
 ## Qué se edita
 
@@ -21,7 +25,7 @@ Todo lo que cambia está junto, al principio del `<script>` en `index.html`:
 
 ```js
 const FECHA_BODA   = "2027-04-24T16:00:00";
-const URL_FOTOS    = "...";   // álbum de fotos de los invitados
+const URL_FOTOS    = "...";   // link de la cámara desechable
 const URL_SPOTIFY  = "...";   // playlist colaborativa
 const WHATSAPP     = "...";   // número sin + ni espacios
 const PIN_NOVIOS   = "2404";  // CAMBIAR: es la fecha de la boda
@@ -47,3 +51,10 @@ Abajo del todo, botón *Panel de los novios*, con código. **Es un panel de cons
 ## Publicar
 
 Repo en GitHub → importar en Vercel → *Deploy*. Cada archivo que subas después se publica solo.
+
+
+## Actualización automática
+
+`sw.js` está en modo *red primero*: cada vez que alguien abre la app, se descarga la última versión y la caché solo entra en juego si no hay señal.
+
+Cuando subas un cambio importante, sube también el número de `const CACHE = "boda-v2"` a `boda-v3`. Eso obliga a todos los celulares a recargar la versión nueva la próxima vez que la abran.
