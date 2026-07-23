@@ -118,6 +118,10 @@
   .nota::before{content:"";position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:13px;height:13px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FF7A5C,#C8371A);box-shadow:0 2px 3px rgba(46,42,22,.5)}
   .nota p{margin:0 0 8px;font-style:italic}
   .nota b{font-family:var(--util);font-size:10px;letter-spacing:.06em;text-transform:uppercase;opacity:.65;font-weight:400}
+  .quitar{position:absolute;top:4px;right:5px;width:20px;height:20px;border:none;border-radius:50%;background:rgba(46,42,22,.14);color:var(--tinta);font-size:11px;line-height:1;cursor:pointer;padding:0}
+  .quitar:hover{background:var(--naranja);color:var(--crema)}
+  .cancion{position:relative;padding-right:26px}
+  .cancion .quitar{top:8px}
   .vacio{color:var(--crema);font-family:var(--util);font-size:12px;text-align:center;padding:26px 10px;width:100%;text-shadow:0 1px 3px rgba(46,42,22,.6)}
 
   .cancion{display:flex;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px dashed var(--linea)}
@@ -347,8 +351,7 @@ const WHATSAPP     = "447949733510";
 const PIN_NOVIOS   = "2404";
 const TOPE_FOTOS   = 20;
 const NUM_ALBUM    = 12;
-const FORM_ID      = "";
-const CAMPOS       = { nombre:"entry.000000001", asiste:"entry.000000002", acomp:"entry.000000003", bus:"entry.000000004", comida:"entry.000000005", nota:"entry.000000006" };
+const API          = "https://script.google.com/macros/s/AKfycbwHgxV2vp8CPEEojcd-XYd9ZBQzu1BZHqwLiCnSSTeK1xg01dFoH_recUrF3b34vLP2GA/exec";
 /* =================================================== */
 
 const MAPA = id => "https://www.google.com/maps/place/?q=place_id:" + id;
@@ -414,7 +417,7 @@ const T = {
     desTit:"Deséales algo", desSub:"Consejos, promesas, chistes malos",
     lDeQuien:"De parte de", lDeseo:"Tu deseo o consejo", phDeseo:"Que nunca se les acabe la paciencia ni el vino…",
     lPrivado:"Que solo lo lean María y Adam", btnDeseo:"Colgar en el corcho",
-    muroVacio:"El corcho está vacío. Cuelga la primera nota.", privado:"Privado",
+    muroVacio:"El corcho está vacío. Cuelga la primera nota.", privado:"Privado", borrar:"Borrar mi nota",
     plTit:"Pon una canción", plSub:"La playlist la hacemos entre todos",
     plTxt:"La playlist es colaborativa: ábrela en Spotify y agrega tú mismo lo que quieras oír esa noche.",
     plLink:"Abrir y agregar en Spotify", plPideTit:"¿No tienes Spotify?",
@@ -476,7 +479,7 @@ const T = {
     desTit:"Leave them a wish", desSub:"Advice, promises, terrible jokes",
     lDeQuien:"From", lDeseo:"Your wish or advice", phDeseo:"May you never run out of patience, or wine…",
     lPrivado:"Only María and Adam should read this", btnDeseo:"Pin it to the board",
-    muroVacio:"The board is empty. Pin the first note.", privado:"Private",
+    muroVacio:"The board is empty. Pin the first note.", privado:"Private", borrar:"Delete my note",
     plTit:"Request a song", plSub:"We're building the playlist together",
     plTxt:"The playlist is collaborative: open it in Spotify and add whatever you want to hear that night.",
     plLink:"Open and add on Spotify", plPideTit:"No Spotify?",
@@ -538,7 +541,7 @@ const T = {
     desTit:"Laissez-leur un voeu", desSub:"Conseils, promesses, mauvaises blagues",
     lDeQuien:"De la part de", lDeseo:"Votre voeu ou conseil", phDeseo:"Qu'ils ne manquent jamais de patience, ni de vin…",
     lPrivado:"Que seuls María et Adam le lisent", btnDeseo:"Épingler sur le liège",
-    muroVacio:"Le liège est vide. Épinglez le premier mot.", privado:"Privé",
+    muroVacio:"Le liège est vide. Épinglez le premier mot.", privado:"Privé", borrar:"Supprimer mon mot",
     plTit:"Proposez une chanson", plSub:"La playlist, on la fait tous ensemble",
     plTxt:"La playlist est collaborative : ouvrez-la dans Spotify et ajoutez vous-même ce que vous voulez entendre.",
     plLink:"Ouvrir et ajouter sur Spotify", plPideTit:"Pas de Spotify ?",
@@ -566,14 +569,54 @@ const PAGINAS = ["inicio","rsvp","dia","llegar","hoteles","burdeos","vestuario",
 let lang = "es";
 let postBoda = new Date() > new Date(new Date(FECHA_BODA).getTime() + 36*3600000);
 
-const memoria = {};
-async function leer(clave){
-  try{ const r = await window.storage.get(clave, true); return r ? JSON.parse(r.value) : null; }
-  catch(e){ return memoria[clave] ?? null; }
+/* ---------- datos compartidos ----------
+   Con API configurada, todo vive en la hoja de cálculo y lo ve todo el mundo.
+   Sin API, la app funciona igual pero los datos se quedan en este dispositivo. */
+let DATOS = { deseos:[], canciones:[], rsvp:[] };
+let cargando = false;
+
+let mios = [];
+try{ mios = JSON.parse(localStorage.getItem("misNotas") || "[]"); }catch(e){}
+function recuerdaMio(id){
+  mios.push(id);
+  try{ localStorage.setItem("misNotas", JSON.stringify(mios)); }catch(e){}
 }
-async function guardar(clave, valor){
-  memoria[clave] = valor;
-  try{ await window.storage.set(clave, JSON.stringify(valor), true); }catch(e){}
+const esMio = id => mios.indexOf(id) !== -1;
+
+function nuevoId(){
+  return Date.now().toString(36) + Math.random().toString(36).slice(2,7);
+}
+
+async function cargar(){
+  if(!API || cargando) return;
+  cargando = true;
+  try{
+    const r = await fetch(API + "?t=" + Date.now());
+    const j = await r.json();
+    DATOS = { deseos:j.deseos||[], canciones:j.canciones||[], rsvp:j.rsvp||[] };
+  }catch(e){}
+  cargando = false;
+}
+
+async function anadir(tipo, datos){
+  const id = nuevoId();
+  DATOS[tipo].push(Object.assign({id}, datos));   // se ve al instante
+  if(API){
+    try{ await fetch(API, {method:"POST", body: JSON.stringify({accion:"anadir", tipo, datos: Object.assign({id}, datos)})}); }catch(e){}
+  }
+  return id;
+}
+
+async function borrar(tipo, id){
+  DATOS[tipo] = DATOS[tipo].filter(x => x.id !== id);
+  if(API){
+    try{ await fetch(API, {method:"POST", body: JSON.stringify({accion:"borrar", tipo, id})}); }catch(e){}
+  }
+}
+
+async function refrescar(){
+  await cargar();
+  pintaMuro(); pintaLista();
 }
 
 function ir(pag){
@@ -582,7 +625,12 @@ function ir(pag){
     b.dataset.pag===pag ? b.setAttribute("aria-current","page") : b.removeAttribute("aria-current"));
   window.scrollTo(0,0);
   history.replaceState(null,"","#"+pag);
+  if(pag==="deseos" || pag==="playlist") refrescar();
 }
+setInterval(()=>{
+  const p = location.hash.replace("#","");
+  if(p==="deseos" || p==="playlist") refrescar();
+}, 45000);
 document.getElementById("logo").addEventListener("click", ()=> ir("inicio"));
 
 function traducir(){
@@ -666,14 +714,6 @@ document.querySelectorAll("#asiste button").forEach(b=>{
     document.querySelectorAll("#asiste button").forEach(x=>x.setAttribute("aria-pressed", x===b));
   });
 });
-async function aGoogleForm(d){
-  if(!FORM_ID) return;
-  const p = new URLSearchParams();
-  p.append(CAMPOS.nombre,d.nombre); p.append(CAMPOS.asiste,d.asiste);
-  p.append(CAMPOS.acomp,d.acompanantes); p.append(CAMPOS.bus,d.bus);
-  p.append(CAMPOS.comida,d.comida); p.append(CAMPOS.nota,d.nota);
-  try{ await fetch("https://docs.google.com/forms/d/e/"+FORM_ID+"/formResponse?"+p.toString(),{method:"POST",mode:"no-cors"}); }catch(e){}
-}
 document.getElementById("enviar").addEventListener("click", async ()=>{
   const nombre = document.getElementById("nombre").value.trim();
   if(!nombre){ document.getElementById("nombre").focus(); return; }
@@ -684,47 +724,55 @@ document.getElementById("enviar").addEventListener("click", async ()=>{
     comida: document.getElementById("comida").value.trim(),
     nota: document.getElementById("nota").value.trim(),
     enviado: new Date().toISOString() };
-  const lista = (await leer("rsvp")) || [];
-  lista.push(datos); await guardar("rsvp", lista);
-  aGoogleForm(datos);
+  document.getElementById("enviar").disabled = true;
+  await anadir("rsvp", datos);
   document.getElementById("formulario").hidden = true;
   const g = document.getElementById("gracias"); g.hidden = false;
   g.innerHTML = asiste === "si" ? T[lang].graciasSi(nombre.split(" ")[0]) : T[lang].graciasNo;
 });
 
 const PAPELES = ["#FBF3D5","#FDE2D0","#F6DCE6","#E4EEDC","#FBE9C8","#E9E2F2"];
-async function pintaMuro(){
-  const todos = (await leer("deseos")) || [];
-  const publicos = todos.filter(d=>!d.privado);
+function pintaMuro(){
+  const publicos = DATOS.deseos.filter(d=>!d.privado);
   const muro = document.getElementById("muro");
   muro.innerHTML = publicos.length
-    ? publicos.map((d,i)=>`<div class="nota" style="background:${PAPELES[i%PAPELES.length]}"><p>“${d.texto}”</p><b>${d.nombre}</b></div>`).join("")
-    : `<p class="vacio">${T[lang].muroVacio}</p>`;
+    ? publicos.map((d,i)=>
+        '<div class="nota" style="background:'+PAPELES[i%PAPELES.length]+'">' +
+        (esMio(d.id) ? '<button class="quitar" data-id="'+d.id+'" title="'+T[lang].borrar+'">✕</button>' : '') +
+        '<p>“'+d.texto+'”</p><b>'+d.nombre+'</b></div>').join("")
+    : '<p class="vacio">'+T[lang].muroVacio+'</p>';
+  muro.querySelectorAll(".quitar").forEach(b=>
+    b.addEventListener("click", async ()=>{ await borrar("deseos", b.dataset.id); pintaMuro(); }));
 }
 document.getElementById("btnDeseo").addEventListener("click", async ()=>{
+  const boton = document.getElementById("btnDeseo");
   const nombre = document.getElementById("deNombre").value.trim() || "Anónimo";
   const texto = document.getElementById("deTexto").value.trim();
   if(!texto){ document.getElementById("deTexto").focus(); return; }
-  const todos = (await leer("deseos")) || [];
-  todos.push({nombre, texto, privado: document.getElementById("dePrivado").checked});
-  await guardar("deseos", todos);
+  boton.disabled = true;
+  const id = await anadir("deseos", {nombre, texto, privado: document.getElementById("dePrivado").checked});
+  recuerdaMio(id);
   document.getElementById("deTexto").value = "";
   document.getElementById("dePrivado").checked = false;
+  boton.disabled = false;
   pintaMuro();
 });
 
-async function pintaLista(){
-  const canciones = (await leer("playlist")) || [];
-  document.getElementById("listaCanciones").innerHTML = canciones.length
-    ? canciones.map((c,i)=>`<div class="cancion"><span>${String(i+1).padStart(2,"0")}</span><div><strong>${c.tema}</strong> <em>· ${c.artista}</em></div></div>`).join("")
-    : `<p>${T[lang].plVacia}</p>`;
+function pintaLista(){
+  document.getElementById("listaCanciones").innerHTML = DATOS.canciones.length
+    ? DATOS.canciones.map((c,i)=>
+        '<div class="cancion"><span>'+String(i+1).padStart(2,"0")+'</span><div><strong>'+c.tema+'</strong> <em>· '+c.artista+'</em></div>' +
+        (esMio(c.id) ? '<button class="quitar oscuro" data-id="'+c.id+'" title="'+T[lang].borrar+'">✕</button>' : '') +
+        '</div>').join("")
+    : '<p>'+T[lang].plVacia+'</p>';
+  document.querySelectorAll("#listaCanciones .quitar").forEach(b=>
+    b.addEventListener("click", async ()=>{ await borrar("canciones", b.dataset.id); pintaLista(); }));
 }
 document.getElementById("agregar").addEventListener("click", async ()=>{
   const tema = document.getElementById("tema").value.trim();
   if(!tema){ document.getElementById("tema").focus(); return; }
-  const canciones = (await leer("playlist")) || [];
-  canciones.push({tema, artista: document.getElementById("artista").value.trim() || "—"});
-  await guardar("playlist", canciones);
+  const id = await anadir("canciones", {tema, artista: document.getElementById("artista").value.trim() || "—"});
+  recuerdaMio(id);
   document.getElementById("tema").value = ""; document.getElementById("artista").value = "";
   pintaLista();
 });
@@ -768,8 +816,9 @@ document.getElementById("btnPin").addEventListener("click", async ()=>{
   document.getElementById("panLogin").hidden = true;
   const caja = document.getElementById("panDatos"); caja.hidden = false;
   const t = T[lang];
-  const lista = (await leer("rsvp")) || [];
-  const deseos = ((await leer("deseos")) || []).filter(d=>d.privado);
+  await cargar();
+  const lista = DATOS.rsvp;
+  const deseos = DATOS.deseos.filter(d=>d.privado);
   const vienen = lista.filter(x=>x.asiste==="si").reduce((n,x)=>n+1+Number(x.acompanantes||0),0);
   const nop = lista.filter(x=>x.asiste==="no").length;
   const bus = lista.filter(x=>x.asiste==="si" && x.bus===t.busOps[0]).reduce((n,x)=>n+1+Number(x.acompanantes||0),0);
@@ -814,6 +863,7 @@ document.getElementById("verPost").addEventListener("click", ()=>{
 traducir();
 const inicial = location.hash.replace("#","");
 ir(PAGINAS.includes(inicial) ? inicial : "inicio");
+refrescar();
 
 if("serviceWorker" in navigator){
   let recargando = false;

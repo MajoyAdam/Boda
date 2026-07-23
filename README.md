@@ -17,6 +17,8 @@ App de una sola página con menú: cada sección es una pantalla aparte. Sin dep
 | `img/flor-*.png` | Las seis flores prensadas del fondo |
 | `img/corcho.jpg` | La textura del corcho de los deseos |
 | `img/album/foto-01…12.jpg` | El álbum de ellos dos |
+| `apps-script.gs` | El código que va en Google Apps Script (NO se sube a GitHub) |
+| `sincronizar.md` | Cómo conectar la hoja de cálculo (NO se sube a GitHub) |
 
 **Las carpetas `img/` y `img/album/` se suben tal cual.** El resto va suelto en la raíz.
 
@@ -37,7 +39,7 @@ const ID_SPOTIFY   = "...";   // solo el id de la playlist
 const WHATSAPP     = "...";   // número sin + ni espacios
 const PIN_NOVIOS   = "2404";  // CAMBIAR
 const NUM_ALBUM    = 12;      // cuántas fotos tiene el álbum
-const FORM_ID      = "";      // Google Form del RSVP
+const API          = "";      // URL del Apps Script: ver sincronizar.md
 ```
 
 Los hoteles y las recomendaciones de Burdeos están en las listas `HOTELES` y `BURDEOS`, justo debajo. Cada entrada lleva nombre, descripción en los tres idiomas y link.
@@ -47,6 +49,12 @@ Los textos están en el objeto `T`, con las claves `es`, `en` y `fr`. Si cambias
 ## Añadir fotos al álbum
 
 Guarda la foto en `img/album/` con el nombre `foto-13.jpg`, `foto-14.jpg`, etc., y sube `NUM_ALBUM` al número nuevo.
+
+## Datos compartidos
+
+Deseos, canciones y confirmaciones viven en una hoja de cálculo de Google, detrás de un Apps Script. Pasos en `sincronizar.md`.
+
+Sin `API` configurada la app funciona igual, pero cada persona ve solo lo que escribió ella. Con `API`, todo el mundo ve lo mismo y cada quien puede borrar su propia nota.
 
 ## Panel de los novios
 
