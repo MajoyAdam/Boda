@@ -1,0 +1,13 @@
+{
+  "name": "Adam & Majo · 24 abril 2027",
+  "short_name": "Adam & Majo",
+  "description": "Toda la información de la boda.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#F2EEFA",
+  "theme_color": "#F2EEFA",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
