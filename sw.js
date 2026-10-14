@@ -1,12 +1,10 @@
 /* Sube este número cada vez que cambies algo importante.
    Al detectarlo, la app se actualiza sola en el celular de todos. */
-const CACHE = "boda-v6";
+const CACHE = "boda-v7";
 
 const BASE = [
   "./", "./index.html", "./manifest.json",
-  "./img/portada.jpg", "./img/corcho.jpg",
-  "./img/flor-crema.png", "./img/flor-durazno.png", "./img/flor-rosa.png",
-  "./img/flor-lila.png", "./img/flor-hibisco.png", "./img/flor-amarilla.png"
+  "./img/portada.png", "./img/corcho.jpg"
 ];
 
 self.addEventListener("install", e => {
