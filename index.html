@@ -65,7 +65,8 @@
   .eyebrow{font-family:var(--util);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--fram);margin:22px 0 0;text-align:center}
   .fecha{font-family:var(--display);font-weight:600;font-size:22px;color:var(--oliva);margin:6px 0 0;text-align:center;line-height:1.3;white-space:pre-line}
   .cuenta{display:flex;justify-content:center;gap:10px;margin-top:22px}
-  .cuenta div{background:var(--card);border-radius:14px;padding:11px 4px;width:74px;box-shadow:0 4px 12px rgba(59,56,38,.1)}
+  .cuenta div{flex:0 0 auto}
+  .cuenta div{background:var(--card);border-radius:14px;padding:11px 4px;width:74px;text-align:center;box-shadow:0 4px 12px rgba(59,56,38,.1)}
   .cuenta b{display:block;font-family:var(--display);font-weight:800;font-size:27px;line-height:1;color:var(--fram)}
   .cuenta span{font-family:var(--util);font-size:9px;letter-spacing:.08em;text-transform:uppercase;opacity:.6}
   .acciones{display:flex;gap:9px;margin-top:24px}
@@ -387,7 +388,7 @@ const T = {
     dias:"días", horas:"horas", min:"min",
     btnCal:"Añadir al calendario", btnWa:"Dudas por WhatsApp",
     rsvpTit:"Confirma tu asistencia", rsvpSub:"Antes del 24 de enero de 2027",
-    lNombre:"Tu nombre y apellido", phNombre:"Ana Pérez", lViene:"¿Vienes?", oSi:"Ahí estaré", oNo:"No podré",
+    lNombre:"Tu nombre y apellido", phNombre:"", lViene:"¿Vienes?", oSi:"Ahí estaré", oNo:"No podré",
     lMenu:"Menú de la cena", menuOps:["Normal","Vegetariano"],
     lNota:"Un mensaje para Majo y Adam", phNota:"Opcional, pero se agradece mucho",
     btnEnviar:"Enviar confirmación", avisoRsvp:"Puedes cambiar tu respuesta escribiendo por WhatsApp.",
@@ -412,7 +413,7 @@ const T = {
     burTit:"Burdeos", burSub:"Para quien se queda el fin de semana",
     burTxt:"Si te quedas el domingo, aquí van algunas cosas que nos gustan. Todo está a menos de veinte minutos del centro.",
     vesTit:"Qué ponerte", vesSub:"Código de vestimenta", vesH3:"Ven bonito, ven cómodo",
-    vesTxt:"Ven como te sientas lindo. Lo único práctico: es al aire libre y sobre pasto, así que tacón ancho o algo plano. En abril las noches son frescas, trae algo encima.",
+    vesTxt:"Ven como te sientas lindo. Ojo: la ceremonia es al aire libre y sobre pasto, así que mejor tacón ancho o algo plano. En abril las noches son frescas, trae algo encima.",
     tags:[["si","Sí: color"],["si","Sí: estampado"],["si","Sí: zapato cómodo"],["no","No: blanco"],["no","No: tacón de aguja"]],
     florTit:"Los colores de la boda", florTxt:"Estas son las flores que va a haber ese día. No es una obligación ni un uniforme: es por si quieres una idea de por dónde van los colores. Lo importante es que te sientas bonito.",
     albTit:"Ellos dos", albSub:"Un poco de historia",
@@ -451,7 +452,7 @@ const T = {
     dias:"days", horas:"hours", min:"min",
     btnCal:"Add to calendar", btnWa:"Questions on WhatsApp",
     rsvpTit:"Let us know you're coming", rsvpSub:"By 24 January 2027",
-    lNombre:"Your full name", phNombre:"Ana Pérez", lViene:"Are you coming?", oSi:"Count me in", oNo:"Can't make it",
+    lNombre:"Your full name", phNombre:"", lViene:"Are you coming?", oSi:"Count me in", oNo:"Can't make it",
     lMenu:"Dinner menu", menuOps:["Standard","Vegetarian"],
     lNota:"A message for Majo and Adam", phNota:"Optional, but always welcome",
     btnEnviar:"Send my answer", avisoRsvp:"You can change your answer on WhatsApp.",
@@ -476,7 +477,7 @@ const T = {
     burTit:"Bordeaux", burSub:"For anyone staying the weekend",
     burTxt:"If you're around on Sunday, here are a few things we love. Everything is under twenty minutes from the centre.",
     vesTit:"What to wear", vesSub:"Dress code", vesH3:"Come lovely, come comfortable",
-    vesTxt:"Wear whatever makes you feel good. One practical note: it's outdoors and on grass, so block heels or something flat. April nights get cold, bring a layer.",
+    vesTxt:"Wear whatever makes you feel good. Heads up: the ceremony is outdoors and on grass, so block heels or something flat are a safer bet. April nights get cold, bring a layer.",
     tags:[["si","Yes: colour"],["si","Yes: prints"],["si","Yes: comfy shoes"],["no","No: white"],["no","No: stilettos"]],
     florTit:"The colours of the day", florTxt:"These are the flowers that will be there. Not a rule and not a uniform, just in case you want a hint of where the colours are going. What matters is that you feel good.",
     albTit:"The two of them", albSub:"A bit of history",
@@ -515,7 +516,7 @@ const T = {
     dias:"jours", horas:"heures", min:"min",
     btnCal:"Ajouter au calendrier", btnWa:"Une question sur WhatsApp",
     rsvpTit:"Dites-nous si vous venez", rsvpSub:"Avant le 24 janvier 2027",
-    lNombre:"Nom et prénom", phNombre:"Ana Pérez", lViene:"Vous venez ?", oSi:"Je serai là", oNo:"Je ne peux pas",
+    lNombre:"Nom et prénom", phNombre:"", lViene:"Vous venez ?", oSi:"Je serai là", oNo:"Je ne peux pas",
     lMenu:"Menu du dîner", menuOps:["Classique","Végétarien"],
     lNota:"Un mot pour Majo et Adam", phNota:"Facultatif, mais ça fait plaisir",
     btnEnviar:"Envoyer ma réponse", avisoRsvp:"Vous pouvez changer votre réponse sur WhatsApp.",
@@ -540,7 +541,7 @@ const T = {
     burTit:"Bordeaux", burSub:"Pour ceux qui restent le week-end",
     burTxt:"Si vous êtes là dimanche, voici quelques adresses qu'on aime. Tout est à moins de vingt minutes du centre.",
     vesTit:"Quoi porter", vesSub:"Code vestimentaire", vesH3:"Venez beaux, venez à l'aise",
-    vesTxt:"Portez ce qui vous fait vous sentir bien. Une seule note pratique : c'est dehors et sur l'herbe, donc talon large ou quelque chose de plat. En avril les soirées sont fraîches, prévoyez une veste.",
+    vesTxt:"Portez ce qui vous fait vous sentir bien. À noter : la cérémonie est en plein air et sur l'herbe, donc talon large ou quelque chose de plat, c'est plus sûr. En avril les soirées sont fraîches, prévoyez une veste.",
     tags:[["si","Oui : la couleur"],["si","Oui : les imprimés"],["si","Oui : chaussures confortables"],["no","Non : le blanc"],["no","Non : les talons aiguilles"]],
     florTit:"Les couleurs du jour", florTxt:"Voici les fleurs qui seront là. Ce n'est ni une règle ni un uniforme, juste une idée de la direction des couleurs. L'essentiel, c'est que vous vous sentiez bien.",
     albTit:"Eux deux", albSub:"Un peu d'histoire",
@@ -857,8 +858,8 @@ document.getElementById("verPost").addEventListener("click", ()=>{
 });
 
 (function(){
-  const flores = ["flor-calla","flor-clavel-rosa","flor-gerbera","flor-ranunculo-am","flor-peonia","flor-stock","flor-dragon","flor-ranunculo-rosa","flor-clavel-crema"];
-  const sitios = [[5,8,50,-12],[92,15,40,20],[7,33,44,8],[95,50,52,-22],[4,66,38,16],[94,80,46,-8],[8,94,48,22],[90,97,42,-16]];
+  const flores = ["fondo-crema","fondo-durazno","fondo-rosa","fondo-lila","fondo-hibisco","fondo-amarilla"];
+  const sitios = [[5,7,40,-12],[93,13,30,18],[7,27,34,8],[95,40,38,-22],[4,55,28,16],[95,67,34,-8],[6,80,38,20],[94,88,28,-14],[50,96,32,10]];
   const capa = document.createElement("div");
   capa.className = "jardin"; capa.setAttribute("aria-hidden","true");
   sitios.forEach(([x,y,tam,giro],i)=>{
