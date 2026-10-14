@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>María & Adam · 24 abril 2027</title>
-<meta name="description" content="Toda la información de la boda de María y Adam: cómo llegar, dónde dormir, qué ponerte y confirmar tu asistencia.">
+<title>Majo & Adam · 24 abril 2027</title>
+<meta name="description" content="Toda la información de la boda de Majo y Adam: cómo llegar, dónde dormir, qué ponerte y confirmar tu asistencia.">
 <meta name="theme-color" content="#82A07C">
 <link rel="icon" href="favicon.png">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="manifest" href="manifest.json">
 <meta property="og:type" content="website">
-<meta property="og:title" content="María & Adam · 24 abril 2027">
+<meta property="og:title" content="Majo & Adam · 24 abril 2027">
 <meta property="og:description" content="Domaine Sainte-Raphine, Burdeos. Confirma tu asistencia aquí.">
 <meta property="og:image" content="og.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -138,6 +138,7 @@
   .frame{flex:0 0 62px;height:62px;border-radius:6px;border:1px solid rgba(247,242,230,.25);display:flex;align-items:center;justify-content:center;font-family:var(--util);font-size:11px;color:rgba(247,242,230,.5);cursor:pointer}
   .frame.usado{background:var(--naranja);color:var(--crema);border-color:var(--naranja)}
   .btn-grande{display:block;text-align:center;text-decoration:none;margin-top:14px;font-family:var(--display);font-weight:800;font-size:19px;padding:14px;border-radius:14px;background:var(--naranja);color:var(--crema);box-shadow:0 5px 0 #C8371A}
+  .btn-sec{display:block;text-align:center;text-decoration:none;margin-top:10px;font-family:var(--util);font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:11px;border-radius:12px;border:1px solid var(--linea);color:var(--tinta)}
 
   details{background:var(--crema);border-radius:14px;padding:14px 16px;margin-bottom:8px}
   summary{cursor:pointer;font-weight:600;font-size:15px;list-style:none}
@@ -168,7 +169,7 @@
 
 <nav class="nav">
   <div class="nav-top">
-    <button class="logo" id="logo">María &amp; Adam</button>
+    <button class="logo" id="logo">Majo &amp; Adam</button>
     <div class="idioma">
       <button data-lang="es" aria-pressed="true">🇨🇴</button>
       <button data-lang="en" aria-pressed="false">🇬🇧</button>
@@ -181,7 +182,7 @@
 <div class="wrap">
 
   <section class="pagina activa" id="p-inicio">
-    <img class="portada" src="img/portada.jpg" alt="María y Adam">
+    <img class="portada" src="img/portada.jpg" alt="Majo y Adam">
     <p class="eyebrow" data-t="eyebrow"></p>
     <p class="fecha" data-t="fechaLugar"></p>
     <div class="cuenta" id="cuenta"></div>
@@ -202,13 +203,8 @@
           <button type="button" data-v="si" aria-pressed="false" data-t="oSi"></button>
           <button type="button" data-v="no" aria-pressed="false" data-t="oNo"></button>
         </div>
-        <div class="fila">
-          <div><label data-t="lAcomp" for="acomp"></label>
-            <select id="acomp"><option>0</option><option>1</option><option>2</option><option>3</option></select></div>
-          <div><label data-t="lBus" for="bus"></label><select id="bus"></select></div>
-        </div>
-        <label data-t="lComida" for="comida"></label>
-        <input id="comida" type="text" data-ph="phComida">
+        <label data-t="lMenu" for="menusel"></label>
+        <select id="menusel"></select>
         <label data-t="lNota" for="nota"></label>
         <textarea id="nota" data-ph="phNota"></textarea>
         <button class="enviar" id="enviar" data-t="btnEnviar"></button>
@@ -232,7 +228,6 @@
       <a class="enlace" href="https://www.sainte-raphine.fr" target="_blank" rel="noopener" data-t="verWeb"></a>
     </div>
     <div class="card"><h3 data-t="avionTit"></h3><p data-t="avionTxt"></p></div>
-    <div class="card"><h3 data-t="busTit"></h3><p data-t="busTxt"></p></div>
     <div class="card"><h3 data-t="cocheTit"></h3><p data-t="cocheTxt"></p></div>
     <div class="card">
       <h3 data-t="vtcTit"></h3><p data-t="vtcTxt"></p>
@@ -312,7 +307,8 @@
     <div class="tit"><h2 data-t="fotTit"></h2><p data-t="fotSub"></p></div>
     <div class="card">
       <h3 data-t="fotH3"></h3><p data-t="fotTxt"></p>
-      <a class="btn-grande" id="btnFotos" href="#" target="_blank" rel="noopener" data-t="btnFotos"></a>
+      <a class="btn-grande" id="btnDrive" href="#" target="_blank" rel="noopener" data-t="btnDrive"></a>
+      <a class="btn-sec" id="btnFotos" href="#" target="_blank" rel="noopener" data-t="btnFotos"></a>
     </div>
     <div class="rollo" aria-hidden="true"><div class="frames" id="frames"></div></div>
     <p class="aviso claro" data-t="fotAviso"></p>
@@ -344,25 +340,27 @@
 <script>
 /* ==================== EDITA AQUÍ ==================== */
 const FECHA_BODA   = "2027-04-24T16:00:00";
-const URL_FOTOS    = "https://boda.mariayadam.com/fotos";
+const URL_FOTOS    = "";   // link cámara desechable en vivo (Lense/JoinMyMoment) — opcional
+const URL_DRIVE    = "";   // link de la carpeta de Google Drive compartida para subir fotos
 const ID_SPOTIFY   = "13NTYDQvV4cU7EdQDEhiOu";
 const URL_SPOTIFY  = "https://open.spotify.com/playlist/" + ID_SPOTIFY;
 const WHATSAPP     = "447949733510";
 const PIN_NOVIOS   = "2404";
 const TOPE_FOTOS   = 20;
-const NUM_ALBUM    = 12;
+const NUM_ALBUM    = 21;
 const API          = "https://script.google.com/macros/s/AKfycbwHgxV2vp8CPEEojcd-XYd9ZBQzu1BZHqwLiCnSSTeK1xg01dFoH_recUrF3b34vLP2GA/exec";
 /* =================================================== */
 
 const MAPA = id => "https://www.google.com/maps/place/?q=place_id:" + id;
 
 const HOTELES = [
-  {n:"Domaine Sainte-Raphine", d:{es:"Cinco habitaciones en el mismo lugar de la fiesta, para diez personas. Se reservan directo con el dominio.",en:"Five bedrooms right where the party is, sleeping ten. Booked directly with the venue.",fr:"Cinq chambres là où se passe la fête, pour dix personnes. Réservation directe avec le domaine."}, u:"https://www.sainte-raphine.fr/nos-chambres-w1"},
   {n:"Villa Margaux", d:{es:"Casa de huéspedes con spa en Fargues-Saint-Hilaire, a cinco minutos.",en:"Guest house with a spa in Fargues-Saint-Hilaire, five minutes away.",fr:"Chambres d'hôtes avec spa à Fargues-Saint-Hilaire, à cinq minutes."}, u:MAPA("ChIJFZrPG9A6VQ0R5kphdHmTetI")},
   {n:"Logis Hôtel Pey la Tour", d:{es:"En Sallebœuf, entre viñedos, con piscina y restaurante.",en:"In Sallebœuf, among the vines, with a pool and a restaurant.",fr:"À Sallebœuf, au milieu des vignes, avec piscine et restaurant."}, u:MAPA("ChIJu90F5LI7VQ0RcVrjnPnRCEw")},
   {n:"Château La Chèze", d:{es:"En Floirac, a medio camino entre el dominio y el centro de Burdeos.",en:"In Floirac, halfway between the venue and central Bordeaux.",fr:"À Floirac, à mi-chemin entre le domaine et le centre de Bordeaux."}, u:MAPA("ChIJl8Un6-IlVQ0RUy_HGQIjj3A")},
   {n:"Hôtel De Sèze", d:{es:"En pleno centro, sobre las Allées de Tourny. Bueno si te quedas todo el fin de semana.",en:"Right in the centre, on the Allées de Tourny. Good if you stay the whole weekend.",fr:"En plein centre, sur les allées de Tourny. Parfait pour tout le week-end."}, u:MAPA("ChIJ5cifY9knVQ0RpGqV7r6W-IM")},
-  {n:"Grand Hôtel Français", d:{es:"Centro de Burdeos, tranquilo y bien ubicado.",en:"Central Bordeaux, quiet and well placed.",fr:"Centre de Bordeaux, calme et bien situé."}, u:MAPA("ChIJ0UZPnNwnVQ0RjWGicMPJO-Q")}
+  {n:"Grand Hôtel Français", d:{es:"Centro de Burdeos, tranquilo y bien ubicado.",en:"Central Bordeaux, quiet and well placed.",fr:"Centre de Bordeaux, calme et bien situé."}, u:MAPA("ChIJ0UZPnNwnVQ0RjWGicMPJO-Q")},
+  {n:"Quality Hotel Bordeaux Centre", d:{es:"En pleno centro, de los mejores de precio. Buen desayuno.",en:"Right in the centre, one of the best for the price. Good breakfast.",fr:"En plein centre, un des meilleurs rapports qualité-prix. Bon petit-déj."}, u:MAPA("ChIJ000fudonVQ0RetaXvMAgKec")},
+  {n:"L'entre deux M", d:{es:"Casa de huéspedes acogedora y económica en Saint-Loubès, a 20 min.",en:"Cozy, affordable B&B in Saint-Loubès, 20 min away.",fr:"Chambres d'hôte cosy et abordables à Saint-Loubès, à 20 min."}, u:MAPA("ChIJk3MAScAzVQ0RDUpXpKc-DEQ")}
 ];
 
 const BURDEOS = [
@@ -384,9 +382,8 @@ const T = {
     btnCal:"Añadir al calendario", btnWa:"Dudas por WhatsApp",
     rsvpTit:"Confirma tu asistencia", rsvpSub:"Antes del 24 de enero de 2027",
     lNombre:"Tu nombre y apellido", phNombre:"Ana Pérez", lViene:"¿Vienes?", oSi:"Ahí estaré", oNo:"No podré",
-    lAcomp:"Acompañantes", lBus:"Bus", busOps:["Lo tomaría","Llego por mi cuenta"],
-    lComida:"Algo que no comes", phComida:"Vegetariana, sin gluten, alergias…",
-    lNota:"Un mensaje para María y Adam", phNota:"Opcional, pero se agradece mucho",
+    lMenu:"Menú de la cena", menuOps:["Normal","Vegetariano"],
+    lNota:"Un mensaje para Majo y Adam", phNota:"Opcional, pero se agradece mucho",
     btnEnviar:"Enviar confirmación", avisoRsvp:"Puedes cambiar tu respuesta escribiendo por WhatsApp.",
     graciasSi:n=>`<h3 style="font-family:var(--display);font-size:24px;margin:0 0 6px">Quedas apuntado, ${n}</h3><p>Nos vemos el 24 de abril en Sainte-Raphine. Te escribimos con los últimos detalles una semana antes.</p>`,
     graciasNo:'<h3 style="font-family:var(--display);font-size:24px;margin:0 0 6px">Gracias por avisar</h3><p>Te vamos a extrañar. Te mandamos fotos.</p>',
@@ -413,31 +410,31 @@ const T = {
     tags:[["si","Sí: color"],["si","Sí: estampado"],["si","Sí: zapato cómodo"],["no","No: blanco"],["no","No: tacón de aguja"]],
     florTit:"Los colores de la boda", florTxt:"Estas son las flores que va a haber ese día. No es una obligación ni un uniforme: es por si quieres una idea de por dónde van los colores. Lo importante es que te sientas bonito.",
     albTit:"Ellos dos", albSub:"Un poco de historia",
-    albTxt:"[Aquí escriben María y Adam: cómo se conocieron, cuánto llevan juntos, lo que quieran contar.]",
-    desTit:"Deséales algo", desSub:"Consejos, promesas, chistes malos",
+    albTxt:"Nos conocimos en Salento, Colombia, en 2023 y desde ese momento, incluso en la distancia, hemos sido inseparables. Ahora estamos muy emocionados de celebrar nuestro matrimonio con todos ustedes.",
+    desTit:"Deséales algo", desSub:"Deseos, comentarios, chistes y chismes para compartir",
     lDeQuien:"De parte de", lDeseo:"Tu deseo o consejo", phDeseo:"Que nunca se les acabe la paciencia ni el vino…",
-    lPrivado:"Que solo lo lean María y Adam", btnDeseo:"Colgar en el corcho",
+    lPrivado:"Que solo lo lean Majo y Adam", btnDeseo:"Colgar en el corcho",
     muroVacio:"El corcho está vacío. Cuelga la primera nota.", privado:"Privado", borrar:"Borrar mi nota",
     plTit:"Pon una canción", plSub:"La playlist la hacemos entre todos",
     plTxt:"La playlist es colaborativa: ábrela en Spotify y agrega tú mismo lo que quieras oír esa noche.",
     plLink:"Abrir y agregar en Spotify", plPideTit:"¿No tienes Spotify?",
     lCancion:"Canción", phCancion:"Título", lArtista:"Artista", phArtista:"Quién la canta", btnCancion:"Déjala aquí y la agregamos",
     plVacia:"Todavía no hay peticiones por aquí.",
-    fotTit:"Las fotos de todos", fotSub:"20 disparos por invitado", fotH3:"Tu celular es una cámara desechable",
-    fotTxt:"Entra al link, toma tus 20 fotos y ya. Todas caen en el mismo álbum y se revelan el domingo en la mañana.",
-    btnFotos:"Abrir mi cámara", fotAviso:"Toca un cuadrito para ver cómo se gasta el rollo.",
+    fotTit:"Las fotos de todos", fotSub:"Súbelas a la carpeta compartida", fotH3:"Las fotos de la noche, todas en un solo lugar",
+    fotTxt:"Toma fotos durante la boda y súbelas después a nuestra carpeta de Google Drive, para que no se pierda ningún momento. Todos pueden ver y descargar las de todos.",
+    btnDrive:"Subir mis fotos", btnFotos:"Cámara de la boda", fotAviso:"Elige tus mejores 20, como una cámara desechable.",
     faqTit:"Dudas", faqSub:"Lo que ya nos preguntaron",
     faq:[["¿Puedo llevar niños?","Sí. El dominio tiene una sala para ellos con pantalla, juegos y sofás durante la cena."],
-         ["¿Hay mesa de regalos?","Con que vengan ya es suficiente. Pero si insisten, aquí está la lista."],
+         ["¿Hay mesa de regalos?","¡Hola! Tenerte el 24 de abril celebrando con nosotros es el mejor regalo que podríamos pedir. Si además quieres darnos algo, te agradeceríamos muchísimo cualquier contribución a nuestro fondo de luna de miel (¡nos vamos a Grecia!), que puedes enviar a la cuenta de abajo.<br><br>Reino Unido: 51043722 40-41-57<br>Francia: FR802043302626N263103522605"],
          ["¿Y si llueve?","Todo se pasa al salón Côté Clairière, en el mismo lugar. No cambia nada más."],
-         ["¿Puedo publicar fotos?","Después de la ceremonia, sí. Etiqueta #MariaYAdam2027."]],
-    panTit:"Panel de María y Adam", panSub:"Solo para los novios",
+         ["¿Puedo publicar fotos?","Después de la ceremonia, sí. Etiqueta #MajoYAdam2027."]],
+    panTit:"Panel de Majo y Adam", panSub:"Solo para los novios",
     lPin:"Código", btnPin:"Entrar", pinMal:"Código incorrecto.",
-    cifras:["Vienen","No pueden","Bus"], sinRsvp:"Todavía no hay confirmaciones.",
+    cifras:["Vienen","No pueden","Veggie"], sinRsvp:"Todavía no hay confirmaciones.",
     panDeseos:"Mensajes privados", sinDeseos:"Sin mensajes privados.",
     pie:"Hecho con cariño", verPanel:"Panel de los novios", verPost:"Ver modo post-boda",
     postEyebrow:"Nos casamos", postTxt:"Gracias por venir.\nYa están las fotos de todos, la playlist final y el corcho de deseos.",
-    calTitulo:"Boda de María y Adam"
+    calTitulo:"Boda de Majo y Adam"
   },
   en:{
     menu:["Home","RSVP","The day","Getting there","Hotels","Bordeaux","Dress code","The two of them","Wishes","Playlist","Photos","FAQ"],
@@ -446,9 +443,8 @@ const T = {
     btnCal:"Add to calendar", btnWa:"Questions on WhatsApp",
     rsvpTit:"Let us know you're coming", rsvpSub:"By 24 January 2027",
     lNombre:"Your full name", phNombre:"Ana Pérez", lViene:"Are you coming?", oSi:"Count me in", oNo:"Can't make it",
-    lAcomp:"Guests with you", lBus:"Coach", busOps:["I would take it","Making my own way"],
-    lComida:"Anything you don't eat", phComida:"Vegetarian, gluten-free, allergies…",
-    lNota:"A message for María and Adam", phNota:"Optional, but always welcome",
+    lMenu:"Dinner menu", menuOps:["Standard","Vegetarian"],
+    lNota:"A message for Majo and Adam", phNota:"Optional, but always welcome",
     btnEnviar:"Send my answer", avisoRsvp:"You can change your answer on WhatsApp.",
     graciasSi:n=>`<h3 style="font-family:var(--display);font-size:24px;margin:0 0 6px">You're on the list, ${n}</h3><p>See you on 24 April at Sainte-Raphine. We'll send the final details a week before.</p>`,
     graciasNo:'<h3 style="font-family:var(--display);font-size:24px;margin:0 0 6px">Thanks for telling us</h3><p>We\'ll miss you. Photos are coming your way.</p>',
@@ -475,31 +471,31 @@ const T = {
     tags:[["si","Yes: colour"],["si","Yes: prints"],["si","Yes: comfy shoes"],["no","No: white"],["no","No: stilettos"]],
     florTit:"The colours of the day", florTxt:"These are the flowers that will be there. Not a rule and not a uniform, just in case you want a hint of where the colours are going. What matters is that you feel good.",
     albTit:"The two of them", albSub:"A bit of history",
-    albTxt:"[María and Adam write here: how they met, how long they've been together, whatever they want to tell.]",
-    desTit:"Leave them a wish", desSub:"Advice, promises, terrible jokes",
+    albTxt:"We met in Salento, Colombia, in 2023 and from that moment on, even across the distance, we've been inseparable. Now we can't wait to celebrate our wedding with all of you.",
+    desTit:"Leave them a wish", desSub:"Wishes, comments, jokes and gossip to share",
     lDeQuien:"From", lDeseo:"Your wish or advice", phDeseo:"May you never run out of patience, or wine…",
-    lPrivado:"Only María and Adam should read this", btnDeseo:"Pin it to the board",
+    lPrivado:"Only Majo and Adam should read this", btnDeseo:"Pin it to the board",
     muroVacio:"The board is empty. Pin the first note.", privado:"Private", borrar:"Delete my note",
     plTit:"Request a song", plSub:"We're building the playlist together",
     plTxt:"The playlist is collaborative: open it in Spotify and add whatever you want to hear that night.",
     plLink:"Open and add on Spotify", plPideTit:"No Spotify?",
     lCancion:"Song", phCancion:"Title", lArtista:"Artist", phArtista:"Who sings it", btnCancion:"Leave it here and we'll add it",
     plVacia:"No requests here yet.",
-    fotTit:"Everyone's photos", fotSub:"20 shots per guest", fotH3:"Your phone is a disposable camera",
-    fotTxt:"Open the link, take your 20 photos, that's it. They all land in the same album and get developed on Sunday morning.",
-    btnFotos:"Open my camera", fotAviso:"Tap a frame to see the roll being used up.",
+    fotTit:"Everyone's photos", fotSub:"Upload them to the shared folder", fotH3:"The whole night's photos, all in one place",
+    fotTxt:"Take photos during the wedding and upload them afterwards to our Google Drive folder, so no moment gets lost. Everyone can see and download everyone else's.",
+    btnDrive:"Upload my photos", btnFotos:"Wedding camera", fotAviso:"Pick your best 20, like a disposable camera.",
     faqTit:"FAQ", faqSub:"What people have asked us",
     faq:[["Can I bring the kids?","Yes. The estate has a room for them with a screen, games and sofas during dinner."],
-         ["Is there a gift list?","Just come. But if you insist, here's the list."],
+         ["Is there a gift list?","Hello! Having you celebrate with us on 24 April is the biggest gift we could ask for. If you'd also like to give us something else, we'd be so grateful for any contribution to our honeymoon fund (we're off to Greece!), which you can send to the account below.<br><br>UK: 51043722 40-41-57<br>France: FR802043302626N263103522605"],
          ["What if it rains?","Everything moves into the Côté Clairière hall, same place. Nothing else changes."],
-         ["Can I post photos?","After the ceremony, yes. Tag #MariaYAdam2027."]],
-    panTit:"María and Adam's dashboard", panSub:"For the couple only",
+         ["Can I post photos?","After the ceremony, yes. Tag #MajoYAdam2027."]],
+    panTit:"Majo and Adam's dashboard", panSub:"For the couple only",
     lPin:"Code", btnPin:"Enter", pinMal:"Wrong code.",
-    cifras:["Coming","Can't","Coach"], sinRsvp:"No answers yet.",
+    cifras:["Coming","Can't","Veggie"], sinRsvp:"No answers yet.",
     panDeseos:"Private messages", sinDeseos:"No private messages.",
     pie:"Made with love", verPanel:"Couple's dashboard", verPost:"Preview after-party mode",
     postEyebrow:"We got married", postTxt:"Thank you for coming.\nEveryone's photos, the final playlist and the board of wishes are all here.",
-    calTitulo:"María and Adam's wedding"
+    calTitulo:"Majo and Adam's wedding"
   },
   fr:{
     menu:["Accueil","Réponse","Le jour J","Y aller","Hébergement","Bordeaux","Tenue","Eux deux","Voeux","Playlist","Photos","Questions"],
@@ -508,9 +504,8 @@ const T = {
     btnCal:"Ajouter au calendrier", btnWa:"Une question sur WhatsApp",
     rsvpTit:"Dites-nous si vous venez", rsvpSub:"Avant le 24 janvier 2027",
     lNombre:"Nom et prénom", phNombre:"Ana Pérez", lViene:"Vous venez ?", oSi:"Je serai là", oNo:"Je ne peux pas",
-    lAcomp:"Accompagnants", lBus:"Navette", busOps:["Je la prendrais","Je viens par mes propres moyens"],
-    lComida:"Ce que vous ne mangez pas", phComida:"Végétarien, sans gluten, allergies…",
-    lNota:"Un mot pour María et Adam", phNota:"Facultatif, mais ça fait plaisir",
+    lMenu:"Menu du dîner", menuOps:["Classique","Végétarien"],
+    lNota:"Un mot pour Majo et Adam", phNota:"Facultatif, mais ça fait plaisir",
     btnEnviar:"Envoyer ma réponse", avisoRsvp:"Vous pouvez changer votre réponse sur WhatsApp.",
     graciasSi:n=>`<h3 style="font-family:var(--display);font-size:24px;margin:0 0 6px">C'est noté, ${n}</h3><p>Rendez-vous le 24 avril à Sainte-Raphine. Les derniers détails arrivent une semaine avant.</p>`,
     graciasNo:'<h3 style="font-family:var(--display);font-size:24px;margin:0 0 6px">Merci de nous prévenir</h3><p>Vous allez nous manquer. On vous envoie les photos.</p>',
@@ -537,31 +532,31 @@ const T = {
     tags:[["si","Oui : la couleur"],["si","Oui : les imprimés"],["si","Oui : chaussures confortables"],["no","Non : le blanc"],["no","Non : les talons aiguilles"]],
     florTit:"Les couleurs du jour", florTxt:"Voici les fleurs qui seront là. Ce n'est ni une règle ni un uniforme, juste une idée de la direction des couleurs. L'essentiel, c'est que vous vous sentiez bien.",
     albTit:"Eux deux", albSub:"Un peu d'histoire",
-    albTxt:"[María et Adam écrivent ici : comment ils se sont rencontrés, depuis combien de temps, ce qu'ils veulent raconter.]",
-    desTit:"Laissez-leur un voeu", desSub:"Conseils, promesses, mauvaises blagues",
+    albTxt:"On s'est rencontrés à Salento, en Colombie, en 2023 et depuis ce moment-là, même à distance, on est inséparables. Aujourd'hui, on a hâte de célébrer notre mariage avec vous tous.",
+    desTit:"Laissez-leur un voeu", desSub:"Voeux, commentaires, blagues et potins à partager",
     lDeQuien:"De la part de", lDeseo:"Votre voeu ou conseil", phDeseo:"Qu'ils ne manquent jamais de patience, ni de vin…",
-    lPrivado:"Que seuls María et Adam le lisent", btnDeseo:"Épingler sur le liège",
+    lPrivado:"Que seuls Majo et Adam le lisent", btnDeseo:"Épingler sur le liège",
     muroVacio:"Le liège est vide. Épinglez le premier mot.", privado:"Privé", borrar:"Supprimer mon mot",
     plTit:"Proposez une chanson", plSub:"La playlist, on la fait tous ensemble",
     plTxt:"La playlist est collaborative : ouvrez-la dans Spotify et ajoutez vous-même ce que vous voulez entendre.",
     plLink:"Ouvrir et ajouter sur Spotify", plPideTit:"Pas de Spotify ?",
     lCancion:"Chanson", phCancion:"Titre", lArtista:"Artiste", phArtista:"Qui la chante", btnCancion:"Laissez-la ici, on l'ajoute",
     plVacia:"Pas encore de demandes ici.",
-    fotTit:"Les photos de tout le monde", fotSub:"20 photos par invité", fotH3:"Votre téléphone est un appareil jetable",
-    fotTxt:"Ouvrez le lien, prenez vos 20 photos, c'est tout. Elles arrivent toutes dans le même album et se développent dimanche matin.",
-    btnFotos:"Ouvrir mon appareil", fotAviso:"Touchez une vignette pour voir la pellicule se remplir.",
+    fotTit:"Les photos de tout le monde", fotSub:"Déposez-les dans le dossier partagé", fotH3:"Toutes les photos de la soirée au même endroit",
+    fotTxt:"Prenez des photos pendant le mariage et déposez-les ensuite dans notre dossier Google Drive, pour ne perdre aucun moment. Tout le monde peut voir et télécharger les photos de tous.",
+    btnDrive:"Déposer mes photos", btnFotos:"Appareil du mariage", fotAviso:"Choisissez vos 20 meilleures, comme un appareil jetable.",
     faqTit:"Questions", faqSub:"Ce qu'on nous a déjà demandé",
     faq:[["Je peux venir avec les enfants ?","Oui. Le domaine a une salle pour eux avec écran, jeux et canapés pendant le dîner."],
-         ["Y a-t-il une liste de mariage ?","Votre présence suffit. Mais si vous insistez, la voici."],
+         ["Y a-t-il une liste de mariage ?","Bonjour ! Vous avoir à nos côtés le 24 avril est le plus beau cadeau qu'on puisse imaginer. Si vous souhaitez tout de même nous offrir quelque chose, toute contribution à notre cagnotte de lune de miel (on part en Grèce !) nous ferait très plaisir ; vous pouvez l'envoyer sur le compte ci-dessous.<br><br>Royaume-Uni : 51043722 40-41-57<br>France : FR802043302626N263103522605"],
          ["Et s'il pleut ?","Tout se replie dans la salle Côté Clairière, au même endroit. Rien ne change."],
-         ["Je peux publier des photos ?","Après la cérémonie, oui. Taguez #MariaYAdam2027."]],
-    panTit:"Tableau de bord de María et Adam", panSub:"Réservé aux mariés",
+         ["Je peux publier des photos ?","Après la cérémonie, oui. Taguez #MajoYAdam2027."]],
+    panTit:"Tableau de bord de Majo et Adam", panSub:"Réservé aux mariés",
     lPin:"Code", btnPin:"Entrer", pinMal:"Code incorrect.",
-    cifras:["Présents","Absents","Navette"], sinRsvp:"Pas encore de réponses.",
+    cifras:["Présents","Absents","Veggie"], sinRsvp:"Pas encore de réponses.",
     panDeseos:"Messages privés", sinDeseos:"Aucun message privé.",
     pie:"Fait avec amour", verPanel:"Tableau des mariés", verPost:"Aperçu du mode après-mariage",
     postEyebrow:"On s'est mariés", postTxt:"Merci d'être venus.\nLes photos de chacun, la playlist finale et le liège des voeux sont là.",
-    calTitulo:"Mariage de María et Adam"
+    calTitulo:"Mariage de Majo et Adam"
   }
 };
 
@@ -648,7 +643,7 @@ function traducir(){
   document.querySelectorAll("#menu button").forEach(b=>
     b.addEventListener("click", ()=> ir(b.dataset.pag)));
 
-  document.getElementById("bus").innerHTML = t.busOps.map(o=>`<option>${o}</option>`).join("");
+  document.getElementById("menusel").innerHTML = t.menuOps.map(o=>`<option>${o}</option>`).join("");
   document.getElementById("horario").innerHTML = t.horario.map(([h,tit,txt])=>
     `<div class="hora"><time>${h}</time><div><strong>${tit}</strong><em>${txt}</em></div></div>`).join("");
   document.getElementById("tagsVes").innerHTML = t.tags.map(([c,x])=>`<span class="tag ${c}">${x}</span>`).join("");
@@ -660,7 +655,10 @@ function traducir(){
   document.getElementById("listaBurdeos").innerHTML = BURDEOS.map(b=>
     `<div class="card"><p class="etiqueta">${b.t[lang]}</p><h3>${b.n}</h3><p>${b.d[lang]}</p><a class="enlace" href="${b.u}" target="_blank" rel="noopener">${t.verMapa}</a></div>`).join("");
 
-  document.getElementById("btnFotos").href = URL_FOTOS;
+  const bd = document.getElementById("btnDrive");
+  bd.href = URL_DRIVE; bd.style.display = URL_DRIVE ? "block" : "none";
+  const bf = document.getElementById("btnFotos");
+  bf.href = URL_FOTOS; bf.style.display = URL_FOTOS ? "block" : "none";
   document.getElementById("spotify").href = URL_SPOTIFY;
   document.getElementById("spotEmbed").src = "https://open.spotify.com/embed/playlist/" + ID_SPOTIFY;
   document.getElementById("uber").href =
@@ -692,13 +690,13 @@ setInterval(pintaCuenta, 30000);
 document.getElementById("btnCal").addEventListener("click", ()=>{
   const f = d => d.toISOString().replace(/[-:]/g,"").split(".")[0]+"Z";
   const ini = new Date(FECHA_BODA), fin = new Date(ini.getTime()+11.5*3600000);
-  const ics = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//maria-adam//ES","BEGIN:VEVENT",
-    "UID:maria-adam-2027@boda","DTSTAMP:"+f(new Date()),"DTSTART:"+f(ini),"DTEND:"+f(fin),
+  const ics = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//majo-adam//ES","BEGIN:VEVENT",
+    "UID:majo-adam-2027@boda","DTSTAMP:"+f(new Date()),"DTSTART:"+f(ini),"DTEND:"+f(fin),
     "SUMMARY:"+T[lang].calTitulo,"LOCATION:Domaine Sainte-Raphine, Fargues-Saint-Hilaire",
     "END:VEVENT","END:VCALENDAR"].join("\r\n");
   const a = document.createElement("a");
   a.href = URL.createObjectURL(new Blob([ics],{type:"text/calendar"}));
-  a.download = "maria-adam-2027.ics"; a.click();
+  a.download = "majo-adam-2027.ics"; a.click();
 });
 document.getElementById("btnWa").addEventListener("click", ()=>{
   window.open("https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(
@@ -719,9 +717,8 @@ document.getElementById("enviar").addEventListener("click", async ()=>{
   if(!nombre){ document.getElementById("nombre").focus(); return; }
   if(!asiste){ document.querySelector("#asiste button").focus(); return; }
   const datos = { nombre, asiste,
-    acompanantes: document.getElementById("acomp").value,
-    bus: document.getElementById("bus").value,
-    comida: document.getElementById("comida").value.trim(),
+    acompanantes: "", bus: "",
+    comida: document.getElementById("menusel").value,
     nota: document.getElementById("nota").value.trim(),
     enviado: new Date().toISOString() };
   document.getElementById("enviar").disabled = true;
@@ -819,16 +816,16 @@ document.getElementById("btnPin").addEventListener("click", async ()=>{
   await cargar();
   const lista = DATOS.rsvp;
   const deseos = DATOS.deseos.filter(d=>d.privado);
-  const vienen = lista.filter(x=>x.asiste==="si").reduce((n,x)=>n+1+Number(x.acompanantes||0),0);
+  const vienen = lista.filter(x=>x.asiste==="si").length;
   const nop = lista.filter(x=>x.asiste==="no").length;
-  const bus = lista.filter(x=>x.asiste==="si" && x.bus===t.busOps[0]).reduce((n,x)=>n+1+Number(x.acompanantes||0),0);
+  const veg = lista.filter(x=>x.asiste==="si" && /veg|végé/i.test(x.comida||"")).length;
   caja.innerHTML =
     '<div class="cifras"><div><b>'+vienen+'</b><span>'+t.cifras[0]+'</span></div>' +
     '<div><b>'+nop+'</b><span>'+t.cifras[1]+'</span></div>' +
-    '<div><b>'+bus+'</b><span>'+t.cifras[2]+'</span></div></div>' +
+    '<div><b>'+veg+'</b><span>'+t.cifras[2]+'</span></div></div>' +
     (lista.length ? lista.map(x=>
       '<div class="invitado"><b>'+x.nombre+'</b> '+(x.asiste==="si"?"✓":"✗")+' '+(Number(x.acompanantes)?"+"+x.acompanantes:"")+
-      '<em>'+[x.bus, x.comida, x.nota].filter(Boolean).join(" · ")+'</em></div>').join("")
+      '<em>'+[x.comida, x.nota].filter(Boolean).join(" · ")+'</em></div>').join("")
       : "<p>"+t.sinRsvp+"</p>") +
     '<h3 style="font-family:var(--display);font-size:20px;margin:22px 0 6px">'+t.panDeseos+'</h3>' +
     (deseos.length ? deseos.map(d=>
@@ -861,8 +858,7 @@ document.getElementById("verPost").addEventListener("click", ()=>{
 })();
 
 traducir();
-const inicial = location.hash.replace("#","");
-ir(PAGINAS.includes(inicial) ? inicial : "inicio");
+ir("inicio");
 refrescar();
 
 if("serviceWorker" in navigator){
@@ -875,7 +871,7 @@ if("serviceWorker" in navigator){
     try{
       const reg = await navigator.serviceWorker.register("sw.js", {updateViaCache:"none"});
       reg.update();
-      document.addEventListener("visibilitychange", ()=>{ if(!document.hidden) reg.update(); });
+      document.addEventListener("visibilitychange", ()=>{ if(!document.hidden){ reg.update(); refrescar(); } });
       setInterval(()=> reg.update(), 60*60*1000);
     }catch(e){}
   });
