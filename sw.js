@@ -1,6 +1,6 @@
 /* Sube este número cada vez que cambies algo importante.
    Al detectarlo, la app se actualiza sola en el celular de todos. */
-const CACHE = "boda-v8";
+const CACHE = "boda-v9";
 
 const BASE = [
   "./", "./index.html", "./manifest.json",

@@ -346,7 +346,7 @@
 
 <script>
 /* ==================== EDITA AQUÍ ==================== */
-const FECHA_BODA   = "2027-04-24T16:00:00";
+const FECHA_BODA   = "2027-04-24T16:00:00+02:00";
 const URL_FOTOS    = "";   // link cámara desechable en vivo (Lense/JoinMyMoment) — opcional
 const URL_DRIVE    = "";   // link de la carpeta de Google Drive compartida para subir fotos
 const ID_SPOTIFY   = "13NTYDQvV4cU7EdQDEhiOu";
@@ -364,7 +364,7 @@ const HOTELES = [
   {n:"Villa Margaux", d:{es:"Casa de huéspedes con spa en Fargues-Saint-Hilaire, a cinco minutos.",en:"Guest house with a spa in Fargues-Saint-Hilaire, five minutes away.",fr:"Chambres d'hôtes avec spa à Fargues-Saint-Hilaire, à cinq minutes."}, u:MAPA("ChIJFZrPG9A6VQ0R5kphdHmTetI")},
   {n:"Logis Hôtel Pey la Tour", d:{es:"En Sallebœuf, entre viñedos, con piscina y restaurante.",en:"In Sallebœuf, among the vines, with a pool and a restaurant.",fr:"À Sallebœuf, au milieu des vignes, avec piscine et restaurant."}, u:MAPA("ChIJu90F5LI7VQ0RcVrjnPnRCEw")},
   {n:"Château La Chèze", d:{es:"En Floirac, a medio camino entre el dominio y el centro de Burdeos.",en:"In Floirac, halfway between the venue and central Bordeaux.",fr:"À Floirac, à mi-chemin entre le domaine et le centre de Bordeaux."}, u:MAPA("ChIJl8Un6-IlVQ0RUy_HGQIjj3A")},
-  {n:"Hôtel De Sèze", d:{es:"En pleno centro, sobre las Allées de Tourny. Bueno si te quedas todo el fin de semana.",en:"Right in the centre, on the Allées de Tourny. Good if you stay the whole weekend.",fr:"En plein centre, sur les allées de Tourny. Parfait pour tout le week-end."}, u:MAPA("ChIJ5cifY9knVQ0RpGqV7r6W-IM")},
+  {n:"Hôtel De Sèze", w:"https://www.hotel-de-seze.com", d:{es:"En pleno centro, sobre las Allées de Tourny. Bueno si te quedas todo el fin de semana.",en:"Right in the centre, on the Allées de Tourny. Good if you stay the whole weekend.",fr:"En plein centre, sur les allées de Tourny. Parfait pour tout le week-end."}, u:MAPA("ChIJ5cifY9knVQ0RpGqV7r6W-IM")},
   {n:"Grand Hôtel Français", d:{es:"Centro de Burdeos, tranquilo y bien ubicado.",en:"Central Bordeaux, quiet and well placed.",fr:"Centre de Bordeaux, calme et bien situé."}, u:MAPA("ChIJ0UZPnNwnVQ0RjWGicMPJO-Q")},
   {n:"Quality Hotel Bordeaux Centre", d:{es:"En pleno centro, de los mejores de precio. Buen desayuno.",en:"Right in the centre, one of the best for the price. Good breakfast.",fr:"En plein centre, un des meilleurs rapports qualité-prix. Bon petit-déj."}, u:MAPA("ChIJ000fudonVQ0RetaXvMAgKec")},
   {n:"L'entre deux M", d:{es:"Casa de huéspedes acogedora y económica en Saint-Loubès, a 20 min.",en:"Cozy, affordable B&B in Saint-Loubès, 20 min away.",fr:"Chambres d'hôte cosy et abordables à Saint-Loubès, à 20 min."}, u:MAPA("ChIJk3MAScAzVQ0RDUpXpKc-DEQ")}
@@ -374,10 +374,10 @@ const BURDEOS = [
   {n:"Les Drôles", t:{es:"Comer",en:"Eat",fr:"Manger"}, d:{es:"Menú completo por unos 25 €. Hay que reservar sí o sí.",en:"Full set menu for about €25. You have to book ahead.",fr:"Menu complet autour de 25 €. Réservation obligatoire."}, u:MAPA("ChIJx4L9QtAnVQ0RoeMfao4MnJU")},
   {n:"Arcada", t:{es:"Comer",en:"Eat",fr:"Manger"}, d:{es:"Cocina de temporada y una bodega a la que puedes bajar a escoger el vino.",en:"Seasonal cooking, and a cellar you can go down into to pick your bottle.",fr:"Cuisine de saison et cave où l'on descend choisir sa bouteille."}, u:MAPA("ChIJc-kygzEnVQ0Rg5t8tCx_l3c")},
   {n:"La Fine Bouche", t:{es:"Comer",en:"Eat",fr:"Manger"}, d:{es:"Menú de mediodía muy bien de precio. Cierra domingo y lunes.",en:"Great-value lunch menu. Closed Sunday and Monday.",fr:"Menu du midi très bon marché. Fermé dimanche et lundi."}, u:MAPA("ChIJq5wKkbonVQ0RHuS04Oxv6fA")},
-  {n:"Mama Shelter", t:{es:"Tomar algo",en:"Drinks",fr:"Boire un verre"}, d:{es:"Terraza en la azotea, buena para el aperitivo del domingo.",en:"Rooftop terrace, good for a Sunday apéritif.",fr:"Terrasse sur le toit, parfaite pour l'apéro du dimanche."}, u:MAPA("ChIJubQP4c4nVQ0RSJYh8YQE8xA")},
+  {n:"Mama Shelter", w:"https://mamashelter.com/bordeaux", t:{es:"Tomar algo",en:"Drinks",fr:"Boire un verre"}, d:{es:"Terraza en la azotea, buena para el aperitivo del domingo.",en:"Rooftop terrace, good for a Sunday apéritif.",fr:"Terrasse sur le toit, parfaite pour l'apéro du dimanche."}, u:MAPA("ChIJubQP4c4nVQ0RSJYh8YQE8xA")},
   {n:"Miroir d'eau", t:{es:"Ver",en:"See",fr:"Voir"}, d:{es:"El espejo de agua frente a la Place de la Bourse. Quítate los zapatos.",en:"The water mirror facing Place de la Bourse. Take your shoes off.",fr:"Le miroir d'eau face à la place de la Bourse. Enlevez vos chaussures."}, u:MAPA("ChIJqYZVmtEnVQ0RO36Y31D_VIs")},
-  {n:"Bassins des Lumières", t:{es:"Ver",en:"See",fr:"Voir"}, d:{es:"Una base de submarinos convertida en proyecciones gigantes sobre el agua.",en:"A submarine base turned into giant projections over water.",fr:"Une base sous-marine transformée en projections géantes sur l'eau."}, u:MAPA("ChIJpyY--JApVQ0RqUfd4KL6kX8")},
-  {n:"Cité du Vin", t:{es:"Ver",en:"See",fr:"Voir"}, d:{es:"El museo del vino. La entrada incluye una copa arriba, con vista a la ciudad.",en:"The wine museum. Your ticket includes a glass upstairs, overlooking the city.",fr:"Le musée du vin. L'entrée comprend un verre en haut, avec vue sur la ville."}, u:MAPA("ChIJnc9nRcQnVQ0RGtHWztxMV0E")},
+  {n:"Bassins des Lumières", w:"https://www.bassins-lumieres.com", t:{es:"Ver",en:"See",fr:"Voir"}, d:{es:"Una base de submarinos convertida en proyecciones gigantes sobre el agua.",en:"A submarine base turned into giant projections over water.",fr:"Une base sous-marine transformée en projections géantes sur l'eau."}, u:MAPA("ChIJpyY--JApVQ0RqUfd4KL6kX8")},
+  {n:"Cité du Vin", w:"https://www.laciteduvin.com", t:{es:"Ver",en:"See",fr:"Voir"}, d:{es:"El museo del vino. La entrada incluye una copa arriba, con vista a la ciudad.",en:"The wine museum. Your ticket includes a glass upstairs, overlooking the city.",fr:"Le musée du vin. L'entrée comprend un verre en haut, avec vue sur la ville."}, u:MAPA("ChIJnc9nRcQnVQ0RGtHWztxMV0E")},
   {n:"Cathédrale Saint-André", t:{es:"Ver",en:"See",fr:"Voir"}, d:{es:"Gótica, enorme y gratis. Está a dos calles de todo.",en:"Gothic, enormous and free. Two streets from everything.",fr:"Gothique, immense et gratuite. À deux rues de tout."}, u:MAPA("ChIJiRiav8QnVQ0RWaT2EhBnHSw")}
 ];
 
@@ -396,14 +396,14 @@ const T = {
     graciasNo:'<h3 style="font-family:var(--display);font-size:24px;margin:0 0 6px">Gracias por avisar</h3><p>Te vamos a extrañar. Te mandamos fotos.</p>',
     diaTit:"El día", diaSub:"Sábado · horarios aproximados",
     horario:[["16:00","Llegada","Un rato para saludarse antes de empezar."],
-             ["16:30","Ceremonia","En el claro del dominio. Empieza puntual."],
+             ["16:30","Ceremonia","Empieza puntual, llega con tiempo."],
              ["17:30","Sorpresa","Confía en nosotros y quédate sentado."],
              ["18:00","Cóctel","En el jardín, bajo los árboles."],
              ["20:00","Cena","Mesas asignadas, busca tu nombre en la entrada."],
              ["23:00","Fiesta","Hasta las 3:30. Trae unos tenis de repuesto."]],
     llegarTit:"Cómo llegar", llegarSub:"62 hectáreas de bosque a 15 min de Burdeos",
-    lugarTxt:"Fargues-Saint-Hilaire, Gironde. En plena campiña bordelesa, a cinco minutos de la circunvalación.",
-    verMapa:"Abrir en Google Maps", verWeb:"Web del dominio",
+    lugarTxt:"Fargues-Saint-Hilaire, Gironde. En plena campiña bordelesa, a cinco minutos de la autopista.",
+    verMapa:"Abrir en Google Maps", verWeb:"Web del dominio", verSitio:"Sitio web",
     avionTit:"En avión", avionTxt:"Aeropuerto de Burdeos-Mérignac. Desde Londres hay vuelo directo y desde Bogotá con una escala.",
     busTit:"Bus", busTxt:"Por confirmar. Si somos suficientes, va a haber un bus desde el centro de Burdeos, ida y vuelta. Cuéntanos en tu confirmación si lo tomarías.",
     cocheTit:"En carro", cocheTxt:"Estacionamiento gratis en el dominio. Si vas a tomar, mejor el bus.",
@@ -413,13 +413,13 @@ const T = {
     burTit:"Burdeos", burSub:"Para quien se queda el fin de semana",
     burTxt:"Si te quedas el domingo, aquí van algunas cosas que nos gustan. Todo está a menos de veinte minutos del centro.",
     vesTit:"Qué ponerte", vesSub:"Código de vestimenta", vesH3:"Ven bonito, ven cómodo",
-    vesTxt:"Ven como te sientas lindo. Ojo: la ceremonia es al aire libre y sobre pasto, así que mejor tacón ancho o algo plano. En abril las noches son frescas, trae algo encima.",
+    vesTxt:"Ven como te sientas lindo. Ojo: la ceremonia es al aire libre y sobre pasto, así que mejor tacón ancho o algo plano. En abril las noches son frescas, trae algo encima. Se prefiere traje.",
     tags:[["si","Sí: color"],["si","Sí: estampado"],["si","Sí: zapato cómodo"],["no","No: blanco"],["no","No: tacón de aguja"]],
     florTit:"Los colores de la boda", florTxt:"Estas son las flores que va a haber ese día. No es una obligación ni un uniforme: es por si quieres una idea de por dónde van los colores. Lo importante es que te sientas bonito.",
     albTit:"Ellos dos", albSub:"Un poco de historia",
     albTxt:"Nos conocimos en Salento, Colombia, en 2023 y desde ese momento, incluso en la distancia, hemos sido inseparables. Ahora estamos muy emocionados de celebrar nuestro matrimonio con todos ustedes.",
     desTit:"Deséales algo", desSub:"Deseos, comentarios, chistes y chismes para compartir",
-    lDeQuien:"De parte de", lDeseo:"Tu deseo o consejo", phDeseo:"Que nunca se les acabe la paciencia ni el vino…",
+    lDeQuien:"De parte de", lDeseo:"Tu deseo o consejo", phDeseo:"Escribe aquí tu deseo para los novios…",
     lPrivado:"Que solo lo lean Majo y Adam", btnDeseo:"Colgar en el corcho",
     muroVacio:"El corcho está vacío. Cuelga la primera nota.", privado:"Privado", borrar:"Borrar mi nota",
     plTit:"Pon una canción", plSub:"La playlist la hacemos entre todos",
@@ -460,14 +460,14 @@ const T = {
     graciasNo:'<h3 style="font-family:var(--display);font-size:24px;margin:0 0 6px">Thanks for telling us</h3><p>We\'ll miss you. Photos are coming your way.</p>',
     diaTit:"The day", diaSub:"Saturday · approximate times",
     horario:[["16:00","Arrival","Time to say hello before things start."],
-             ["16:30","Ceremony","In the clearing. It starts on time."],
+             ["16:30","Ceremony","Starts on time, arrive a little early."],
              ["17:30","A surprise","Trust us and stay in your seat."],
              ["18:00","Drinks","In the garden, under the trees."],
              ["20:00","Dinner","Seating plan at the entrance, find your name."],
              ["23:00","Party","Until 3:30. Bring spare trainers."]],
     llegarTit:"Getting there", llegarSub:"62 hectares of woodland, 15 min from Bordeaux",
     lugarTxt:"Fargues-Saint-Hilaire, Gironde. Deep in the Bordeaux countryside, five minutes off the ring road.",
-    verMapa:"Open in Google Maps", verWeb:"Venue website",
+    verMapa:"Open in Google Maps", verWeb:"Venue website", verSitio:"Website",
     avionTit:"By plane", avionTxt:"Bordeaux-Mérignac airport. Direct flights from London, one stop from Bogotá.",
     busTit:"Coach", busTxt:"To be confirmed. If enough of you want it, there will be a coach from central Bordeaux and back. Tell us in your RSVP whether you would use it.",
     cocheTit:"By car", cocheTxt:"Free parking at the estate. If you're drinking, take the coach.",
@@ -477,13 +477,13 @@ const T = {
     burTit:"Bordeaux", burSub:"For anyone staying the weekend",
     burTxt:"If you're around on Sunday, here are a few things we love. Everything is under twenty minutes from the centre.",
     vesTit:"What to wear", vesSub:"Dress code", vesH3:"Come lovely, come comfortable",
-    vesTxt:"Wear whatever makes you feel good. Heads up: the ceremony is outdoors and on grass, so block heels or something flat are a safer bet. April nights get cold, bring a layer.",
+    vesTxt:"Wear whatever makes you feel good. Heads up: the ceremony is outdoors and on grass, so block heels or something flat are a safer bet. April nights get cold, bring a layer. Suits preferred.",
     tags:[["si","Yes: colour"],["si","Yes: prints"],["si","Yes: comfy shoes"],["no","No: white"],["no","No: stilettos"]],
     florTit:"The colours of the day", florTxt:"These are the flowers that will be there. Not a rule and not a uniform, just in case you want a hint of where the colours are going. What matters is that you feel good.",
     albTit:"The two of them", albSub:"A bit of history",
     albTxt:"We met in Salento, Colombia, in 2023 and from that moment on, even across the distance, we've been inseparable. Now we can't wait to celebrate our wedding with all of you.",
     desTit:"Leave them a wish", desSub:"Wishes, comments, jokes and gossip to share",
-    lDeQuien:"From", lDeseo:"Your wish or advice", phDeseo:"May you never run out of patience, or wine…",
+    lDeQuien:"From", lDeseo:"Your wish or advice", phDeseo:"Write your wish for the couple here…",
     lPrivado:"Only Majo and Adam should read this", btnDeseo:"Pin it to the board",
     muroVacio:"The board is empty. Pin the first note.", privado:"Private", borrar:"Delete my note",
     plTit:"Request a song", plSub:"We're building the playlist together",
@@ -524,14 +524,14 @@ const T = {
     graciasNo:'<h3 style="font-family:var(--display);font-size:24px;margin:0 0 6px">Merci de nous prévenir</h3><p>Vous allez nous manquer. On vous envoie les photos.</p>',
     diaTit:"Le jour J", diaSub:"Samedi · horaires indicatifs",
     horario:[["16:00","Arrivée","Le temps de se dire bonjour avant de commencer."],
-             ["16:30","Cérémonie","Dans la clairière du domaine. Ça commence à l'heure."],
+             ["16:30","Cérémonie","Ça commence à l'heure, arrivez un peu en avance."],
              ["17:30","Surprise","Faites-nous confiance et restez assis."],
              ["18:00","Cocktail","Dans le jardin, sous les arbres."],
              ["20:00","Passage à table","Plan de table à l'entrée, cherchez votre nom."],
              ["23:00","Soirée","Jusqu'à 3h30. Prévoyez des baskets."]],
     llegarTit:"Y aller", llegarSub:"62 hectares de forêt à 15 min de Bordeaux",
     lugarTxt:"Fargues-Saint-Hilaire, Gironde. En pleine campagne bordelaise, à cinq minutes de la rocade.",
-    verMapa:"Ouvrir dans Google Maps", verWeb:"Site du domaine",
+    verMapa:"Ouvrir dans Google Maps", verWeb:"Site du domaine", verSitio:"Site web",
     avionTit:"En avion", avionTxt:"Aéroport de Bordeaux-Mérignac. Vol direct depuis Londres, une escale depuis Bogotá.",
     busTit:"Navette", busTxt:"À confirmer. S'il y a assez de monde, une navette fera l'aller-retour depuis le centre de Bordeaux. Dites-nous dans votre réponse si vous la prendriez.",
     cocheTit:"En voiture", cocheTxt:"Parking gratuit au domaine. Si vous buvez, la navette est une meilleure idée.",
@@ -541,13 +541,13 @@ const T = {
     burTit:"Bordeaux", burSub:"Pour ceux qui restent le week-end",
     burTxt:"Si vous êtes là dimanche, voici quelques adresses qu'on aime. Tout est à moins de vingt minutes du centre.",
     vesTit:"Quoi porter", vesSub:"Code vestimentaire", vesH3:"Venez beaux, venez à l'aise",
-    vesTxt:"Portez ce qui vous fait vous sentir bien. À noter : la cérémonie est en plein air et sur l'herbe, donc talon large ou quelque chose de plat, c'est plus sûr. En avril les soirées sont fraîches, prévoyez une veste.",
+    vesTxt:"Portez ce qui vous fait vous sentir bien. À noter : la cérémonie est en plein air et sur l'herbe, donc talon large ou quelque chose de plat, c'est plus sûr. En avril les soirées sont fraîches, prévoyez une veste. Costume de préférence.",
     tags:[["si","Oui : la couleur"],["si","Oui : les imprimés"],["si","Oui : chaussures confortables"],["no","Non : le blanc"],["no","Non : les talons aiguilles"]],
     florTit:"Les couleurs du jour", florTxt:"Voici les fleurs qui seront là. Ce n'est ni une règle ni un uniforme, juste une idée de la direction des couleurs. L'essentiel, c'est que vous vous sentiez bien.",
     albTit:"Eux deux", albSub:"Un peu d'histoire",
     albTxt:"On s'est rencontrés à Salento, en Colombie, en 2023 et depuis ce moment-là, même à distance, on est inséparables. Aujourd'hui, on a hâte de célébrer notre mariage avec vous tous.",
     desTit:"Laissez-leur un voeu", desSub:"Voeux, commentaires, blagues et potins à partager",
-    lDeQuien:"De la part de", lDeseo:"Votre voeu ou conseil", phDeseo:"Qu'ils ne manquent jamais de patience, ni de vin…",
+    lDeQuien:"De la part de", lDeseo:"Votre voeu ou conseil", phDeseo:"Écrivez ici votre voeu pour les mariés…",
     lPrivado:"Que seuls Majo et Adam le lisent", btnDeseo:"Épingler sur le liège",
     muroVacio:"Le liège est vide. Épinglez le premier mot.", privado:"Privé", borrar:"Supprimer mon mot",
     plTit:"Proposez une chanson", plSub:"La playlist, on la fait tous ensemble",
@@ -665,10 +665,11 @@ function traducir(){
   document.getElementById("tagsVes").innerHTML = t.tags.map(([c,x])=>`<span class="tag ${c}">${x}</span>`).join("");
   document.getElementById("floresVes").innerHTML = ["flor-calla","flor-clavel-rosa","flor-gerbera","flor-ranunculo-am","flor-peonia","flor-stock","flor-dragon","flor-ranunculo-rosa","flor-clavel-crema"].map(f=>`<img src="img/${f}.png" loading="lazy" alt="">`).join("");
 
+  const webLink = x => x.w ? `<br><a class="enlace" href="${x.w}" target="_blank" rel="noopener">${t.verSitio}</a>` : "";
   document.getElementById("listaHoteles").innerHTML = HOTELES.map(h=>
-    `<div class="card"><h3>${h.n}</h3><p>${h.d[lang]}</p><a class="enlace" href="${h.u}" target="_blank" rel="noopener">${t.verMapa}</a></div>`).join("");
+    `<div class="card"><h3>${h.n}</h3><p>${h.d[lang]}</p><a class="enlace" href="${h.u}" target="_blank" rel="noopener">${t.verMapa}</a>${webLink(h)}</div>`).join("");
   document.getElementById("listaBurdeos").innerHTML = BURDEOS.map(b=>
-    `<div class="card"><p class="etiqueta">${b.t[lang]}</p><h3>${b.n}</h3><p>${b.d[lang]}</p><a class="enlace" href="${b.u}" target="_blank" rel="noopener">${t.verMapa}</a></div>`).join("");
+    `<div class="card"><p class="etiqueta">${b.t[lang]}</p><h3>${b.n}</h3><p>${b.d[lang]}</p><a class="enlace" href="${b.u}" target="_blank" rel="noopener">${t.verMapa}</a>${webLink(b)}</div>`).join("");
 
   const bd = document.getElementById("btnDrive");
   bd.href = URL_DRIVE; bd.style.display = URL_DRIVE ? "block" : "none";
@@ -705,7 +706,7 @@ setInterval(pintaCuenta, 30000);
 document.getElementById("btnCal").addEventListener("click", ()=>{
   const f = d => d.toISOString().replace(/[-:]/g,"").split(".")[0]+"Z";
   const ini = new Date(FECHA_BODA), fin = new Date(ini.getTime()+11.5*3600000);
-  const ics = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//majo-adam//ES","BEGIN:VEVENT",
+  const ics = ["BEGIN:VCALENDAR","VERSION:2.0","CALSCALE:GREGORIAN","METHOD:PUBLISH","PRODID:-//majo-adam//ES","BEGIN:VEVENT",
     "UID:majo-adam-2027@boda","DTSTAMP:"+f(new Date()),"DTSTART:"+f(ini),"DTEND:"+f(fin),
     "SUMMARY:"+T[lang].calTitulo,"LOCATION:Domaine Sainte-Raphine, Fargues-Saint-Hilaire",
     "END:VEVENT","END:VCALENDAR"].join("\r\n");
