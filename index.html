@@ -358,7 +358,7 @@ const NUM_ALBUM    = 21;
 const API          = "https://script.google.com/macros/s/AKfycbwHgxV2vp8CPEEojcd-XYd9ZBQzu1BZHqwLiCnSSTeK1xg01dFoH_recUrF3b34vLP2GA/exec";
 /* =================================================== */
 
-const MAPA = id => "https://www.google.com/maps/place/?q=place_id:" + id;
+const MAPA = id => id;   // guardamos solo el place_id; el link se arma al renderizar
 
 const HOTELES = [
   {n:"Villa Margaux", d:{es:"Casa de huéspedes con spa en Fargues-Saint-Hilaire, a cinco minutos.",en:"Guest house with a spa in Fargues-Saint-Hilaire, five minutes away.",fr:"Chambres d'hôtes avec spa à Fargues-Saint-Hilaire, à cinq minutes."}, u:MAPA("ChIJFZrPG9A6VQ0R5kphdHmTetI")},
@@ -665,11 +665,12 @@ function traducir(){
   document.getElementById("tagsVes").innerHTML = t.tags.map(([c,x])=>`<span class="tag ${c}">${x}</span>`).join("");
   document.getElementById("floresVes").innerHTML = ["flor-calla","flor-clavel-rosa","flor-gerbera","flor-ranunculo-am","flor-peonia","flor-stock","flor-dragon","flor-ranunculo-rosa","flor-clavel-crema"].map(f=>`<img src="img/${f}.png" loading="lazy" alt="">`).join("");
 
+  const mapsHref = x => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(x.n + " Bordeaux") + "&query_place_id=" + x.u;
   const webLink = x => x.w ? `<br><a class="enlace" href="${x.w}" target="_blank" rel="noopener">${t.verSitio}</a>` : "";
   document.getElementById("listaHoteles").innerHTML = HOTELES.map(h=>
-    `<div class="card"><h3>${h.n}</h3><p>${h.d[lang]}</p><a class="enlace" href="${h.u}" target="_blank" rel="noopener">${t.verMapa}</a>${webLink(h)}</div>`).join("");
+    `<div class="card"><h3>${h.n}</h3><p>${h.d[lang]}</p><a class="enlace" href="${mapsHref(h)}" target="_blank" rel="noopener">${t.verMapa}</a>${webLink(h)}</div>`).join("");
   document.getElementById("listaBurdeos").innerHTML = BURDEOS.map(b=>
-    `<div class="card"><p class="etiqueta">${b.t[lang]}</p><h3>${b.n}</h3><p>${b.d[lang]}</p><a class="enlace" href="${b.u}" target="_blank" rel="noopener">${t.verMapa}</a>${webLink(b)}</div>`).join("");
+    `<div class="card"><p class="etiqueta">${b.t[lang]}</p><h3>${b.n}</h3><p>${b.d[lang]}</p><a class="enlace" href="${mapsHref(b)}" target="_blank" rel="noopener">${t.verMapa}</a>${webLink(b)}</div>`).join("");
 
   const bd = document.getElementById("btnDrive");
   bd.href = URL_DRIVE; bd.style.display = URL_DRIVE ? "block" : "none";
